@@ -56,7 +56,7 @@ function Achievements() {
               alt={achievement.title}
             />
             <div className="absolute bottom-0 left-0 right-0 bg-white/80 py-3 px-4 group-hover:bg-white transition-all duration-300">
-              <h2 className="font-bold text-xl">{achievement.title}</h2>
+              <div className="font-bold text-xl">{achievement.title}</div>
               <p className="text-lg">{achievement.description}</p>
               <span className="absolute bottom-0 left-0 h-1 w-0 bg-sky-400 transition-all duration-300 group-hover:w-full"></span>
             </div>

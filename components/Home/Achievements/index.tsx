@@ -1,26 +1,31 @@
 "use client";
+import Button from "@/components/ui/ButtonNugen/butoon";
 import React from "react";
 
 const achievementsData = [
   {
     title: "Flexikeg",
     description: "Web design & développement web",
-    imageUrl: "https://www.florianperrier.com/app/uploads/2024/01/florian-perrier-developpement-site-web-flexikeg-3.jpg",
+    imageUrl:
+      "https://www.florianperrier.com/app/uploads/2024/01/florian-perrier-developpement-site-web-flexikeg-3.jpg",
   },
   {
     title: "Crazy Tiger",
     description: "Web design & développement web",
-    imageUrl: "https://www.florianperrier.com/app/uploads/2024/01/florian-perrier-developpement-web-crazy-tiger-1.jpg.webp",
+    imageUrl:
+      "https://www.florianperrier.com/app/uploads/2024/01/florian-perrier-developpement-web-crazy-tiger-1.jpg.webp",
   },
   {
     title: "Pradier House",
     description: "Web design & développement web",
-    imageUrl: "https://www.florianperrier.com/app/uploads/2024/01/florian-perrier-developpement-web-paris-maison-pradier-1-1536x1152.jpg.webp",
+    imageUrl:
+      "https://www.florianperrier.com/app/uploads/2024/01/florian-perrier-developpement-web-paris-maison-pradier-1-1536x1152.jpg.webp",
   },
   {
     title: "Global Health Action",
     description: "Web design & développement web",
-    imageUrl: "https://www.florianperrier.com/app/uploads/2024/01/florian-perrier-developpeur-web-freelance-paris-actionsantemondiale-1.jpg.webp",
+    imageUrl:
+      "https://www.florianperrier.com/app/uploads/2024/01/florian-perrier-developpeur-web-freelance-paris-actionsantemondiale-1.jpg.webp",
   },
 ];
 
@@ -41,7 +46,7 @@ function Achievements() {
           </span>
         </h1>
       </div>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 cursor-pointer">
         {achievementsData.map((achievement, index) => (
           <div key={index} className="relative group">
@@ -58,11 +63,12 @@ function Achievements() {
           </div>
         ))}
       </div>
-      
+
       <div className="flex justify-center py-12">
-        <button className="mt-10 bg-sky-400 text-white text-lg px-8 py-3 rounded-md hover:bg-sky-500">
-          See all achievements
-        </button>
+        <Button
+          title={"See all achievements"}
+          className="mb-4 sm:mb-0 sm:mx-2"
+        />
       </div>
     </div>
   );

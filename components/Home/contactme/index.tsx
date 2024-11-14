@@ -1,4 +1,5 @@
 "use client";
+import Button from "@/components/ui/ButtonNugen/butoon";
 import React from "react";
 
 const CallToAction = () => {
@@ -22,10 +23,7 @@ const CallToAction = () => {
           <br />
           of your site?
         </h2>
-        <button className="relative inline-block bg-sky-500 text-white py-3 px-6 rounded-lg overflow-hidden text-base md:text-lg lg:text-xl font-semibold transition-all duration-300 hover:bg-sky-700 group">
-          <span className="absolute inset-0 hover:bg-sky-600 bg-sky-400scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-          <span className="relative z-10">Contact Me</span>
-        </button>
+        <Button title={"Contact Me"} className="mb-4 sm:mb-0 sm:mx-2" />
       </div>
     </div>
   );

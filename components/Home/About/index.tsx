@@ -1,4 +1,5 @@
 "use client";
+import Button from "@/components/ui/ButtonNugen/butoon";
 import React from "react";
 
 const aboutData = {
@@ -62,9 +63,7 @@ function About() {
           </p>
         ))}
 
-        <button className="relative inline-block bg-sky-600 text-white py-3 px-6 rounded-lg overflow-hidden text-lg font-semibold transition-all duration-300 hover:bg-sky-700 group w-full sm:w-auto mb-4 sm:mb-0 sm:mx-2">
-          {buttonText}
-        </button>
+        <Button title={buttonText} className="mb-4 sm:mb-0 sm:mx-2" />
       </div>
     </div>
   );

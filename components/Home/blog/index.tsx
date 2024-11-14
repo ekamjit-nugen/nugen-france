@@ -1,4 +1,5 @@
 "use client";
+import Button from "@/components/ui/ButtonNugen/butoon";
 import React from "react";
 
 const BlogSectionHome = () => {
@@ -74,10 +75,7 @@ const BlogSectionHome = () => {
 
       {/* Button */}
       <div className="text-center mt-10">
-        <button className="relative inline-block bg-[#0FB8F7] text-white py-3 px-6 rounded-lg overflow-hidden text-base md:text-lg lg:text-xl font-semibold transition-all duration-300 hover:bg-blue-700 group">
-          <span className="absolute inset-0 bg-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-          <span className="relative z-10">See all articles</span>
-        </button>
+        <Button title={"See all articles"} className="mb-4 sm:mb-0 sm:mx-2" />
       </div>
     </section>
   );

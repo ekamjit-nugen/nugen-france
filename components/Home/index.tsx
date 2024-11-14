@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import Button from "../ui/ButtonNugen/butoon";
 
 const HomePage = () => {
   const data = {
@@ -67,13 +68,11 @@ const HomePage = () => {
 
           <div className="mt-6 relative space-x-4 flex flex-wrap ">
             {data.section1.buttons.map((button, index) => (
-              <button
-                key={index}
-                className="relative inline-block bg-sky-400 text-white py-3 px-6 rounded-lg overflow-hidden text-lg font-semibold transition-all duration-300 hover:bg-sky-700 group w-full sm:w-auto mb-4 sm:mb-0 sm:mx-2"
-              >
-                <span className="absolute inset-0 bg-sky-700 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-                <span className="relative z-10">{button.text}</span>
-              </button>
+              <Button
+              key={index}
+              title={button.text}
+              className="mb-4 sm:mb-0 sm:mx-2"
+            />
             ))}
           </div>
         </div>
@@ -90,7 +89,7 @@ const HomePage = () => {
 
       {/* Section 2: Three Columns */}
       <div className="bg-white py-16 px-8">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {data.section2.cards.map((card, idx) => (
             <Link href={card.link} key={idx} style={{textDecoration:"none"}}>
               <div className="p-8 bg-white hover:bg-[#0FB8F7] hover:text-white rounded-lg shadow-2xl text-center transition-all duration-300 h-[500px] flex flex-col">

@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import Button from "@/components/ui/ButtonNugen/butoon";
 
 function ServicesPage() {
   return (
@@ -20,7 +21,7 @@ function ServicesPage() {
         </h1>
       </div>
 
-      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div className="container max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {/* Cards */}
         {[
           {
@@ -88,18 +89,16 @@ function ServicesPage() {
             ],
           },
         ].map((service, index) => (
-          <Link href="/services" key={index}>
-            <div className="p-8 bg-white hover:bg-[#0FB8F7] hover:text-white rounded-lg shadow-2xl text-center transition-all duration-300 min-h-[400px] flex flex-col">
+          <Link href="/services" key={index} style={{ textDecoration: "none" }}>
+            <div className="p-8 bg-white hover:bg-[#0FB8F7] hover:text-white rounded-lg shadow-2xl text-center transition-all duration-300 h-[500px] flex flex-col">
               <div className="flex-grow">
                 <div className="text-blue-500 text-5xl mb-4">
                   {service.icon}
                 </div>
                 <h3 className="text-xl font-bold mb-4">{service.title}</h3>
-                {service.description.map((line, i) => (
-                  <p key={i} className="mb-2">
-                    {line}
-                  </p>
-                ))}
+                <div className="overflow-auto text-left max-h-64">
+                  <p className="mb-2">{service.description}</p>
+                </div>
               </div>
             </div>
           </Link>
@@ -107,10 +106,7 @@ function ServicesPage() {
       </div>
 
       <div className="text-center mt-12">
-        <button className="relative inline-block bg-[#0FB8F7] text-white py-3 px-6 rounded-lg overflow-hidden text-base md:text-lg lg:text-xl font-semibold transition-all duration-300 hover:bg-blue-700 group">
-          <span className="absolute inset-0 bg-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-          <span className="relative z-10">Contact Me</span>
-        </button>
+        <Button title={"Contact Me"} className="mb-4 sm:mb-0 sm:mx-2" />
       </div>
     </div>
   );

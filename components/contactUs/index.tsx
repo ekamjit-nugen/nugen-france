@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Button from "../ui/ButtonNugen/butoon";
 
 const ContactPage = () => {
   const contactData = {
@@ -36,12 +37,11 @@ const ContactPage = () => {
           <h2 className="text-2xl font-semibold mb-4">I wish</h2>
           <div className="flex gap-4">
             {actions.map((action, index) => (
-              <button
+              <Button
                 key={index}
-                className="w-full md:w-1/2 py-4 px-6 border-2 border-black text-center font-medium rounded-lg shadow-lg hover:shadow-md transition"
-              >
-                {action}
-              </button>
+                title={action}
+                className="mb-4 sm:mb-0 sm:mx-2"
+              />
             ))}
           </div>
         </div>

@@ -90,14 +90,14 @@ function ServicesPage() {
           },
         ].map((service, index) => (
           <Link href="/services" key={index} style={{ textDecoration: "none" }}>
-            <div className="p-8 bg-white hover:bg-[#0FB8F7] hover:text-white rounded-lg shadow-2xl text-center transition-all duration-300 h-[500px] flex flex-col">
+            <div className="p-8 bg-white hover:bg-[#0FB8F7] hover:text-white rounded-lg shadow-2xl text-center transition-all duration-300 h-[450px] flex flex-col">
               <div className="flex-grow">
                 <div className="text-blue-500 text-5xl mb-4">
                   {service.icon}
                 </div>
                 <h3 className="text-xl font-bold mb-4">{service.title}</h3>
-                <div className="overflow-auto text-left max-h-64">
-                  <p className="mb-2">{service.description}</p>
+                <div className="text-left max-h-64">
+                  <p className="text-base mb-2">{service.description}</p>
                 </div>
               </div>
             </div>

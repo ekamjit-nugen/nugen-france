@@ -90,14 +90,14 @@ const HomePage = () => {
 
       {/* Section 2: Three Columns */}
       <div className="bg-white py-16 px-8">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {data.section2.cards.map((card, idx) => (
-            <Link href={card.link} key={idx}>
-              <div className="p-8 bg-white hover:bg-[#0FB8F7] hover:text-white rounded-lg shadow-2xl text-center transition-all duration-300 min-h-[400px] flex flex-col">
+            <Link href={card.link} key={idx} style={{textDecoration:"none"}}>
+              <div className="p-8 bg-white hover:bg-[#0FB8F7] hover:text-white rounded-lg shadow-2xl text-center transition-all duration-300 h-[500px] flex flex-col">
                 <div>
                   <div className="text-blue-500 text-6xl mb-4">{card.icon}</div>
                   <h3 className="text-2xl font-bold mb-2">{card.title}</h3>
-                  <p>{card.description}</p>
+                  <p className="text-clip overflow-hidden">{card.description}</p>
                 </div>
               </div>
             </Link>

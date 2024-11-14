@@ -25,16 +25,18 @@ function About() {
   return (
     <div className="flex flex-col md:flex-row items-center justify-center px-6 py-10 md:px-16 md:py-24 min-h-screen">
       <div className="relative flex justify-center md:justify-end mb-10 md:mb-0 w-full">
-        <img
-          src={images.codeImage}
-          className="absolute w-32 h-48 sm:w-48 sm:h-72 md:w-64 md:h-96 rounded-lg shadow-lg -top-10 -left-10 sm:top-0 sm:-left-16 md:-top-20 md:-left-16"
-          alt="code"
-        />
-        <img
-          src={images.personImage}
-          className="relative w-56 sm:w-72 md:w-[28rem] lg:w-[32rem] rounded-lg shadow-lg"
-          alt="man"
-        />
+        <div className="relative">
+          <img
+            src={images.codeImage}
+            className="absolute top-16 -left-16 md:top-12 lg:top-20 xl:top-28 xl:-left-32 z-40 w-[50%] h-[50%] rounded-lg"
+            alt="code"
+          />
+          <img
+            src={images.personImage}
+            className="w-56 sm:w-72 md:w-[28rem] lg:w-[32rem] rounded-lg shadow-lg z-0"
+            alt="man"
+          />
+        </div>
       </div>
       <div className="text-center md:text-left max-w-xl px-4 sm:px-6 md:px-0 mt-10 md:mt-0 md:ml-12">
         <h1 className="text-sky-400 text-base sm:text-lg md:text-xl font-semibold uppercase flex items-center justify-center md:justify-start">

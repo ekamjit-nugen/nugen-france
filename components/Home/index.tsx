@@ -68,11 +68,13 @@ const HomePage = () => {
 
           <div className="mt-6 relative flex flex-wrap ">
             {data.section1.buttons.map((button, index) => (
-              <Button
-              key={index}
-              title={button.text}
-              className="mb-4 w-full sm:mb-0 sm:mx-2"
-            />
+              <button
+                key={index}
+                className="relative inline-block bg-sky-400 text-white py-3 px-6 rounded-lg overflow-hidden text-lg font-semibold transition-all duration-300 hover:bg-sky-700 group w-full sm:w-auto mb-4 sm:mb-0 sm:mx-2"
+              >
+                <span className="absolute inset-0 bg-sky-700 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                <span className="relative z-10">{button.text}</span>
+              </button>
             ))}
           </div>
         </div>

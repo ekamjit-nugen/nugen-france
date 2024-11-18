@@ -66,12 +66,12 @@ const HomePage = () => {
             ))}
           </div>
 
-          <div className="mt-6 relative space-x-4 flex flex-wrap ">
+          <div className="mt-6 relative flex flex-wrap ">
             {data.section1.buttons.map((button, index) => (
               <Button
               key={index}
               title={button.text}
-              className="mb-4 sm:mb-0 sm:mx-2"
+              className="mb-4 w-full sm:mb-0 sm:mx-2"
             />
             ))}
           </div>

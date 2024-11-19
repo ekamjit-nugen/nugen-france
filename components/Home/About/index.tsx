@@ -63,7 +63,7 @@ function About() {
           </p>
         ))}
 
-        <Button title={buttonText} className="mb-4 sm:mb-0 sm:mx-2" />
+        <Button title={buttonText} className="mb-4 sm:mb-0 mt-10 sm:mx-2" />
       </div>
     </div>
   );

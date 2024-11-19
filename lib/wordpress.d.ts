@@ -1,4 +1,5 @@
 export type Post = {
+  acf: any;
   id: number;
   date: string;
   date_gmt: string;
@@ -13,6 +14,7 @@ export type Post = {
   link: string;
   title: {
     rendered: string;
+    acf?: any;
   };
   content: {
     rendered: string;
@@ -68,6 +70,7 @@ export type Tag = {
 };
 
 export type Page = {
+  acf?: any;
   id: number;
   date: string;
   date_gmt: string;

@@ -7,8 +7,17 @@ import SkillsSection from "@/components/Home/skillsSection";
 import BlogSectionHome from "@/components/Home/blog";
 import TestimonialPage from "@/components/Home/Testimonial";
 import Achievements from "@/components/Home/Achievements";
+import { imageLink } from "@/lib/common-api/common";
+import { getPageBySlug } from "@/lib/wordpress";
 
-export default function Home() {
+const Home = async () => {
+  const pageCont = await getPageBySlug("about");
+  console.log(pageCont, "pageCont");
+  
+  const images = await imageLink(pageCont?.acf?.image);
+  const pageContent = { ...pageCont, image: images };
+  console.log(pageContent, "pageContent");
+
   return (
     <>
       <HomePage />
@@ -22,4 +31,5 @@ export default function Home() {
       <BlogSectionHome />
     </>
   );
-}
+};
+export default Home;

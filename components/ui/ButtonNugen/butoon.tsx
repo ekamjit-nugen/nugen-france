@@ -15,7 +15,7 @@ const Button: React.FC<ButtonType> = ({ title, onClick, className = "", fullWidt
         fullWidth ? "w-full" : "w-auto"
       } ${className}`}
     >
-      <span className="absolute inset-0 bg-sky-700 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+      <span className="absolute inset-0 bg-sky-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
       <span className="relative z-10">{title}</span>
     </button>
   );

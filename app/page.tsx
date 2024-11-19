@@ -7,21 +7,29 @@ import SkillsSection from "@/components/Home/skillsSection";
 import BlogSectionHome from "@/components/Home/blog";
 import TestimonialPage from "@/components/Home/Testimonial";
 import Achievements from "@/components/Home/Achievements";
-import { imageLink } from "@/lib/common-api/common";
+import { imageLink, PagesData } from "@/lib/common-api/common";
 import { getPageBySlug } from "@/lib/wordpress";
 
 const Home = async () => {
-  const pageCont = await getPageBySlug("about");
-  console.log(pageCont, "pageCont");
+  const aboutpagedata = await getPageBySlug("about");
+  const aboutimage1 = await imageLink(aboutpagedata?.acf?.["img-1"]);
+  const aboutimage2 = await imageLink(aboutpagedata?.acf?.["img-2"]);
+  const aboutpageContent = { ...aboutpagedata?.acf, "img-1": aboutimage1, "img-2": aboutimage2 };
+  const homepagedata = await getPageBySlug("home");
+  const homeimage1 = await imageLink(homepagedata?.acf?.logo);
+  const homeimage2 = await imageLink(homepagedata?.acf?.image);
+  const homepageContent = { ...homepagedata?.acf, logo: homeimage1, image: homeimage2 };
+  const description=await PagesData("home_box")
+  console.log(description, "description");
   
-  const images = await imageLink(pageCont?.acf?.image);
-  const pageContent = { ...pageCont, image: images };
-  console.log(pageContent, "pageContent");
+//   const image=await imageLink(description?.acf?.image)
+//   const contentData={...description?.acf,image:image}
+// console.log(homepageContent, "homepageContent"); 
 
   return (
     <>
-      <HomePage />
-      <About />
+      <HomePage homePagedata={homepageContent}postdata={homepageContent} />
+      <About aboutPagedata={aboutpageContent} />
       <Achievements />
       <CallToAction />
       <ServicesPage />

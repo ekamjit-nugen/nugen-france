@@ -21,6 +21,8 @@ const Home = async () => {
   const homepageContent = { ...homepagedata?.acf, logo: homeimage1, image: homeimage2 };
   const homePostButton=await PagesData("home-buttons")  
   const homeBox=await PagesData("home-box")  
+  const BlogData = await PagesData("blog");  
+
   return (
     <>
       <HomePage homePagedata={homepageContent} buttonData={homePostButton} homeBoxData={homeBox}/>
@@ -31,7 +33,7 @@ const Home = async () => {
       <SkillsSection />
       <TestimonialPage />
       <CallToAction />
-      <BlogSectionHome />
+      <BlogSectionHome BlogData={BlogData}/>
     </>
   );
 };

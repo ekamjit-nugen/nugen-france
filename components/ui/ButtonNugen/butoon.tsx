@@ -2,12 +2,17 @@ import React from "react";
 
 interface ButtonType {
   title: string;
-  onClick?: () => void; 
-  className?: string; 
-  fullWidth?: boolean; 
+  onClick?: () => void;
+  className?: string;
+  fullWidth?: boolean;
 }
 
-const Button: React.FC<ButtonType> = ({ title, onClick, className = "", fullWidth = false }) => {
+const Button: React.FC<ButtonType> = ({
+  title,
+  onClick,
+  className = "",
+  fullWidth = false,
+}) => {
   return (
     <button
       onClick={onClick}
@@ -19,6 +24,6 @@ const Button: React.FC<ButtonType> = ({ title, onClick, className = "", fullWidt
       <span className="relative z-10">{title}</span>
     </button>
   );
-}
+};
 
 export default Button;

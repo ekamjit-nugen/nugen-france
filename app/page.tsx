@@ -19,16 +19,11 @@ const Home = async () => {
   const homeimage1 = await imageLink(homepagedata?.acf?.logo);
   const homeimage2 = await imageLink(homepagedata?.acf?.image);
   const homepageContent = { ...homepagedata?.acf, logo: homeimage1, image: homeimage2 };
-  const homePostButton=await PagesData("home_buttons")  
-  console.log(homePostButton, "homePostButton");
-  
-//   const image=await imageLink(homePost?.acf?.image)
-//   const contentData={...homePost?.acf,image:image}
-//   console.log(contentData, "homepageContent"); 
-
+  const homePostButton=await PagesData("home-buttons")  
+  const homeBox=await PagesData("home-box")  
   return (
     <>
-      <HomePage homePagedata={homepageContent} postdata={homePostButton} />
+      <HomePage homePagedata={homepageContent} buttonData={homePostButton} homeBoxData={homeBox}/>
       <About aboutPagedata={aboutpageContent} />
       <Achievements />
       <CallToAction />

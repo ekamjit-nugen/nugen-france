@@ -11,6 +11,7 @@ import { imageLink, PagesData } from "@/lib/common-api/common";
 import { getPageBySlug } from "@/lib/wordpress";
 
 const Home = async () => {
+  // const t = useTranslations('HomePage');
   const aboutpagedata = await getPageBySlug("about");
   const aboutimage1 = await imageLink(aboutpagedata?.acf?.["img-1"]);
   const aboutimage2 = await imageLink(aboutpagedata?.acf?.["img-2"]);
@@ -19,13 +20,15 @@ const Home = async () => {
   const homeimage1 = await imageLink(homepagedata?.acf?.logo);
   const homeimage2 = await imageLink(homepagedata?.acf?.image);
   const homepageContent = { ...homepagedata?.acf, logo: homeimage1, image: homeimage2 };
-  const homePostButton=await PagesData("home-buttons")  
-  const homeBox=await PagesData("home-box")  
-  const BlogData = await PagesData("blog");  
+  const homePostButton = await PagesData("home-buttons")
+  const homeBox = await PagesData("home-box")
+  const BlogData = await PagesData("blog");
 
   return (
     <>
-      <HomePage homePagedata={homepageContent} buttonData={homePostButton} homeBoxData={homeBox}/>
+
+      {/* <h1>{t('title')}</h1>; */}
+      <HomePage homePagedata={homepageContent} buttonData={homePostButton} homeBoxData={homeBox} />
       <About aboutPagedata={aboutpageContent} />
       <Achievements />
       <CallToAction />
@@ -33,7 +36,7 @@ const Home = async () => {
       <SkillsSection />
       <TestimonialPage />
       <CallToAction />
-      <BlogSectionHome BlogData={BlogData}/>
+      <BlogSectionHome BlogData={BlogData} />
     </>
   );
 };

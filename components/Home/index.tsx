@@ -6,27 +6,31 @@ export interface PageContent {
   header_title: string;
   header_description: string;
   animated_title: string;
-  button_value?: () => void; // This is optional based on your second type.
-  underline_text?: string; // Optional based on your second type.
-  button_title: string; // Optional based on your second type.
-  "img-1"?: string; // Optional based on your second type.
-  "img-2"?: string; // Optional based on your second type.
+  button_value?: () => void; 
+  underline_text?: string; 
+  button_title: string; 
+  "img-1"?: string; 
+  "img-2"?: string; 
   url: string;
-  logo: any; // You can refine 'any' to a specific type based on your use case (like string, URL, or image data).
+  logo: any;
   url_text: string;
   image: any;
+}
+
+interface postDataType {
   post_description: string;
   post_title: string;
-  post_image: any;
+  post_image: string;
 
 }
 
 export interface PageProps {
-  homePagedata: PageContent
-  postdata: PageContent
+  homePagedata: PageContent;
+  postdata: postDataType;
 }
-const HomePage:  React.FC<PageProps> = ({ homePagedata ,postdata}) => {
-  
+const HomePage: React.FC<PageProps> = ({ homePagedata, postdata }) => {
+  console.log(postdata, "postdata");
+
   // const data = {
   //   section1: {
   //     title: "DeveloperWeb",
@@ -71,7 +75,7 @@ const HomePage:  React.FC<PageProps> = ({ homePagedata ,postdata}) => {
   // };
 
   return (
-    <div className="bg-[#F8EDE2] w-full min-h-screen">
+    <div className="bg-[#F8EDE2] w-full min-h-screen text-black">
       {/* Section 1 */}
       <div className="flex flex-col md:flex-row items-center py-20 px-8 md:px-16">
         {/* Left Side: Text Content */}
@@ -82,19 +86,19 @@ const HomePage:  React.FC<PageProps> = ({ homePagedata ,postdata}) => {
           <div>{homePagedata.underline_text}</div>
 
           <div className="mt-6 text-base md:text-xl font-medium">
-              <p key={homePagedata.header_title} className="mt-2">
-                {homePagedata.header_description}
-              </p>
+            <p key={homePagedata.header_title} className="mt-2">
+              {homePagedata.header_description}
+            </p>
           </div>
 
           <div className="mt-6 relative flex flex-wrap ">
-              <button
-                key={homePagedata.button_title}
-                className="relative inline-block bg-sky-400 text-white py-3 px-6 rounded-lg overflow-hidden text-lg font-semibold transition-all duration-300 hover:bg-sky-700 group w-full sm:w-auto mb-4 sm:mb-0 sm:mx-2"
-              >
-                <span className="absolute inset-0 bg-sky-700 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-                <span className="relative z-10">{homePagedata.button_title}</span>
-              </button>
+            <button
+              key={homePagedata.button_title}
+              className="relative inline-block bg-sky-400 text-white py-3 px-6 rounded-lg overflow-hidden text-lg font-semibold transition-all duration-300 hover:bg-sky-700 group w-full sm:w-auto mb-4 sm:mb-0 sm:mx-2"
+            >
+              <span className="absolute inset-0 bg-sky-700 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+              <span className="relative z-10">{homePagedata.button_title}</span>
+            </button>
           </div>
         </div>
 
@@ -109,19 +113,29 @@ const HomePage:  React.FC<PageProps> = ({ homePagedata ,postdata}) => {
       </div>
 
       {/* Section 2: Three Columns */}
-      {/* <div className="bg-white py-16 px-8">
+      <div className="bg-white py-16 px-8">
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Link href={postdata.button_value} key={postdata.post_title} style={{textDecoration:"none"}}>
-              <div className="p-8 bg-white hover:bg-[#0FB8F7] hover:text-white rounded-lg shadow-2xl text-center transition-all duration-300 h-[500px] flex flex-col">
-                <div>
-                  <div className="text-blue-500 text-6xl mb-4">{postdata.post_image}</div>
-                  <h3 className="text-2xl font-bold mb-2">{postdata.post_title}</h3>
-                  <p className="text-clip overflow-hidden">{postdata.post_description}</p>
+          <Link
+            href={postdata}
+            key={postdata.post_title}
+            style={{ textDecoration: "none" }}
+          >
+            <div className="p-8 bg-white hover:bg-[#0FB8F7] hover:text-white rounded-lg shadow-2xl text-center transition-all duration-300 h-[500px] flex flex-col">
+              <div>
+                <div className="text-blue-500 text-6xl mb-4">
+                  {postdata.post_image}
                 </div>
+                <h3 className="text-2xl font-bold mb-2">
+                  {postdata.post_title}
+                </h3>
+                <p className="text-clip overflow-hidden">
+                  {postdata.post_description}
+                </p>
               </div>
-            </Link>
+            </div>
+          </Link>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };

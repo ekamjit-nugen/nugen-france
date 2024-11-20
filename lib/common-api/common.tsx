@@ -1,9 +1,13 @@
-import { getAllCategories, getAllPosts, getFeaturedMediaById } from "@/lib/wordpress";
+import {
+  getAllCategories,
+  getAllPosts,
+  getFeaturedMediaById,
+} from "@/lib/wordpress";
 
 export const imageLink = async (id: number) => {
-    const imagevalue = await getFeaturedMediaById(id)
-    return imagevalue?.source_url
-  }
+  const imagevalue = await getFeaturedMediaById(id);
+  return imagevalue?.source_url;
+};
 export const PagesData = async (category: string) => {
   const workSection = await getAllCategories();
   const clientCategory = workSection.find((cat) => cat.name === category) || {

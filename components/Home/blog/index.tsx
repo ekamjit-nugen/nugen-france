@@ -53,6 +53,7 @@ const BlogSectionHome = ({ BlogData }: BlogPageType) => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
         {BlogData.map((blog, index) => (
           <Link
+          key={blog.button_value+index}
             href={{
               pathname: "/blog-detail",
               query: {

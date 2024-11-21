@@ -1,7 +1,8 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import LocaleSwitcher from "../lunguageButton";
 export interface PageContent {
   header_title: string;
   header_description: string;
@@ -49,22 +50,46 @@ const HomePage: React.FC<PageProps> = ({
   buttonData,
   homeBoxData,
 }) => {
-  const t = useTranslations("HomePage");
+  const t = useTranslations("home");
+  const [locale, setLocale] = useState("en"); 
 
+  // const switchLocale = (newLocale: string) => {
+  //   setLocale(newLocale);
+  // };
   return (
     <div className="bg-[#F8EDE2] w-full min-h-screen text-black">
+      <LocaleSwitcher/>
+      {/* <div className="flex justify-end p-4">
+        <button
+          onClick={() => switchLocale("en")}
+          className={`py-2 px-4 rounded ${
+            locale === "en" ? "bg-blue-500 text-white" : "bg-gray-200 text-black"
+          }`}
+        >
+          English
+        </button>
+        <button
+          onClick={() => switchLocale("fn")}
+          className={`py-2 px-4 rounded ml-4 ${
+            locale === "fn" ? "bg-blue-500 text-white" : "bg-gray-200 text-black"
+          }`}
+        >
+          French
+        </button>
+      </div> */}
       {/* Section 1 */}
       <div className="flex flex-col md:flex-row items-center py-20 px-8 md:px-16">
         {/* Left Side: Text Content */}
         <div className="text-3xl md:text-6xl font-extrabold flex-1">
           <div className="underline decoration-sky-500 underline-offset-2">
-            <h1>{t("title")}</h1>;{homePagedata?.header_title}
+            {t("underline_text")}
+            {/* {homePagedata?.header_title} */}
           </div>
-          <div>{homePagedata?.underline_text}</div>
+          <div>{t("header_title")}</div>
 
           <div className="mt-6 text-base md:text-xl font-medium">
             <p key={homePagedata?.header_title} className="mt-2">
-              {homePagedata?.header_description}
+              {t("header_description")}
             </p>
           </div>
 

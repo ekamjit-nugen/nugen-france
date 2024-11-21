@@ -1,5 +1,11 @@
 {
-    "HomePage": {
-        "title": "Hello Dunia!"
-    }
+  "apiName": "home",
+  "home": {
+    "header_title": "Indépendant à Paris",
+    "header_description": "Site internet créé à Paris depuis 2011. Je vous accompagne dans votre projet de site vitrine, boutique en ligne, blog, identité visuelle, et refonte ou optimisation de site internet sur CMS.  Avec plus de 10 ans d'expérience dans le développement informatique, je propose des solutions digitales clé en main pour augmenter la visibilité des entreprises sur le web.",
+    "animated_title": "",
+    "button_value": "",
+    "button_title": "",
+    "underline_text": "Développeur Web"
+  }
 }

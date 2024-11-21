@@ -38,8 +38,11 @@ export default function BlogDetail({
           </div>
           <img src={data?.post_image} alt="image" />
           <div className="">{data?.post_description}</div>
-          {blogData?.map((value) => (
-            <div className="flex flex-col gap-2">
+          {blogData?.map((value, index) => (
+            <div
+              className="flex flex-col gap-2"
+              key={value?.post_title + index}
+            >
               <h2 className="text-2xl font-bold">{value?.post_title}</h2>
               <p className="text-base">{value?.post_description}</p>
             </div>
@@ -62,6 +65,7 @@ export default function BlogDetail({
             </div>
             {RelatedPost?.map((item) => (
               <Link
+              key={item?.button_value}
                 href={{
                   pathname: "/blog-detail",
                   query: {

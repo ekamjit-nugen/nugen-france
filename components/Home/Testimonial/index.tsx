@@ -83,7 +83,7 @@ function TestimonialPage() {
 
               {/* Testimonial Content */}
               <p className="text-gray-700 mb-4 text-lg italic text-center">
-                "{testimonial.quote}"
+                {testimonial.quote}
               </p>
               <p className="font-semibold text-gray-900">
                 {testimonial.author}

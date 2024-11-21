@@ -1,22 +1,13 @@
-[
-  {
-    "header_title": "",
-    "header_description": "",
+{
+  "apiName": "home",
+  "home": {
+    "header_title": "Freelance in Paris",
+    "header_description": "Website created in Paris since 2011.  I support you in your project of showcase site, online store, blog, visual identity, and redesign or optimization of website on CMS.  With more than 10 years of experience in IT development, I offer turnkey digital solutions to increase the visibility of companies on the web.",
     "animated_title": "",
-    "button_value": "/Portfolio",
-    "button_title": "See My Achievements",
-    "post_title": "",
-    "post_description": "",
-    "post_icon": ""
-  },
-  {
-    "header_title": "",
-    "header_description": "",
-    "animated_title": "",
-    "button_value": "/Contact-us",
-    "button_title": "learn More",
-    "post_title": "",
-    "post_description": "",
-    "post_icon": ""
+    "button_value": "",
+    "button_title": "",
+    "logo": "http://fp-nugen.local/wp-content/uploads/2024/11/nugen-logo-black.webp",
+    "image": "http://fp-nugen.local/wp-content/uploads/2024/11/florian-perrier-developpement-web-paris-lmdlc-1.jpg.webp",
+    "underline_text": "Developer Web  "
   }
-]
+}

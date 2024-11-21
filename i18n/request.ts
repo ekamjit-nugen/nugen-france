@@ -1,12 +1,18 @@
 import { getRequestConfig } from 'next-intl/server';
+import { cookies } from 'next/headers'; 
 
 export default getRequestConfig(async () => {
-  // Provide a static locale, fetch a user setting,
-  // read from `cookies()`, `headers()`, etc.
-  const locale = 'fn';
+  const cookieStore = cookies();
+
+  const localeCookie = cookieStore.get('locale');
+  const locale = localeCookie?.value || 'en'; 
+
+  if (!localeCookie) {
+    cookieStore.set('locale', 'en');
+  }
 
   return {
     locale,
-    messages: (await import(`../messages/${locale}.json`)).default
+    messages: (await import(`../messages/${locale}.json`)).default,
   };
 });

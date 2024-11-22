@@ -49,34 +49,12 @@ const HomePage: React.FC<PageProps> = ({
   homePagedata,
   buttonData,
   homeBoxData,
-}) => {
+}) =>  {
   const t = useTranslations("home");
-  const [locale, setLocale] = useState("en"); 
 
-  // const switchLocale = (newLocale: string) => {
-  //   setLocale(newLocale);
-  // };
   return (
     <div className="bg-[#F8EDE2] w-full min-h-screen text-black">
       <LocaleSwitcher/>
-      {/* <div className="flex justify-end p-4">
-        <button
-          onClick={() => switchLocale("en")}
-          className={`py-2 px-4 rounded ${
-            locale === "en" ? "bg-blue-500 text-white" : "bg-gray-200 text-black"
-          }`}
-        >
-          English
-        </button>
-        <button
-          onClick={() => switchLocale("fn")}
-          className={`py-2 px-4 rounded ml-4 ${
-            locale === "fn" ? "bg-blue-500 text-white" : "bg-gray-200 text-black"
-          }`}
-        >
-          French
-        </button>
-      </div> */}
       {/* Section 1 */}
       <div className="flex flex-col md:flex-row items-center py-20 px-8 md:px-16">
         {/* Left Side: Text Content */}

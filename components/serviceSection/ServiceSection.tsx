@@ -56,7 +56,7 @@ export default function ServiceSection() {
                 className={`${
                   index % 2 == 0
                     ? `flex flex-col md:flex-row`
-                    : `flex flex-col md:flex-row md:flex-row-reverse`
+                    : `flex flex-col md:flex-row-reverse`
                 }`}
               >
                 <div className="w-full flex justify-center items-center">

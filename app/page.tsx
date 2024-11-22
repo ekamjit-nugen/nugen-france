@@ -23,14 +23,14 @@ const Home = async () => {
     logo: homeimage1Fr,
     image: homeimage2Fr,
   };
-  const homePostDataWithApiNamefr = {
-    apiName: "home", 
-    home: homepageContentfr, 
+  const homePostDatafr = {
+    apiName: "home",
+    home: homepageContentfr,
   };
 
   fs.writeFileSync(
     "./messages/fn.json",
-    JSON.stringify(homePostDataWithApiNamefr, null, 2),
+    JSON.stringify(homePostDatafr, null, 2),
     "utf-8"
   );
   const homepagedata = await getPageBySlug("home");
@@ -42,8 +42,8 @@ const Home = async () => {
     image: homeimage2,
   };
   const homePostDataWithApiName = {
-    apiName: "home", 
-    home: homepageContent, 
+    apiName: "home",
+    home: homepageContent,
   };
 
   fs.writeFileSync(
@@ -62,6 +62,11 @@ const Home = async () => {
   const homeBox = await PagesData("home-box");
   const BlogData = await PagesData("blog");
   const servicesBox = await PagesData("services-section");
+  const CallToActionData = await PagesData("call-to-action");
+  const callToActFirst = CallToActionData?.[0];
+  const callToActSecond = CallToActionData?.[1];
+  const TestimonialData = await PagesData("test-test");
+  console.log(TestimonialData, "test-test");
 
   return (
     <>
@@ -72,11 +77,11 @@ const Home = async () => {
       />
       <About aboutPagedata={aboutpageContent} />
       <Achievements />
-      <CallToAction />
+      <CallToAction data={CallToActionData} />
       <ServicesPage ServicesData={servicesBox} />
       <SkillsSection />
       <TestimonialPage />
-      <CallToAction />
+      <CallToAction data={CallToActionData} />
       <BlogSectionHome BlogData={BlogData} />
     </>
   );

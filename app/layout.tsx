@@ -50,11 +50,13 @@ export const revalidate = 3600;
 //   );
 // }
 
-import { NextIntlClientProvider } from 'next-intl';
-import { getLocale, getMessages } from 'next-intl/server';
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
+import { PagesData } from "@/lib/common-api/common";
+import { getAllCategories, getAllPosts } from "@/lib/wordpress";
 
 export default async function RootLayout({
-  children
+  children,
 }: {
   children: React.ReactNode;
 }) {
@@ -64,6 +66,12 @@ export default async function RootLayout({
   // side is the easiest way to get started
   const messages = await getMessages();
 
+  // const categories = await getAllCategories()
+  // const navBarCategory = categories.find((cat) => cat.name === "nav-bar") || { id: "1", };
+  // const posts = await getAllPosts({ category: navBarCategory?.id.toString(),limit: 100 });
+  // const data = posts.map((data) => { return data.acf })
+  // console.log(data, "navbar data");
+  
   return (
     <html lang={locale}>
       <body
@@ -76,7 +84,7 @@ export default async function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <MainHeader />
+            <MainHeader  />
             <Main>{children}</Main>
             <Footer />
           </ThemeProvider>

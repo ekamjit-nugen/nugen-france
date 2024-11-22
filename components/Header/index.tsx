@@ -3,7 +3,21 @@ import { AlignJustify, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-export default function MainHeader() {
+interface NavBarProps {
+  header_title: string;
+  header_description: string;
+  animated_title: string;
+  post_title: string;
+  post_image: string;
+  post_description: string;
+  title: string;
+  url: string;
+  logo: string;
+}
+interface NavBarPropsType {
+  menu: NavBarProps[];
+}
+const MainHeader = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const router = useRouter();
@@ -120,4 +134,5 @@ export default function MainHeader() {
       </header>
     </>
   );
-}
+};
+export default MainHeader;

@@ -37,7 +37,7 @@ function ServicesPage({ ServicesData }: PageProps) {
             }}
             style={{ textDecoration: "none" }}
           >
-            <div className="p-6 bg-white group hover:bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 hover:text-black rounded-lg shadow-2xl text-center h-[450px] flex flex-col">
+            <div className="p-6 bg-white group hover:bg-gradient-to-r from-pink-400 to-purple-500 hover:text-black rounded-lg shadow-2xl text-center h-[450px] flex flex-col">
               <div className="flex-grow">
                 <div className="text-blue-500 text-5xl mb-4">
                   {service?.post_icon}

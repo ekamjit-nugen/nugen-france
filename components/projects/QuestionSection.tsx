@@ -16,8 +16,8 @@ export default function QuestionSection() {
             the offers ?
           </div>
           <div className="flex justify-center items-center text-base pt-2 px-4 text-center">
-            Whether you want to ask me a question or discuss your project, don't
-            wait any longer.
+            Whether you want to ask me a question or discuss your project,
+            don&apos;t wait any longer.
           </div>
           <div className="flex justify-center items-center text-base pt-2 px-4">
             Contact me by phone: 06 46 52 57 93

@@ -67,7 +67,7 @@ const SkillsSection: React.FC<ImagesData> = ({
         {/* Right Side: Skills and Progress Bars */}
         <div className="space-y-4">
           {skillData?.map((data) => (
-            <div>
+            <div key={data?.header_title +2}>
               <div className="text-[#0FB8F7] text-lg uppercase font-semibold flex items-center justify-center">
                 {/* <span className="w-12 h-[2px] bg-[#0FB8F7] inline-block mr-4"></span> */}
                 {data?.header_title}
@@ -81,7 +81,7 @@ const SkillsSection: React.FC<ImagesData> = ({
           ))}
           <div className="space-y-3">
             {skillBars?.map((skillBars, index) => (
-              <div>
+              <div key={index+87}>
                 <div className="flex justify-between text-gray-300">
                   <span>{skillBars?.button_title}</span>
                   <span>{skillBars?.button_value}%</span>

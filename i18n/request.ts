@@ -10,7 +10,7 @@ export default getRequestConfig(async () => {
   // if (!localeCookie) {
   //   cookieStore.set('locale', 'en');
   // }
-  const locale = 'fn';
+  const locale = 'en';
 
   return {
     locale,

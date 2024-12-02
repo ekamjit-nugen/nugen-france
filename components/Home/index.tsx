@@ -56,7 +56,7 @@ const HomePage: React.FC<PageProps> = ({
 
   return (
     <div className="bg-[#F8EDE2] w-full min-h-screen text-black">
-      <LocaleSwitcher />
+      {/* <LocaleSwitcher /> */}
       {/* Section 1 */}
       <div className="flex flex-col md:flex-row items-center py-20 px-8 md:px-16">
         {/* Left Side: Text Content */}
@@ -111,12 +111,12 @@ const HomePage: React.FC<PageProps> = ({
                   key={value?.post_title}
                   style={{ textDecoration: "none" }}
                 >
-                  <div className="p-8 bg-white hover:bg-[#0FB8F7] hover:text-white rounded-lg shadow-2xl text-center transition-all duration-300 h-[500px] flex flex-col">
-                    <div>
-                      <div className="text-blue-500 text-6xl mb-4">
+                  <div className="p-4 bg-white hover:bg-gradient-to-r from-pink-400 to-purple-500 hover:text-white rounded-lg shadow-2xl text-center transition-all duration-300 h-[500px] flex flex-col">
+                    {/* <div> */}
+                      <div className="text-blue-500 text-6xl">
                         {value?.post_icon}
                       </div>
-                      <h3 className="text-2xl font-bold mb-2">
+                      <h3 className="text-2xl font-bold">
                         {value?.post_title}
                       </h3>
                       <p className="text-clip overflow-hidden">
@@ -128,7 +128,7 @@ const HomePage: React.FC<PageProps> = ({
                             ? "..."
                             : "")}
                       </p>
-                    </div>
+                    {/* </div> */}
                   </div>
                 </Link>
               </>

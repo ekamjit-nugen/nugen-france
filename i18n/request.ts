@@ -1,15 +1,16 @@
 import { getRequestConfig } from 'next-intl/server';
-import { cookies } from 'next/headers'; 
+// import { cookies } from 'next/headers'; 
 
 export default getRequestConfig(async () => {
-  const cookieStore = cookies();
+  // const cookieStore = cookies();
 
-  const localeCookie = cookieStore.get('locale');
-  const locale = localeCookie?.value || 'en'; 
+  // const localeCookie = cookieStore.get('locale');
+  // const locale = localeCookie?.value || 'en'; 
 
-  if (!localeCookie) {
-    cookieStore.set('locale', 'en');
-  }
+  // if (!localeCookie) {
+  //   cookieStore.set('locale', 'en');
+  // }
+  const locale = 'fn';
 
   return {
     locale,

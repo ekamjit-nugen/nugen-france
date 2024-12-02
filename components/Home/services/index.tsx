@@ -6,7 +6,7 @@ import { homeBoxData } from "..";
 export interface PageProps {
   ServicesData: homeBoxData[];
 }
-function ServicesPage({ServicesData}: PageProps) {
+function ServicesPage({ ServicesData }: PageProps) {
   return (
     <div className="bg-white py-16 px-8 md:px-2">
       <div className="max-w-6xl mx-auto text-center mb-8">
@@ -26,16 +26,29 @@ function ServicesPage({ServicesData}: PageProps) {
 
       <div className="container max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {/* Cards */}
-        {ServicesData.map((service, index) => (
-          <Link href="/services" key={index} style={{ textDecoration: "none" }}>
-            <div className="p-6 bg-white hover:bg-[#0FB8F7] hover:text-white rounded-lg shadow-2xl text-center transition-all duration-300 h-[450px] flex flex-col">
+        {ServicesData?.map((service, index) => (
+          <Link
+            key={service.button_value + index}
+            href={{
+              pathname: "/service-section",
+              query: {
+                service: service?.button_value,
+              },
+            }}
+            style={{ textDecoration: "none" }}
+          >
+            <div className="p-6 bg-white group hover:bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 hover:text-black rounded-lg shadow-2xl text-center h-[450px] flex flex-col">
               <div className="flex-grow">
                 <div className="text-blue-500 text-5xl mb-4">
                   {service?.post_icon}
                 </div>
-                <h3 className="text-xl font-bold mb-4">{service?.post_title}</h3>
+                <h3 className="text-xl font-bold mb-4 ">
+                  {service?.post_title}
+                </h3>
                 <div className="text-left max-h-64">
-                  <p className="text-base mb-2 text-wrap">{service?.post_description}</p>
+                  <p className="text-base mb-2 text-wrap">
+                    {service?.post_description}
+                  </p>
                 </div>
               </div>
             </div>

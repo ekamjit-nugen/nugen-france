@@ -1,6 +1,22 @@
 "use client";
 import React, { useState, useEffect } from "react";
 
+export interface TestimonialData {
+  header_title: string,
+  header_description: string,
+  animated_title: string,
+  button_value: string,
+  post_title: string,
+  post_image: string,
+  post_description: string,
+  rating: string,
+  icon: { type: string, value: string },
+  source: string
+}
+
+interface TestimonialSectionType {
+  data: TestimonialData[],
+}
 const testimonials = [
   {
     quote:
@@ -25,13 +41,15 @@ const testimonials = [
   },
 ];
 
-function TestimonialPage() {
+const TestimonialPage: React.FC<TestimonialSectionType> = ({
+  data
+ }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
-    }, 10000);
+    }, 10000); // Automatically change slide every 10 seconds
     return () => clearInterval(interval);
   }, [currentIndex]);
 
@@ -54,41 +72,34 @@ function TestimonialPage() {
           testimonials
           <span className="w-12 h-[2px] bg-[#0FB8F7] inline-block ml-4"></span>
         </h2>
-
-        <h1 className="text-4xl font-bold mt-4">
-          They make
-          <span className="underline decoration-sky-500 underline-offset-2 decoration-8 mx-2">
-            me trust
-          </span>
-        </h1>
       </div>
 
       {/* Testimonials Carousel Section */}
       <div className="max-w-4xl mx-auto relative">
-        <div className="overflow-hidden relative">
-          {testimonials.map((testimonial, index) => (
+        <div className="overflow-hidden relative h-[300px]">
+          {data.map((testimonial, index) => (
             <div
               key={index}
               className={`transition-opacity duration-1000 ${
-                index === currentIndex ? "opacity-100" : "opacity-0"
-              } absolute inset-0 flex flex-col items-center bg-white border border-gray-200 rounded-lg p-8 shadow-lg`}
+                index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
+              } absolute inset-0 flex flex-col items-center bg-white  rounded-lg p-8 shadow-lg`}
               style={{ transition: "opacity 0.8s ease-in-out" }}
             >
               {/* Rounded Image */}
               <img
-                src={testimonial.imageUrl}
-                alt={`${testimonial.author} profile`}
+                src={testimonial?.post_image}
+                alt={`${testimonial?.post_title} profile`}
                 className="w-24 h-24 rounded-full mb-4 object-cover border-4 border-[#0FB8F7]"
               />
 
               {/* Testimonial Content */}
               <p className="text-gray-700 mb-4 text-lg italic text-center">
-                {testimonial.quote}
+                {testimonial?.post_description}
               </p>
               <p className="font-semibold text-gray-900">
-                {testimonial.author}
+                {testimonial?.post_title}
               </p>
-              <p className="text-sm text-gray-500">{testimonial.role}</p>
+              {/* <p className="text-sm text-gray-500">{testimonial.role}</p> */}
             </div>
           ))}
         </div>

@@ -65,11 +65,11 @@ const BlogPage: React.FC<BlogPageType> = ({ BlogData }) => {
                   className="text-blue-500 font-medium relative group"
                 >
                   {blog.button_title}
-                  <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-blue-500 group-hover:w-full transition-all"></span>
+                  <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 group-hover:w-full transition-all"></span>
                 </a>
 
                 {/* Hover Line */}
-                <span className="absolute bottom-0 left-0 w-0 h-[3px] bg-[#0FB8F7] group-hover:w-full transition-all duration-300"></span>
+                <span className="absolute bottom-0 left-0 w-0 h-[3px] bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 group-hover:w-full transition-all duration-300"></span>
               </div>
             </Link>
           ))}

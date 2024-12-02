@@ -65,9 +65,17 @@ const Home = async () => {
   const CallToActionData = await PagesData("call-to-action");
   const callToActFirst = CallToActionData?.[0];
   const callToActSecond = CallToActionData?.[1];
-  const TestimonialData = await PagesData("test-test");
-  console.log(TestimonialData, "test-test");
-
+  const TestimonialData = await PagesData("testimonials");
+  const Skills = await PagesData("skills");
+  const skilllogo = await PagesData("skilllogo");
+  const skillsdata = await PagesData("skillsdata");
+  const skillImage = await getPageBySlug("skills");
+  const skillImage1 = await imageLink(skillImage?.acf?.image);
+  const skillContent = {
+    ...skillImage?.acf,
+    image: skillImage1,
+  };
+  const achievementdata = await PagesData("project-section");
   return (
     <>
       <HomePage
@@ -76,11 +84,16 @@ const Home = async () => {
         homeBoxData={homeBox}
       />
       <About aboutPagedata={aboutpageContent} />
-      <Achievements />
+      <Achievements data={achievementdata} />
       <CallToAction data={CallToActionData} />
       <ServicesPage ServicesData={servicesBox} />
-      <SkillsSection />
-      <TestimonialPage />
+      <SkillsSection
+        skillBars={Skills}
+        skillIcons={skilllogo}
+        skillData={skillsdata}
+        mainImage={skillContent}
+      />
+      <TestimonialPage data={TestimonialData} />
       <CallToAction data={CallToActionData} />
       <BlogSectionHome BlogData={BlogData} />
     </>

@@ -1,7 +1,12 @@
 "use client";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { PagesData } from "@/lib/common-api/common";
 
+const dataCall = async () => {
+  const datafaq = await PagesData("faq-section");
+  console.log(datafaq);
+}
 const faqItems = [
   {
     question: "When will my order arrive?",

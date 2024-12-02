@@ -7,7 +7,8 @@ export interface PageContent {
   header_title: string;
   header_description: string;
   animated_title: string;
-  button_value?: () => void;
+  // button_value?: () => void;
+  button_value: string;
   underline_text?: string;
   button_title: string;
   "img-1"?: string;
@@ -39,6 +40,7 @@ export interface buttonDataType {
   post_image: undefined;
   post_description: string;
   post_icon: string;
+  url?: string;
 }
 export interface PageProps {
   homePagedata: PageContent;
@@ -49,12 +51,12 @@ const HomePage: React.FC<PageProps> = ({
   homePagedata,
   buttonData,
   homeBoxData,
-}) =>  {
+}) => {
   const t = useTranslations("home");
 
   return (
     <div className="bg-[#F8EDE2] w-full min-h-screen text-black">
-      <LocaleSwitcher/>
+      <LocaleSwitcher />
       {/* Section 1 */}
       <div className="flex flex-col md:flex-row items-center py-20 px-8 md:px-16">
         {/* Left Side: Text Content */}
@@ -77,9 +79,9 @@ const HomePage: React.FC<PageProps> = ({
                 <>
                   <button
                     key={value?.button_title}
-                    className="relative inline-block bg-sky-400 text-white py-3 px-6 rounded-lg overflow-hidden text-lg font-semibold transition-all duration-300 hover:bg-sky-700 group w-full sm:w-auto mb-4 sm:mb-0 sm:mx-2"
+                    className="relative inline-block bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 text-white py-3 px-6 rounded-lg overflow-hidden text-lg font-semibold transition-all duration-300 hover:bg-sky-700 group w-full sm:w-auto mb-4 sm:mb-0 sm:mx-2"
                   >
-                    <span className="absolute inset-0 bg-sky-700 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                    <span className="absolute inset-0 bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
                     <span className="relative z-10">{value?.button_title}</span>
                   </button>
                 </>
@@ -118,7 +120,13 @@ const HomePage: React.FC<PageProps> = ({
                         {value?.post_title}
                       </h3>
                       <p className="text-clip overflow-hidden">
-                        {value?.post_description}
+                        {value?.post_description
+                          ?.split(" ")
+                          .slice(0, 125) 
+                          .join(" ") +
+                          (value?.post_description?.split(" ").length > 50
+                            ? "..."
+                            : "")}
                       </p>
                     </div>
                   </div>

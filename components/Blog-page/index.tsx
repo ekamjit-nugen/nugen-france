@@ -20,14 +20,14 @@ const BlogPage: React.FC<BlogPageType> = ({ BlogData }) => {
     <div className="py-12 px-6 bg-white">
       {/* Title Section */}
       <div className="text-center mb-12">
-        <h2 className="text-[#0FB8F7] text-lg uppercase flex items-center justify-center">
-          <span className="w-12 h-[2px] bg-[#0FB8F7] inline-block mr-4"></span>
+        <h2 className="text-black text-lg uppercase flex items-center justify-center">
+          <span className="w-12 h-[2px] bg-[#87f9e4] inline-block mr-4"></span>
           Blog
-          <span className="w-12 h-[2px] bg-[#0FB8F7] inline-block ml-4"></span>
+          <span className="w-12 h-[2px] bg-[#87f9e4] inline-block ml-4"></span>
         </h2>
         <h1 className="text-4xl font-extrabold text-gray-800">
           Latest
-          <span className="underline decoration-sky-500 underline-offset-2 decoration-8">
+          <span className="underline decoration-[#87f9e4] underline-offset-2 decoration-8">
             items
           </span>
         </h1>

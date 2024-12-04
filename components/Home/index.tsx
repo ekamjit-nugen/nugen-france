@@ -3,6 +3,17 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import LocaleSwitcher from "../lunguageButton";
+import HeroImageSVGRight from "../svgContainer/HeroImageSVGRight";
+import useSize from "../windowSize";
+import HeroImageSVG from "../svgContainer/HeroImageSVG";
+import { Tween } from "react-gsap";
+import { motion } from "framer-motion";
+import {
+  leftToRightAnimation,
+  rightToLeftAnimation,
+  staggerParent,
+  topToBottomAnimation,
+} from "@/lib/animation/animationUtils";
 export interface PageContent {
   header_title: string;
   header_description: string;
@@ -53,55 +64,74 @@ const HomePage: React.FC<PageProps> = ({
   homeBoxData,
 }) => {
   const t = useTranslations("home");
+  const size = useSize();
 
   return (
-    <div className="bg-[#F8EDE2] w-full min-h-screen text-black">
+    <motion.div
+      {...staggerParent}
+      className="bg-white w-full min-h-screen text-black"
+    >
       {/* <LocaleSwitcher /> */}
       {/* Section 1 */}
       <div className="flex flex-col md:flex-row items-center py-20 px-8 md:px-16">
         {/* Left Side: Text Content */}
-        <div className="text-3xl md:text-6xl font-extrabold flex-1">
-          <div className="underline decoration-sky-500 underline-offset-2">
+        <div className="text-2xl md:text-4xl font-bold flex-1">
+          <motion.div
+            variants={leftToRightAnimation}
+            className="underline decoration-[#6aebd3] underline-offset-2"
+          >
             {t("underline_text")}
             {/* {homePagedata?.header_title} */}
-          </div>
-          <div>{t("header_title")}</div>
+          </motion.div>
+          <motion.div variants={leftToRightAnimation}>
+            {t("header_title")}
+          </motion.div>
 
-          <div className="mt-6 text-base md:text-xl font-medium">
+          <motion.div
+            variants={leftToRightAnimation}
+            className="mt-6 text-base md:text-xl font-medium"
+          >
             <p key={homePagedata?.header_title} className="mt-2">
               {t("header_description")}
             </p>
-          </div>
+          </motion.div>
 
-          <div className="mt-6 relative flex flex-wrap ">
+          <motion.div
+            variants={leftToRightAnimation}
+            className="mt-6 relative flex flex-wrap "
+          >
             {buttonData?.map((value) => {
               return (
                 <>
                   <button
                     key={value?.button_title}
-                    className="relative inline-block bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 text-white py-3 px-6 rounded-lg overflow-hidden text-lg font-semibold transition-all duration-300 hover:bg-sky-700 group w-full sm:w-auto mb-4 sm:mb-0 sm:mx-2"
+                    className="relative inline-block bg-[#87f9e4] text-black py-3 px-6 rounded-lg overflow-hidden text-lg font-semibold transition-all duration-300 group w-full sm:w-auto mb-4 sm:mb-0 sm:mx-2"
                   >
-                    <span className="absolute inset-0 bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                    <span className="absolute inset-0 bg-[#6aebd3] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
                     <span className="relative z-10">{value?.button_title}</span>
                   </button>
                 </>
               );
             })}
-          </div>
+          </motion.div>
         </div>
-
-        {/* Right Side: Image */}
-        <div className="flex-1 mt-8 md:mt-0 md:block hidden">
-          <img
-            src={homePagedata?.image}
-            alt="Computer Display"
-            className="w-full max-w-md mx-auto rounded-lg shadow-lg"
-          />
+        <div className="absolute top-48 opacity-60">
+          <BackgroundSVG />
+        </div>
+        <div className="absolute -top-16 hidden lg:block">
+          <HeroImageSVG width={size && size < 800 ? "303" : "500"} />
+        </div>
+        <div className="flex-1 mt-8 md:mt-0 lg:block hidden">
+          {size && size > 1024 && (
+            <div className="w-min h-full scale-y-100 md:scale-150 md:py-8  lg:scale-125 py-8 lg:pt-16 lg:flex">
+              <HeroImageSVGRight width={size && size < 1024 ? "380" : "520"} />
+            </div>
+          )}
         </div>
       </div>
 
       {/* Section 2: Three Columns */}
-      <div className="bg-white py-16 px-8">
+      <div className="bg-white py-16 px-8 ">
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {homeBoxData?.map((value) => {
             return (
@@ -111,24 +141,31 @@ const HomePage: React.FC<PageProps> = ({
                   key={value?.post_title}
                   style={{ textDecoration: "none" }}
                 >
-                  <div className="p-4 bg-white hover:bg-gradient-to-r from-pink-400 to-purple-500 hover:text-white rounded-lg shadow-2xl text-center transition-all duration-300 h-[500px] flex flex-col">
-                    {/* <div> */}
-                      <div className="text-blue-500 text-6xl">
-                        {value?.post_icon}
-                      </div>
-                      <h3 className="text-2xl font-bold">
-                        {value?.post_title}
-                      </h3>
-                      <p className="text-clip overflow-hidden">
-                        {value?.post_description
-                          ?.split(" ")
-                          .slice(0, 125) 
-                          .join(" ") +
-                          (value?.post_description?.split(" ").length > 50
-                            ? "..."
-                            : "")}
-                      </p>
-                    {/* </div> */}
+                  <div className="p-4 bg-white hover:bg-[#87f9e4] rounded-lg shadow-2xl text-center transition-all duration-300 h-[500px] flex flex-col">
+                    <motion.div
+                      variants={topToBottomAnimation}
+                      className="text-blue-500 text-6xl"
+                    >
+                      {value?.post_icon}
+                    </motion.div>
+                    <motion.h3
+                      variants={topToBottomAnimation}
+                      className="text-2xl font-bold"
+                    >
+                      {value?.post_title}
+                    </motion.h3>
+                    <motion.p
+                      variants={rightToLeftAnimation}
+                      className="text-clip overflow-hidden"
+                    >
+                      {value?.post_description
+                        ?.split(" ")
+                        .slice(0, 125)
+                        .join(" ") +
+                        (value?.post_description?.split(" ").length > 50
+                          ? "..."
+                          : "")}
+                    </motion.p>
                   </div>
                 </Link>
               </>
@@ -136,8 +173,49 @@ const HomePage: React.FC<PageProps> = ({
           })}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
 export default HomePage;
+
+const BackgroundSVG = () => (
+  <svg
+    width="auto"
+    height="300"
+    viewBox="0 0 729 637"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <Tween
+      from={{
+        svgDraw: 0,
+      }}
+      to={{
+        svgDraw: 1,
+      }}
+      duration={2}
+      delay={0.2}
+    >
+      <path
+        opacity="0.2"
+        d="M528.5 176.5H329.5V0.5H528.5V176.5ZM129.5 0.5H328.5V176.5H129.5V0.5ZM128.5 0.5V176.5H-70.5V0.5H128.5ZM529.5 0.5H728.5V176.5H529.5V0.5ZM529.5 177.5H728.5V319.5H529.5V177.5ZM529.5 320.5H728.5V399.5H529.5V320.5ZM529.5 400.5H728.5V639.5H529.5V400.5ZM528.5 400.5V639.5H329.5V400.5H528.5ZM328.5 400.5V639.5H129.5V400.5H328.5ZM128.5 400.5V639.5H-70.5V400.5H128.5ZM128.5 399.5H-70.5V320.5H128.5V399.5ZM129.5 399.5V320.5H328.5V399.5H129.5ZM329.5 399.5V320.5H528.5V399.5H329.5ZM-70.5 177.5H128.5V319.5H-70.5V177.5Z"
+        stroke="url(#paint0_radial_13_2789)"
+        color="currentColor"
+      />
+      <defs>
+        <radialGradient
+          id="paint0_radial_13_2789"
+          cx="0"
+          cy="0"
+          r="1"
+          gradientUnits="userSpaceOnUse"
+          gradientTransform="translate(329 320) rotate(90) scale(328 388.755)"
+        >
+          <stop />
+          <stop offset="1" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+    </Tween>
+  </svg>
+);

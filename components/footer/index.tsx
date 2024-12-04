@@ -4,13 +4,11 @@ import React from "react";
 const footerData = {
   footer: {
     wrapperFooterId: "wrapper-footer",
-    backgroundClass: "bg-gray-900 text-white py-10",
     sections: [
       {
         type: "leftColumn",
-        widthClass: "w-full md:w-1/3",
         image: {
-          src: "https://www.florianperrier.com/app/themes/understrap-child/images/developpeur-web-freelance-florian-perrier-negatif.png",
+          src: "http://fp-nugen.local/wp-content/uploads/2024/10/IMG-20241124-WA0000.jpg",
           alt: "Développeur Web Freelance Florian Perrier",
         },
         title: "Développeur Web Freelance",
@@ -93,7 +91,7 @@ const footerData = {
 const Footer = () => {
   return (
     <footer
-      className={footerData.footer.backgroundClass}
+      className="bg-gray-900 text-white py-10"
       id={footerData.footer.wrapperFooterId}
     >
       <div className="container mx-auto px-4">
@@ -102,7 +100,7 @@ const Footer = () => {
           {footerData.footer.sections.map((section, index) => {
             if (section.type === "leftColumn") {
               return (
-                <div key={index} className={section.widthClass}>
+                <div key={index} className="w-full md:w-1/3">
                   {section.image && (
                     <img
                       src={section.image?.src}

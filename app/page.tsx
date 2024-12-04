@@ -9,6 +9,8 @@ import TestimonialPage from "@/components/Home/Testimonial";
 import Achievements from "@/components/Home/Achievements";
 import { imageLink, PagesData } from "@/lib/common-api/common";
 import { getPageBySlug } from "@/lib/wordpress";
+import InterestedSection from "@/components/Home/Hire";
+import InterviewAmico from "../components/icons/png/Interview-amico.svg";
 
 const fs = require("fs");
 
@@ -76,6 +78,12 @@ const Home = async () => {
     image: skillImage1,
   };
   const achievementdata = await PagesData("project-section");
+  const workWithUs = await getPageBySlug("work-with-us");
+  const workImage1 = await imageLink(workWithUs?.acf?.image);
+  const workContent = {
+    ...workWithUs?.acf,
+    image: workImage1,
+  };
   return (
     <>
       <HomePage
@@ -87,6 +95,7 @@ const Home = async () => {
       <Achievements data={achievementdata} />
       <CallToAction data={CallToActionData} />
       <ServicesPage ServicesData={servicesBox} />
+      <InterestedSection pageContent={workContent} image={InterviewAmico} />
       <SkillsSection
         skillBars={Skills}
         skillIcons={skilllogo}

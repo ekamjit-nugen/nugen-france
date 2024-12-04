@@ -1,6 +1,14 @@
 "use client";
 import Button from "@/components/ui/ButtonNugen/butoon";
 import React from "react";
+import { motion } from "framer-motion";
+import {
+  leftToRightAnimation,
+  rightToLeftAnimation,
+  staggerParent,
+  topToBottomAnimation,
+} from "@/lib/animation/animationUtils";
+
 interface homeBoxData {
   header_title: string;
   header_description: string;
@@ -18,31 +26,32 @@ interface dataType {
 
 const CallToAction = ({ data }: dataType) => {
   return (
-    <div className="relative flex items-center justify-center py-24 text-gray-900">
+    <motion.div
+      {...staggerParent}
+      className="relative flex items-center justify-center py-24 text-gray-900"
+    >
       <div className="text-center px-4 md:px-8 text-white z-30">
-        <div className="text-xl md:text-3xl lg:text-4xl font-bold leading-snug md:leading-tight lg:leading-snug">
+        <motion.div
+          variants={leftToRightAnimation}
+          className="text-xl md:text-3xl lg:text-4xl font-bold leading-snug md:leading-tight lg:leading-snug"
+        >
           {data?.[0]?.header_title}
-          {/* <br />
-          with
-          <span className="underline decoration-sky-400">
-            the web development
-          </span>
-          <br />
-          of your site? */}
-        </div>
-        <Button
-          title={data?.[0]?.button_title}
-          className="mb-4 sm:mb-0 sm:mx-2"
-        />
+        </motion.div>
+        <motion.div variants={topToBottomAnimation}>
+          <Button
+            title={data?.[0]?.button_title}
+            className="mb-4 sm:mb-0 sm:mx-2"
+          />
+        </motion.div>
       </div>
-      <div
-        className="absolute inset-0 bg-cover bg-center opacity-90 "
+      <motion.div
+        className="absolute inset-0 bg-cover bg-center opacity-90  "
         style={{
           backgroundImage:
-            "url('https://img.freepik.com/free-vector/gradient-abstract-wireframe-background_23-2149009903.jpg?t=st=1733133303~exp=1733136903~hmac=ce6598b55421457a1fb16a6b43ec241c85fdf086e0dce048ca7d3f98677f4a39&w=1480')",
+            "url('https://i.ibb.co/0cDdNfv/gradient-abstract-wireframe-background-23-2149009903-1.jpg')",
         }}
       />
-    </div>
+    </motion.div>
   );
 };
 

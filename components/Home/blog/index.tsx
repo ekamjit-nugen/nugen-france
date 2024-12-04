@@ -3,50 +3,31 @@ import { BlogPageType } from "@/components/Blog-page";
 import Button from "@/components/ui/ButtonNugen/butoon";
 import Link from "next/link";
 import React from "react";
+import { motion } from "framer-motion";
+import {
+  leftToRightAnimation,
+  rightToLeftAnimation,
+  staggerParent,
+  topToBottomAnimation,
+} from "@/lib/animation/animationUtils";
 
 const BlogSectionHome = ({ BlogData }: BlogPageType) => {
-  // const blogs = [
-  //   {
-  //     date: "02 Nov 2024",
-  //     title: "The Importance of WordPress Maintenance",
-  //     description:
-  //       "WordPress is a popular CMS due to its flexibility. However, regular maintenance is crucial to keep it operational at all times.",
-  //   },
-  //   {
-  //     date: "Oct 20, 2024",
-  //     title: "What are the missions of the freelance developer?",
-  //     description:
-  //       "The freelance developer works on designing and developing tailored web applications for clients.",
-  //   },
-  //   {
-  //     date: "August 28, 2024",
-  //     title: "Web development: focus on the latest trends",
-  //     description:
-  //       "Discover the latest trends in the web development world, from AI integrations to modern frameworks.",
-  //   },
-  //   {
-  //     date: "August 10, 2024",
-  //     title: "Website creation: what mistakes should you avoid?",
-  //     description:
-  //       "Avoid common mistakes in website creation to ensure a better user experience and maintainability.",
-  //   },
-  // ];
 
   return (
-    <section className="py-12 px-6 bg-white">
+    <motion.section {...staggerParent} className="py-12 px-6 bg-white">
       {/* Title Section */}
       <div className="text-center mb-12">
-        <h2 className="text-[#0FB8F7] text-lg uppercase flex items-center justify-center">
-          <span className="w-12 h-[2px] bg-[#0FB8F7] inline-block mr-4"></span>
+        <motion.h2 variants={topToBottomAnimation} className="text-black text-lg uppercase flex items-center justify-center">
+          <span className="w-12 h-[2px] bg-[#87f9e4] inline-block mr-4"></span>
           Blog
-          <span className="w-12 h-[2px] bg-[#0FB8F7] inline-block ml-4"></span>
-        </h2>
-        <h1 className="text-4xl font-extrabold text-gray-800">
+          <span className="w-12 h-[2px] bg-[#87f9e4] inline-block ml-4"></span>
+        </motion.h2>
+        <motion.h1 variants={leftToRightAnimation} className="text-4xl font-extrabold text-gray-800">
           Latest
-          <span className="underline decoration-sky-500 underline-offset-2 decoration-8">
+          <span className="underline decoration-[#87f9e4] underline-offset-2 decoration-8">
             items
           </span>
-        </h1>
+        </motion.h1>
       </div>
 
       {/* Blog Cards */}
@@ -67,14 +48,14 @@ const BlogSectionHome = ({ BlogData }: BlogPageType) => {
               key={index}
               className="relative bg-white shadow-2xl rounded-lg p-6 hover:shadow-lg transition group"
             >
-              <p className="text-gray-500 text-sm mb-3 flex items-center">
+              <motion.p variants={rightToLeftAnimation} className="text-gray-500 text-sm mb-3 flex items-center">
                 <span className="mr-2">📅</span>
                 {blog.date}
-              </p>
-              <h3 className="text-xl font-semibold text-gray-800 mb-4">
+              </motion.p>
+              <motion.h3 variants={leftToRightAnimation} className="text-xl font-semibold text-gray-800 mb-4">
                 {blog?.post_title}
-              </h3>
-              <p className="text-gray-600 mb-6">{blog?.post_description}</p>
+              </motion.h3>
+              <motion.p variants={leftToRightAnimation} className="text-gray-600 mb-6">{blog?.post_description}</motion.p>
               <a className="text-blue-500 font-medium relative group">
                 {blog?.button_title}
                 <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 group-hover:w-full transition-all"></span>
@@ -91,7 +72,7 @@ const BlogSectionHome = ({ BlogData }: BlogPageType) => {
       <div className="text-center mt-10">
         <Button title={"See all articles"} className="mb-4 sm:mb-0 sm:mx-2" />
       </div>
-    </section>
+    </motion.section>
   );
 };
 

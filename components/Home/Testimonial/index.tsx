@@ -67,10 +67,10 @@ const TestimonialPage: React.FC<TestimonialSectionType> = ({
     <div className="bg-white py-16 px-8">
       {/* Header Section */}
       <div className="max-w-6xl mx-auto text-center mb-8">
-        <h2 className="text-[#0FB8F7] text-lg uppercase font-semibold flex items-center justify-center">
-          <span className="w-12 h-[2px] bg-[#0FB8F7] inline-block mr-4"></span>
+        <h2 className="text-black text-lg uppercase font-semibold flex items-center justify-center">
+          <span className="w-12 h-[2px] bg-[#87f9e4] inline-block mr-4"></span>
           testimonials
-          <span className="w-12 h-[2px] bg-[#0FB8F7] inline-block ml-4"></span>
+          <span className="w-12 h-[2px] bg-[#87f9e4] inline-block ml-4"></span>
         </h2>
       </div>
 
@@ -89,7 +89,7 @@ const TestimonialPage: React.FC<TestimonialSectionType> = ({
               <img
                 src={testimonial?.post_image}
                 alt={`${testimonial?.post_title} profile`}
-                className="w-24 h-24 rounded-full mb-4 object-cover border-4 border-[#0FB8F7]"
+                className="w-24 h-24 rounded-full mb-4 object-cover border-4 border-[#87f9e4]"
               />
 
               {/* Testimonial Content */}
@@ -126,7 +126,7 @@ const TestimonialPage: React.FC<TestimonialSectionType> = ({
             key={index}
             onClick={() => setCurrentIndex(index)}
             className={`w-3 h-3 rounded-full mx-1 ${
-              index === currentIndex ? "bg-[#0FB8F7]" : "bg-gray-300"
+              index === currentIndex ? "bg-black" : "bg-gray-300"
             }`}
           ></button>
         ))}

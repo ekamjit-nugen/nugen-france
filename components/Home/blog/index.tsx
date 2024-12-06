@@ -29,10 +29,9 @@ const BlogSectionHome = ({ BlogData }: BlogPageType) => {
         <motion.h1
           variants={leftToRightAnimation}
           className="text-4xl font-extrabold text-gray-800"
-        >
+        >  
+          <span className="underline decoration-[#87f9e4] underline-offset-2 decoration-8"> 
           Latest
-          <span className="underline decoration-[#87f9e4] underline-offset-2 decoration-8">
-            items
           </span>
         </motion.h1>
       </div>
@@ -72,12 +71,10 @@ const BlogSectionHome = ({ BlogData }: BlogPageType) => {
               >
                 {blog?.post_description}
               </motion.p>
-              <a className="text-blue-500 font-medium relative group">
+              <motion.div className="text-blue-500 font-medium relative group">
                 {blog?.button_title}
                 <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 group-hover:w-full transition-all"></span>
-              </a>
-
-              {/* Hover Line */}
+              </motion.div>
               <span className="absolute bottom-0 left-0 w-0 h-[3px] bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 group-hover:w-full transition-all duration-300"></span>
             </div>
           </Link>

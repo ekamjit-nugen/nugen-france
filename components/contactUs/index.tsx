@@ -31,12 +31,6 @@ interface ContactUsPropsType {
   buttons: buttonDataType[];
 }
 const ContactPage = ({ props, buttons }: ContactUsPropsType) => {
-  // const contactData = {
-  //   actions: ["Submit my application", "Create/maintain a website/application"],
-  // };
-
-  // const { actions } = contactData;
-
   return (
     <div className="container mx-auto px-4 md:px-0 items-center mt-24">
       <div className="w-full mb-12">
@@ -57,7 +51,6 @@ const ContactPage = ({ props, buttons }: ContactUsPropsType) => {
               <Button
                 key={index}
                 title={action.button_title}
-                onClick={action.button_value}
                 className="mb-4 sm:mb-0 sm:mx-2"
               />
             ))}

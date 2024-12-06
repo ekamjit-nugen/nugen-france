@@ -26,9 +26,8 @@ const BlogPage: React.FC<BlogPageType> = ({ BlogData }) => {
           <span className="w-12 h-[2px] bg-[#87f9e4] inline-block ml-4"></span>
         </h2>
         <h1 className="text-4xl font-extrabold text-gray-800">
-          Latest
           <span className="underline decoration-[#87f9e4] underline-offset-2 decoration-8">
-            items
+          Latest
           </span>
         </h1>
       </div>
@@ -60,13 +59,12 @@ const BlogPage: React.FC<BlogPageType> = ({ BlogData }) => {
                   {blog.post_title}
                 </h3>
                 <p className="text-gray-600 mb-6">{blog.post_description}</p>
-                <a
-                  href={blog.button_value}
+                <div
                   className="text-blue-500 font-medium relative group"
                 >
                   {blog.button_title}
                   <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 group-hover:w-full transition-all"></span>
-                </a>
+                </div>
 
                 {/* Hover Line */}
                 <span className="absolute bottom-0 left-0 w-0 h-[3px] bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 group-hover:w-full transition-all duration-300"></span>

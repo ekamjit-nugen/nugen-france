@@ -1,6 +1,5 @@
 import React from "react";
 import { HeroSectionType } from "../Blog-page/BlogDetail";
-import { CloudCog } from "lucide-react";
 
 interface post_image {
   post_image: string;

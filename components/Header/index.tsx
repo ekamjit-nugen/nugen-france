@@ -54,7 +54,7 @@ const MainHeader: React.FC<NavBarPropsType> = ({ menu, header }) => {
         <nav>
           <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
             <a href="/" className="flex items-center">
-              <img src={header?.logo} className="mr-3 h-6 sm:h-9" alt="Logo" />
+              <img src={header?.logo} className="mr-3 h-12 sm:h-20" alt="Logo" />
             </a>
             <div className="flex items-center lg:order-2">
               <a

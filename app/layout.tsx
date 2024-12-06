@@ -54,6 +54,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import { imageLink, PagesData } from "@/lib/common-api/common";
 import { getAllCategories, getAllPosts, getPageBySlug } from "@/lib/wordpress";
+import { pages } from "next/dist/build/templates/app-page";
 
 export default async function RootLayout({
   children,
@@ -76,7 +77,10 @@ export default async function RootLayout({
     ...homepagedata?.acf,
     logo: homeimage1,
   };
-  
+  const footer_contact =await PagesData("footer-contact-us");
+  const footerMian =await PagesData("footer-main");
+  const footerServices =await PagesData("footer-services");  
+  const footerPrivicy =await PagesData("footer-privacy");  
   
   return (
     <html lang={locale}>
@@ -92,7 +96,7 @@ export default async function RootLayout({
           >
             <MainHeader menu={data}  header={homepageContent} />
             <Main>{children}</Main>
-            <Footer />
+            <Footer contactUs={footer_contact} footermain={footerMian} footerServices={footerServices} footerPrivicy={footerPrivicy}/>
           </ThemeProvider>
           <Analytics />
         </NextIntlClientProvider>

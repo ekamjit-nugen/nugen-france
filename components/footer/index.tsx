@@ -1,170 +1,126 @@
 "use client";
 import React from "react";
 
-const footerData = {
-  footer: {
-    wrapperFooterId: "wrapper-footer",
-    sections: [
-      {
-        type: "leftColumn",
-        image: {
-          src: "http://fp-nugen.local/wp-content/uploads/2024/10/IMG-20241124-WA0000.jpg",
-          alt: "Développeur Web Freelance Florian Perrier",
-        },
-        title: "Développeur Web Freelance",
-        description: [
-          "<strong>Développeur Web Freelance</strong>, je suis à votre disposition pour répondre à tous types de projets de <strong>création de sites internet vitrine, e-commerce, de développement spécifique ou d’applications web</strong>.",
-          "Passionné par les technologies Web, je mets mes compétences au service de vos besoins dans divers domaines.",
-        ],
-        aboutTitle: "À Propos",
-        aboutLinks: [
-          {
-            text: "Développeur web freelance",
-            href: "https://www.florianperrier.com/",
-          },
-          {
-            text: "Contact",
-            href: "https://www.florianperrier.com/contacter-developpeur-web-freelance/",
-          },
-        ],
-      },
-      {
-        type: "rightColumn",
-        sections: [
-          {
-            title: "Création site internet",
-            links: [
-              { text: "Création de site vitrine", href: "#" },
-              { text: "Création de site e-commerce", href: "#" },
-              { text: "Développement WordPress", href: "#" },
-            ],
-          },
-          {
-            title: "Développeur WordPress",
-            links: [
-              { text: "Développement WordPress", href: "#" },
-              { text: "Maintenance WordPress", href: "#" },
-              { text: "Dépannage WordPress", href: "#" },
-            ],
-          },
-          {
-            title: "Services",
-            links: [
-              { text: "Référencement SEO", href: "#" },
-              { text: "Développement d’application mobile", href: "#" },
-              { text: "Tous les services", href: "#" },
-            ],
-          },
-          {
-            title: "Solutions",
-            links: [
-              { text: "Hébergement", href: "#" },
-              { text: "Infogérance", href: "#" },
-              { text: "Support", href: "#" },
-            ],
-          },
-          {
-            title: "Urgences",
-            links: [
-              { text: "Dépannage site internet", href: "#" },
-              { text: "Dépannage WordPress", href: "#" },
-              { text: "Dépannage Woocommerce", href: "#" },
-            ],
-          },
-          {
-            title: "Contact",
-            links: [
-              { text: "242 boulevard Voltaire, 75011 Paris", href: "#" },
-              { text: "+33 (0)6 46 52 57 93", href: "tel:+33646525793" },
-              { text: "contact@nugen.com", href: "mailto:contact@nugen.com" },
-            ],
-          },
-        ],
-      },
-    ],
-    footerBottom: {
-      text: "&copy; 2024 Florian Perrier - Tous droits réservés.",
-    },
-  },
-};
+interface FooterProps {
+  header_title: string;
+  header_description: string;
+  animated_title: string;
+  button_value: string;
+  button_title: string;
+  post_title: string;
+  post_image: string | undefined;
+  post_description: string;
+  post_icon: string;
+  footer_logo: string;
+  footer_description: string;
+  title: string;
+  footer_copyright?: string;
+}
 
-const Footer = () => {
+interface PropsType {
+  contactUs: FooterProps[];
+  footermain: FooterProps[];
+  footerPrivicy: FooterProps[];
+  footerServices: FooterProps[];
+}
+
+const Footer: React.FC<PropsType> = ({
+  contactUs,
+  footermain,
+  footerServices,
+  footerPrivicy,
+}) => {
   return (
-    <footer
-      className="bg-gray-900 text-white py-10"
-      id={footerData.footer.wrapperFooterId}
-    >
-      <div className="container mx-auto px-4">
-        <div className="flex flex-wrap gap-y-8">
-          {/* Left Column */}
-          {footerData.footer.sections.map((section, index) => {
-            if (section.type === "leftColumn") {
-              return (
-                <div key={index} className="w-full md:w-1/3">
-                  {section.image && (
-                    <img
-                      src={section.image?.src}
-                      alt={section.image?.alt}
-                      className="mb-4"
-                    />
-                  )}
-                  <h3 className="font-bold text-lg mb-3">{section.title}</h3>
-                  {section.description?.map((paragraph, i) => (
-                    <p
-                      key={i}
-                      className="text-sm mb-4"
-                      dangerouslySetInnerHTML={{ __html: paragraph }}
-                    ></p>
-                  ))}
-                  <h4 className="font-bold text-lg mt-6">
-                    {section.aboutTitle}
-                  </h4>
-                  <ul className="mt-2 space-y-2">
-                    {section.aboutLinks?.map((link, i) => (
-                      <li key={i}>
-                        <a href={link.href} className="hover:underline">
-                          {link.text}
-                        </a>
-                      </li>
-                    ))}
+    <>
+      <footer className="bg-gray-900 text-white py-16 ">
+        <div className="container mx-auto px-4 h-full">
+          <div className="flex flex-wrap justify-between items-start">
+            <div className="w-full md:w-1/4 mb-6 md:mb-0 flex flex-col items-start">
+              {footermain.length > 0 && footermain[0].post_image && (
+                <img
+                  src={footermain[0].post_image}
+                  alt="Logo"
+                  className="w-auto h-auto mr-4 mb-4"
+                />
+              )}
+              <div className="text-lg mb-4">
+                {footermain[0].post_description}
+              </div>
+            </div>
+
+            <div className="w-full md:w-3/4 flex flex-wrap gap-6">
+              {footerServices.map((value, index) => (
+                <div key={value?.post_title + index} className="w-full md:w-1/4">
+                  <h4 className="font-bold text-lg mb-3">{value?.title}</h4>
+                  <ul className="space-y-2">
+                    <li>
+                      <a href="#" className="hover:underline">
+                        {value?.button_title}
+                      </a>
+                    </li>
                   </ul>
                 </div>
-              );
-            }
+              ))}
 
-            // Right Column Sections
-            if (section.type === "rightColumn") {
-              return (
-                <div key={index} className="w-full md:w-2/3 grid grid-cols-2 md:grid-cols-3 gap-6">
-                  {section.sections?.map((subSection, subIndex) => (
-                    <div key={subIndex}>
-                      <h4 className="font-bold text-lg mb-3">
-                        {subSection.title}
-                      </h4>
-                      <ul className="space-y-2">
-                        {subSection.links?.map((link, linkIndex) => (
-                          <li key={linkIndex}>
-                            <a href={link.href} className="hover:underline">
-                              {link.text}
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
+              {/* Footer Privacy */}
+              {footerPrivicy.map((value, index) => (
+                <div key={value?.post_title + index} className="w-full md:w-1/4 ">
+                  <h4 className="font-bold text-lg mb-3">{value?.title}</h4>
+                  <ul className="space-y-2">
+                    <li>
+                      <a href="#" className="hover:underline">
+                        {value?.button_title}
+                      </a>
+                    </li>
+                  </ul>
                 </div>
-              );
-            }
-            return null;
-          })}
+              ))}
+
+              {/* Contact Us Section */}
+              {contactUs
+                .slice()
+                .reverse()
+                .map((data, index) => (
+                  <div key={index} className="w-full md:w-1/3 ">
+                    {data?.title && (
+                      <div className="font-bold text-lg mb-3">
+                        {data?.title}
+                      </div>
+                    )}
+                    <ul className="space-y-2">
+                      {data?.button_title && (
+                        <li>
+                          <a
+                            href={data?.button_value}
+                            className="hover:underline"
+                          >
+                            {data?.button_title}
+                          </a>
+                        </li>
+                      )}
+                      {/* Display email and phone */}
+                      {data?.post_description && (
+                        <li className="text-sm text-gray-400">
+                          {data?.post_description}
+                        </li>
+                      )}
+                    </ul>
+                  </div>
+                ))}
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="container mx-auto border-t border-gray-700 mt-8 pt-4">
-        <p className="text-center text-sm">
-          {footerData.footer.footerBottom.text}
-        </p>
-      </div>
-    </footer>
+
+        {/* Footer copyright rendering */}
+        {footermain.length > 0 && footermain[0]?.footer_copyright && (
+          <div className="container mx-auto border-t border-gray-700 mt-8 pt-4">
+            <p className="text-center text-sm text-gray-400">
+              {footermain[0]?.footer_copyright}
+            </p>
+          </div>
+        )}
+      </footer>
+    </>
   );
 };
 

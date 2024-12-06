@@ -8,6 +8,7 @@ import { getPageBySlug } from "@/lib/wordpress";
 import InterestedSection from "@/components/Home/Hire";
 import InterviewAmico from "../components/icons/png/Interview-amico.svg";
 import dynamic from "next/dynamic";
+import CloudPlatform from "@/components/It";
 
 
 const Homepage = dynamic(() => import("../components/Home/index"), {
@@ -94,7 +95,7 @@ const Home = async () => {
   const workContent = {
     ...workWithUs?.acf,
     image: workImage1,
-  };
+  };  
   return (
     <>
       <Homepage
@@ -106,13 +107,16 @@ const Home = async () => {
       <Achievements data={achievementdata} />
       <ContactUs data={CallToActionData} />
       <ServicesPage ServicesData={servicesBox} />
+      <CloudPlatform skillData={skillsdata} mainImage={skillContent} skillIcons={skilllogo} skillBars={Skills}/>
+
       <InterestedSection pageContent={workContent} image={InterviewAmico} />
-      <SkillsSection
+
+      {/* <SkillsSection
         skillBars={Skills}
         skillIcons={skilllogo}
         skillData={skillsdata}
         mainImage={skillContent}
-      />
+      /> */}
       <TestimonialPage data={TestimonialData} />
       <ContactUs data={CallToActionData} />
       <BlogSectionHome BlogData={BlogData} />

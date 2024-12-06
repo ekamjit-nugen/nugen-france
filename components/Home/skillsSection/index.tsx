@@ -18,7 +18,7 @@ interface SkillBarProps {
   button_title?: string;
   image?: string;
 }
-interface ImagesData {
+export interface ImagesData {
   mainImage: SkillBarProps;
   skillIcons: IconsData[];
   skillBars: SkillBarProps[];

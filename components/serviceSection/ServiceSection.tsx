@@ -1,5 +1,5 @@
+"use client";
 import React from "react";
-import Image from "next/image";
 import Button from "../ui/ButtonNugen/butoon";
 import Link from "next/link";
 
@@ -13,6 +13,9 @@ interface Props {
   post_image: string;
   post_description: string;
   post_icon: string;
+  project_category?: string;
+  date?: string;
+
 }
 
 interface DataType {
@@ -21,6 +24,7 @@ interface DataType {
 }
 
 export default function ServiceSection({ data, dataup }: DataType) {
+  
   return (
     <div className="">
       <div className="flex flex-col justify-center items-center py-16 gap-4">
@@ -28,7 +32,7 @@ export default function ServiceSection({ data, dataup }: DataType) {
           {dataup?.post_title}
         </p>
         <p className="font-bold text-4xl lg:text-5xl">
-          Website creation E-commerce
+          {dataup?.project_category}
         </p>
       </div>
 

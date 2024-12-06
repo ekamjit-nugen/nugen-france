@@ -27,10 +27,9 @@ function ServicesPage({ ServicesData }: PageProps) {
 
         <motion.h1 variants={rightToLeftAnimation} className="text-4xl font-bold">
           <span className="underline decoration-[#6aebd3] underline-offset-2 decoration-8">
-            Services
           </span>
-          proposed
-        </motion.h1>
+          Services
+          </motion.h1>
       </div>
 
       <div className="container max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

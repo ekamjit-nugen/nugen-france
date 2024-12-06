@@ -9,6 +9,7 @@ export interface HeroSectionType {
   post_title: string;
   post_image: string;
   post_description: string;
+  project_category?: string;
   date: string;
   button_title: string;
 }
@@ -37,16 +38,19 @@ export default function BlogDetail({
             <div className="">{data?.date}</div>
           </div>
           <img src={data?.post_image} alt="image" />
-          <div className="">{data?.post_description}</div>
-          {blogData?.map((value, index) => (
-            <div
-              className="flex flex-col gap-2"
-              key={value?.post_title + index}
-            >
-              <h2 className="text-2xl font-bold">{value?.post_title}</h2>
-              <p className="text-base">{value?.post_description}</p>
-            </div>
-          ))}
+          {/* <div className="">{data?.post_description}</div> */}
+          {blogData
+            ?.slice()
+            .reverse()
+            .map((value, index) => (
+              <div
+                className="flex flex-col gap-2"
+                key={value?.post_title + index}
+              >
+                <div className="text-2xl font-bold">{value?.post_title}</div>
+                <p className="text-base">{value?.post_description}</p>
+              </div>
+            ))}
         </div>
 
         <div className=" w-full lg:w-1/3 py-8 lg:px-4 flex flex-col gap-4">
@@ -65,7 +69,7 @@ export default function BlogDetail({
             </div>
             {RelatedPost?.map((item) => (
               <Link
-              key={item?.button_value}
+                key={item?.button_value}
                 href={{
                   pathname: "/blog-detail",
                   query: {

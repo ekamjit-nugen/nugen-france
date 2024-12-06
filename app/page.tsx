@@ -1,16 +1,27 @@
 import React from "react";
-import HomePage from "@/components/Home";
-import About from "@/components/Home/About";
 import ServicesPage from "@/components/Home/services";
-import CallToAction from "@/components/Home/contactme";
 import SkillsSection from "@/components/Home/skillsSection";
 import BlogSectionHome from "@/components/Home/blog";
 import TestimonialPage from "@/components/Home/Testimonial";
-import Achievements from "@/components/Home/Achievements";
 import { imageLink, PagesData } from "@/lib/common-api/common";
 import { getPageBySlug } from "@/lib/wordpress";
 import InterestedSection from "@/components/Home/Hire";
 import InterviewAmico from "../components/icons/png/Interview-amico.svg";
+import dynamic from "next/dynamic";
+
+
+const Homepage = dynamic(() => import("../components/Home/index"), {
+  ssr: false,
+});
+const Aboutpage = dynamic(() => import("../components/Home/About"), {
+  ssr: false,
+});
+const Achievements = dynamic(() => import("../components/Home/Achievements"), {
+  ssr: false,
+});
+const ContactUs = dynamic(() => import("../components/Home/contactme"), {
+  ssr: false,
+});
 
 const fs = require("fs");
 
@@ -86,14 +97,14 @@ const Home = async () => {
   };
   return (
     <>
-      <HomePage
+      <Homepage
         homePagedata={homepageContent}
         buttonData={homePostButton}
         homeBoxData={homeBox}
       />
-      <About aboutPagedata={aboutpageContent} />
+      <Aboutpage aboutPagedata={aboutpageContent} />
       <Achievements data={achievementdata} />
-      <CallToAction data={CallToActionData} />
+      <ContactUs data={CallToActionData} />
       <ServicesPage ServicesData={servicesBox} />
       <InterestedSection pageContent={workContent} image={InterviewAmico} />
       <SkillsSection
@@ -103,7 +114,7 @@ const Home = async () => {
         mainImage={skillContent}
       />
       <TestimonialPage data={TestimonialData} />
-      <CallToAction data={CallToActionData} />
+      <ContactUs data={CallToActionData} />
       <BlogSectionHome BlogData={BlogData} />
     </>
   );

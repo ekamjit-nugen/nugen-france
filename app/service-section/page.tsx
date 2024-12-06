@@ -1,10 +1,13 @@
-import ServiceSection from '@/components/serviceSection/ServiceSection'
-import React from 'react'
+import ServiceSection from "@/components/serviceSection/ServiceSection";
+import { PagesData } from "@/lib/common-api/common";
+import React from "react";
 
-export default function page() {
+export default async function NugenServices() {
+  const data = await PagesData("custom-web-development"); // pass query per...
+  const datalength = data?.length;
   return (
     <div>
-      <ServiceSection/>
+      <ServiceSection data={data} dataup={data[datalength - 1]}/>
     </div>
-  )
+  );
 }

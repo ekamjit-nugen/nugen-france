@@ -2,15 +2,12 @@
 import React from "react";
 import { AchievementType } from "../Home/Achievements";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 const PortfolioPage: React.FC<AchievementType> = ({ data }) => {
-  const router = useRouter();
-
   return (
-    <div className="container mx-auto  md:px-0 items-center mt-24 mb-36">
+    <div className="container mx-auto md:px-0 items-center mt-24 mb-36">
       <div className="w-full mb-6 mt-10">
-        <div className="text-4xl font-bold text-center  text-black pt-2 underline decoration-[#87f9e4] ">
+        <div className="text-4xl font-bold text-center text-black pt-2 underline decoration-[#87f9e4] ">
           {"Portfolio"}
         </div>
       </div>
@@ -18,17 +15,10 @@ const PortfolioPage: React.FC<AchievementType> = ({ data }) => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
         {data.map((achievement, index) => (
           <Link
-            key={index + 5}
-            href={{
-              pathname: "/Projects",
-              query: {
-                project: achievement?.button_value,
-              },
-            }}
+            key={achievement.button_value + index}
+            href={`/Projects?id=${achievement?.button_value}`}
+            className="text-blue-500 font-medium relative group"
             style={{ textDecoration: "none" }}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="relative group"
           >
             <img
               src={achievement?.post_image}

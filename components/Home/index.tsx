@@ -75,7 +75,7 @@ const HomePage: React.FC<PageProps> = ({
       {/* Section 1 */}
       <div className="flex flex-col md:flex-row items-center py-20 px-8 md:px-16">
         {/* Left Side: Text Content */}
-        <div className="text-2xl md:text-4xl font-bold flex-1">
+        <div className="text-2xl md:text-2xl	 font-bold flex-1">
           <motion.div
             variants={leftToRightAnimation}
             className="underline decoration-[#6aebd3] underline-offset-2"
@@ -89,9 +89,9 @@ const HomePage: React.FC<PageProps> = ({
 
           <motion.div
             variants={leftToRightAnimation}
-            className="mt-6 text-base md:text-xl font-medium"
+            className="mt-6 text-base md:text-lg	font-medium"
           >
-            <p key={homePagedata?.header_title} className="mt-2">
+            <p key={homePagedata?.header_description} className="mt-2">
               {t("header_description")}
             </p>
           </motion.div>

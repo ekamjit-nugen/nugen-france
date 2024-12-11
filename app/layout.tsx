@@ -67,21 +67,57 @@ export default async function RootLayout({
   // side is the easiest way to get started
   const messages = await getMessages();
 
-  const categories = await getAllCategories()
-  const navBarCategory = categories.find((cat) => cat.name === "nav-bar") || { id: "1", };
-  const posts = await getAllPosts({ category: navBarCategory?.id.toString(),limit: 100 });
-  const data = posts.map((data) => { return data.acf })
+  const categories = await getAllCategories();
+  const navBarCategory = categories.find((cat) => cat.name === "nav-bar") || {
+    id: "1",
+  };
+  const posts = await getAllPosts({
+    category: navBarCategory?.id.toString(),
+    limit: 100,
+  });
+  const data = posts.map((data) => {
+    return data.acf;
+  });
   const homepagedata = await getPageBySlug("header");
   const homeimage1 = await imageLink(homepagedata?.acf?.logo);
   const homepageContent = {
     ...homepagedata?.acf,
     logo: homeimage1,
   };
-  const footer_contact =await PagesData("footer-contact-us");
-  const footerMian =await PagesData("footer-main");
-  const footerServices =await PagesData("footer-services");  
-  const footerPrivicy =await PagesData("footer-privacy");  
-  
+  const categoriesFr = await getAllCategories();
+  const navBarCategoryFr = categoriesFr.find(
+    (cat) => cat.name === "nav-bar-fr"
+  ) || {
+    id: "1",
+  };
+  const postsFr = await getAllPosts({
+    category: navBarCategoryFr?.id.toString(),
+    limit: 100,
+  });
+  const datafr = postsFr.map((datafr) => {
+    return datafr.acf;
+  });
+  const homepagedatafr = await getPageBySlug("header-fr");
+  const homeimage1fr = await imageLink(homepagedatafr?.acf?.logo);
+  const homepageContentfr = {
+    ...homepagedatafr?.acf,
+    logo: homeimage1fr,
+  };
+  const footer_contact = await getPageBySlug("footer");
+  const contactUsAcf = {
+    ...footer_contact.acf,
+  };
+  const footer_contactFr = await getPageBySlug("footer-fr");
+  const contactUsAcfFr = {
+    ...footer_contactFr.acf,
+  };
+  const footerMian = await PagesData("footer-main");
+  const footerMianFr = await PagesData("footer-main-fr");
+  const footerServices = await PagesData("footer-services");
+  const footerServicesFr = await PagesData("footer-services-fr");
+  const footerPrivicy = await PagesData("footer-privacy");
+  const footerPrivicyFr = await PagesData("footer-privacy-fr");
+
   return (
     <html lang={locale}>
       <body
@@ -94,9 +130,24 @@ export default async function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <MainHeader menu={data}  header={homepageContent} />
+            <MainHeader
+              menu={data}
+              menufr={datafr}
+              headerFr={homepageContentfr}
+              header={homepageContent}
+            />
+
             <Main>{children}</Main>
-            <Footer contactUs={footer_contact} footermain={footerMian} footerServices={footerServices} footerPrivicy={footerPrivicy}/>
+            <Footer
+              contactUs={contactUsAcf}
+              contactUsFr={contactUsAcfFr}
+              footermain={footerMian}
+              footerMianFr={footerMianFr}
+              footerServices={footerServices}
+              footerServicesFr={footerServicesFr}
+              footerPrivicy={footerPrivicy}
+              footerPrivicyFr={footerPrivicyFr}
+            />
           </ThemeProvider>
           <Analytics />
         </NextIntlClientProvider>

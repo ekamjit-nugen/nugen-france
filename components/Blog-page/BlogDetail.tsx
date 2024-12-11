@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import { PageContent } from "../Home";
 import Link from "next/link";
 export interface HeroSectionType {
@@ -19,15 +20,29 @@ interface HeroSectionPageType {
   blogData: HeroSectionType[];
   socialData: PageContent[];
   RelatedPost: HeroSectionType[];
+  RelatedPostfr: HeroSectionType[];
 }
 export default function BlogDetail({
   data,
   blogData,
   socialData,
   RelatedPost,
+  RelatedPostfr,
 }: HeroSectionPageType) {
+  const [language, setLanguage] = useState("en");
+
+  const langData = async () => {
+    const savedLanguage = localStorage.getItem("language");
+    if (savedLanguage) {
+      setLanguage(savedLanguage);
+    }
+  };
+  useEffect(() => {
+    langData();
+  }, [langData]);
+
   return (
-    <div className="py-16">
+    <div className="py-16 bg-white">
       <div className="text-center text-4xl font-bold xl:text-5xl font-sans py-8 px-8 md:px-32">
         {data?.post_title}
       </div>
@@ -54,7 +69,7 @@ export default function BlogDetail({
         </div>
 
         <div className=" w-full lg:w-1/3 py-8 lg:px-4 flex flex-col gap-4">
-          <div className="flex flex-col gap-1">
+          {/* <div className="flex flex-col gap-1">
             <div className=" text-base lg:text-2xl font-bold">
               Need a freelance web developer?
             </div>
@@ -62,12 +77,12 @@ export default function BlogDetail({
               You want to create a website and you are looking for a freelance
               developer? Call me and contact me now
             </div>
-          </div>
+          </div> */}
           <div className="flex flex-col gap-1">
             <div className=" text-base lg:text-2xl font-bold">
               Recent articles
             </div>
-            {RelatedPost?.map((item) => (
+            {(language === "fr" ? RelatedPostfr : RelatedPost)?.map((item) => (
               <Link
                 key={item?.button_value}
                 href={{

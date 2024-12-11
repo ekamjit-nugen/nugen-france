@@ -1,6 +1,6 @@
 "use client";
 import Button from "@/components/ui/ButtonNugen/butoon";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   leftToRightAnimation,
@@ -8,6 +8,7 @@ import {
   staggerParent,
   topToBottomAnimation,
 } from "@/lib/animation/animationUtils";
+import Link from "next/link";
 
 interface homeBoxData {
   header_title: string;
@@ -22,9 +23,22 @@ interface homeBoxData {
 }
 interface dataType {
   data: homeBoxData[];
+  datafr: homeBoxData[];
 }
 
-const CallToAction = ({ data }: dataType) => {
+const CallToAction = ({ data, datafr }: dataType) => {
+  const [language, setLanguage] = useState("en");
+
+  const langData = async () => {
+    const savedLanguage = localStorage.getItem("language");
+    if (savedLanguage) {
+      setLanguage(savedLanguage);
+    }
+  };
+  useEffect(() => {
+    langData();
+  }, [langData]);
+
   return (
     <motion.div
       {...staggerParent}
@@ -35,13 +49,21 @@ const CallToAction = ({ data }: dataType) => {
           variants={leftToRightAnimation}
           className="text-xl md:text-3xl lg:text-4xl font-bold leading-snug md:leading-tight lg:leading-snug"
         >
-          {data?.[0]?.header_title}
+          {language === "fr"
+            ? datafr?.[0].header_title
+            : data?.[0].header_title}
         </motion.div>
         <motion.div variants={topToBottomAnimation}>
-          <Button
-            title={data?.[0]?.button_title}
-            className="mb-4 sm:mb-0 sm:mx-2"
-          />
+          <Link href={data?.[0].button_value}>
+            <Button
+              title={
+                language === "fr"
+                  ? datafr?.[0].button_title
+                  : data?.[0].button_title
+              }
+              className="mb-4 sm:mb-0 sm:mx-2"
+            />
+          </Link>
         </motion.div>
       </div>
       <motion.div

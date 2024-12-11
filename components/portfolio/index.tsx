@@ -5,14 +5,14 @@ import Link from "next/link";
 
 const PortfolioPage: React.FC<AchievementType> = ({ data }) => {
   return (
-    <div className="container mx-auto md:px-0 items-center mt-24 mb-36">
+    <div className="bg-white  md:px-0 items-center pt-16 pb-36">
       <div className="w-full mb-6 mt-10">
         <div className="text-4xl font-bold text-center text-black pt-2 underline decoration-[#87f9e4] ">
           {"Portfolio"}
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-[80%] mx-auto">
         {data.map((achievement, index) => (
           <Link
             key={achievement.button_value + index}

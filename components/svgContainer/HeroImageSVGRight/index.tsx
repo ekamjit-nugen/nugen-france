@@ -1,5 +1,5 @@
 import gsap from "gsap";
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, useRef } from "react";
 import FiltersAndMasking from "./FiltersAndMasking";
 import Paths from "./Paths";
 import BrowserComponent from "./BrowserComponent";
@@ -23,8 +23,12 @@ import VscodeIcon from "./VsCode";
 import CubeIcon from "./Cube";
 
 const HeroImageSVGRight = ({ width }: any) => {
+  const svgRef = useRef<SVGSVGElement>(null);
+
   useLayoutEffect((): any => {
+    if (!svgRef.current) return; 
     const iconsTimeline = gsap.timeline({});
+    
     gsap.fromTo(
       [
         "#peopleDraw",
@@ -50,6 +54,7 @@ const HeroImageSVGRight = ({ width }: any) => {
         delay: 2,
       }
     );
+
     iconsTimeline
       .fromTo(
         [
@@ -103,7 +108,6 @@ const HeroImageSVGRight = ({ width }: any) => {
           rotate: 360,
           transformOrigin: "center center",
           duration: 1,
-
           ease: "expo.inOut",
         }
       )
@@ -178,9 +182,11 @@ const HeroImageSVGRight = ({ width }: any) => {
       }
     );
   }, []);
+
   return (
     <>
       <svg
+        ref={svgRef}
         width={width}
         height=""
         viewBox="0 0 1526 1205"

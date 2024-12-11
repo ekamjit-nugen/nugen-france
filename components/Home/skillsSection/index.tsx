@@ -22,7 +22,9 @@ export interface ImagesData {
   mainImage: SkillBarProps;
   skillIcons: IconsData[];
   skillBars: SkillBarProps[];
+  SkillsBarsFr: SkillBarProps[];
   skillData: buttonDataType[];
+  skillDatafr: buttonDataType[];
 }
 
 // const SkillBar: React.FC<ImagesData> = ({ skillBars }) => (

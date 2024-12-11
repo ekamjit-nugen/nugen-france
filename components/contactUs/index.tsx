@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { buttonDataType } from "../Home";
 import Button from "../ui/ButtonNugen/butoon";
 interface ContactUsType {
@@ -29,13 +29,27 @@ interface ContactUsType {
 interface ContactUsPropsType {
   props: ContactUsType;
   buttons: buttonDataType[];
+  propsfr: ContactUsType;
+  buttonsfr: buttonDataType[];
 }
-const ContactPage = ({ props, buttons }: ContactUsPropsType) => {
+const ContactPage = ({ props, buttons, propsfr ,buttonsfr}: ContactUsPropsType) => {
+  const [language, setLanguage] = useState("en");
+
+  const langData = async () => {
+    const savedLanguage = localStorage.getItem("language");
+    if (savedLanguage) {
+      setLanguage(savedLanguage);
+    }
+  };
+  useEffect(() => {
+    langData();
+  }, [langData]);
+
   return (
-    <div className="container mx-auto px-4 md:px-0 items-center mt-24">
+    <div className="bg-white  px-4 md:px-0 items-center pt-20">
       <div className="w-full mb-12">
         <h1 className="text-4xl font-bold text-center mb-4">
-          {props?.animated_title}
+          {language === "fr" ? propsfr?.animated_title : props?.animated_title}
         </h1>
         {/* <div className="text-center text-gray-500">
           <span>{data.home}</span> <span className="mx-2">›</span>
@@ -47,7 +61,7 @@ const ContactPage = ({ props, buttons }: ContactUsPropsType) => {
         <div className="w-full md:w-2/3">
           {/* <h2 className="text-2xl font-semibold mb-4">I wish</h2> */}
           <div className="flex gap-4">
-            {buttons.map((action, index) => (
+          {(language === "fr" ? buttonsfr : buttons)?.map((action, index) => (
               <Button
                 key={index}
                 title={action.button_title}

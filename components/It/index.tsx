@@ -1,14 +1,17 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AchievementType } from "../Home/Achievements";
 import { ImagesData } from "../Home/skillsSection";
 import Button from "../ui/ButtonNugen/butoon";
+import Link from "next/link";
 
 const CloudPlatform: React.FC<ImagesData> = ({
   skillData,
   skillIcons,
   mainImage,
   skillBars,
+  SkillsBarsFr,
+  skillDatafr,
 }) => {
   const [expanded, setExpanded] = useState(null);
 
@@ -16,24 +19,23 @@ const CloudPlatform: React.FC<ImagesData> = ({
     setExpanded(expanded === index ? null : index);
   };
 
-  return (
-    <div className="max-w-6xl mx-auto p-6 flex flex-col lg:flex-row gap-8">
-      {/* Title Section */}
-      {/* <div className="max-w-6xl mx-auto text-center mb-8">
-        <div className="text-black text-lg uppercase font-semibold flex items-center justify-center">
-          <span className="w-12 h-[2px] bg-[#6aebd3] inline-block mr-4"></span>
-          TURNKEY SOLUTIONS
-          <span className="w-12 h-[2px] bg-[#6aebd3] inline-block ml-4"></span>
-        </div>
-        <div className="text-4xl font-bold">
-          <span className="underline decoration-[#6aebd3] underline-offset-2 decoration-8">
-            Services
-          </span>{" "}
-          proposed
-        </div>
-      </div> */}
+  const [language, setLanguage] = useState("en");
 
-      {skillData?.map((item, index) => (
+  const langData = async () => {
+    const savedLanguage = localStorage.getItem("language");
+    if (savedLanguage) {
+      setLanguage(savedLanguage);
+    }
+  };
+  useEffect(() => {
+    langData();
+  }, [langData]);
+
+  return (
+    <div className="bg-white px-56 p-6 flex flex-col lg:flex-row gap-8">
+      {/* Title Section */}
+
+      {(language === "fr" ? skillDatafr : skillData)?.map((item, index) => (
         <div key={index} className="lg:w-1/2 pt-6">
           <h1 className="text-3xl font-bold text-gray-800">
             {item?.header_title}
@@ -41,16 +43,16 @@ const CloudPlatform: React.FC<ImagesData> = ({
           <p className="mt-4 text-gray-600">{item?.post_description}</p>
 
           <div className="mt-6 space-x-4">
-            <Button title={"View More"} >
-              Get started for free
-            </Button>
+            <Link href={item?.button_value}>
+            <Button title={item?.button_title}></Button>
+            </Link>
           </div>
         </div>
       ))}
 
       {/* Right Section: Accordion */}
       <div className="lg:w-1/2 border-t border-gray-200">
-        {skillBars.map((item, index) => (
+        {(language === "fr" ? SkillsBarsFr : skillBars)?.map((item, index) => (
           <div key={index} className="border-b border-gray-200">
             <div
               className="flex justify-between items-center cursor-pointer"

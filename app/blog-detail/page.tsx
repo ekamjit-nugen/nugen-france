@@ -9,6 +9,8 @@ export default async function NugenBlog({ searchParams }: any) {
   const data = await PagesData(id);
   const datalength = data?.length;
   const RelatedPost = await PagesData("blog");
+  const RelatedPostfr = await PagesData("blog-fr");
+
   const socialData = await PagesData("social-media");
   return (
     <div>
@@ -17,6 +19,7 @@ export default async function NugenBlog({ searchParams }: any) {
         blogData={data}
         socialData={socialData}
         RelatedPost={RelatedPost}
+        RelatedPostfr={RelatedPostfr}
       />
       <QuestionSection />
     </div>

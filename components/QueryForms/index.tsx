@@ -56,7 +56,7 @@ export const QueryForm = ({
       <Sheet open={toggleModal}>
         <div>
           <Button
-            title={"Send Query"}
+            title={buttonTitle.toString() || "Contact Us"}
             disabled={loading}
             variant="outline"
             size="sm"
@@ -132,8 +132,12 @@ export const QueryForm = ({
               <Button
                 type="submit"
                 variant="outline"
-                className={`gap-2 col-span-6 mt-6 ${loading ? "bg-primary text-black" : ""}`}
-                disabled={loading} title={"Submit"}              >
+                className={`gap-2 col-span-6 mt-6 ${
+                  loading ? "bg-primary text-black" : ""
+                }`}
+                disabled={loading}
+                title={"Submit"}
+              >
                 {loading ? <>Sending...</> : "Send Message"}
               </Button>
             </form>

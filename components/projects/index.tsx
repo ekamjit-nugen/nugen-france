@@ -16,7 +16,7 @@ export default function Projects({
 }: HeroSectionPageType) {
   return (
     <div>
-      <div className="flex flex-col px-8 md:px-32 justify-center gap-4 items-center">
+      <div className="bg-white flex flex-col px-8 md:px-32 justify-center gap-4 items-center">
         <div className="text-4xl">{data?.post_title}</div>
         <div className="text-lg text-[#0CB8F7]">{data?.project_category}</div>
         <div className="text-base lg:px-28 pt-8 pb-8 ">
@@ -24,7 +24,7 @@ export default function Projects({
         </div>
       </div>
 
-      <div className="flex flex-col gap-2 px-8 md:px-32">
+      <div className="bg-white flex flex-col gap-2 px-8 md:px-32">
         {images
           .slice()
           .reverse()

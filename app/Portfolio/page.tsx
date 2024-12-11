@@ -8,7 +8,7 @@ const Portfolio = async () => {
 
   return (
     <>
-      <PortfolioPage data={achievementdata}/>
+      <PortfolioPage data={achievementdata} datafr={[]}/>
       <FaqPage/>
     </>
   );

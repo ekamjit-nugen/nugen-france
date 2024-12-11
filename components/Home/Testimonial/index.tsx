@@ -2,48 +2,27 @@
 import React, { useState, useEffect } from "react";
 
 export interface TestimonialData {
-  header_title: string,
-  header_description: string,
-  animated_title: string,
-  button_value: string,
-  post_title: string,
-  post_image: string,
-  post_description: string,
-  rating: string,
-  icon: { type: string, value: string },
-  source: string
+  header_title: string;
+  header_description: string;
+  animated_title: string;
+  button_value: string;
+  post_title: string;
+  post_image: string;
+  post_description: string;
+  rating: string;
+  icon: { type: string; value: string };
+  source: string;
 }
 
 interface TestimonialSectionType {
-  data: TestimonialData[],
+  data: TestimonialData[];
+  dataFr: TestimonialData[];
 }
-const testimonials = [
-  {
-    quote:
-      "Florian is very professional. He followed me for many months for the conceptualization of my website. I am very happy with the result.",
-    author: "Frederic S.",
-    role: "The Wonders of the City",
-    imageUrl: "https://via.placeholder.com/100", // Placeholder for the client's image
-  },
-  {
-    quote:
-      "Very professional, very responsive, force of proposal and innovation.",
-    author: "Francois B.",
-    role: "Photographer",
-    imageUrl: "https://via.placeholder.com/100",
-  },
-  {
-    quote:
-      "We worked with Florian to create a website for our café. We are very happy with our site.",
-    author: "Chloe P.",
-    role: "Nocino",
-    imageUrl: "https://via.placeholder.com/100",
-  },
-];
 
 const TestimonialPage: React.FC<TestimonialSectionType> = ({
-  data
- }) => {
+  data,
+  dataFr,
+}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -54,14 +33,25 @@ const TestimonialPage: React.FC<TestimonialSectionType> = ({
   }, [currentIndex]);
 
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % data.length);
   };
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
+      prevIndex === 0 ? data.length - 1 : prevIndex - 1
     );
   };
+  const [language, setLanguage] = useState("en");
+
+  const langData = async () => {
+    const savedLanguage = localStorage.getItem("language");
+    if (savedLanguage) {
+      setLanguage(savedLanguage);
+    }
+  };
+  useEffect(() => {
+    langData();
+  }, [langData]);
 
   return (
     <div className="bg-white py-16 px-8">
@@ -77,7 +67,7 @@ const TestimonialPage: React.FC<TestimonialSectionType> = ({
       {/* Testimonials Carousel Section */}
       <div className="max-w-4xl mx-auto relative">
         <div className="overflow-hidden relative h-[300px]">
-          {data.map((testimonial, index) => (
+          {(language === "fr" ? dataFr : data)?.map((testimonial, index) => (
             <div
               key={index}
               className={`transition-opacity duration-1000 ${
@@ -121,7 +111,7 @@ const TestimonialPage: React.FC<TestimonialSectionType> = ({
 
       {/* Dots for Navigation */}
       <div className="flex justify-center mt-6">
-        {testimonials.map((_, index) => (
+        {data.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
@@ -133,6 +123,6 @@ const TestimonialPage: React.FC<TestimonialSectionType> = ({
       </div>
     </div>
   );
-}
+};
 
 export default TestimonialPage;

@@ -13,9 +13,9 @@ const CloudPlatform: React.FC<ImagesData> = ({
   SkillsBarsFr,
   skillDatafr,
 }) => {
-  const [expanded, setExpanded] = useState(null);
+  const [expanded, setExpanded] = useState<number | null>(null);
 
-  const toggleAccordion = (index: any) => {
+  const toggleAccordion = (index: number) => {
     setExpanded(expanded === index ? null : index);
   };
 
@@ -27,35 +27,37 @@ const CloudPlatform: React.FC<ImagesData> = ({
       setLanguage(savedLanguage);
     }
   };
+
   useEffect(() => {
     langData();
-  }, [langData]);
+  }, []);
 
   return (
-    <div className="bg-white px-56 p-6 flex flex-col lg:flex-row gap-8">
+    <div className="bg-white px-4 md:px-12 lg:px-20 py-6 flex flex-col lg:flex-row gap-8">
       {/* Title Section */}
-
       {(language === "fr" ? skillDatafr : skillData)?.map((item, index) => (
-        <div key={index} className="lg:w-1/2 pt-6">
-          <h1 className="text-3xl font-bold text-gray-800">
+        <div key={index} className="w-full lg:w-1/2 pt-6">
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-800 text-center lg:text-left">
             {item?.header_title}
           </h1>
-          <p className="mt-4 text-gray-600">{item?.post_description}</p>
+          <p className="mt-4 text-gray-600 text-sm md:text-base text-center lg:text-left">
+            {item?.post_description}
+          </p>
 
-          <div className="mt-6 space-x-4">
+          <div className="mt-6 flex justify-center lg:justify-start space-x-4">
             <Link href={item?.button_value}>
-            <Button title={item?.button_title}></Button>
+              <Button title={item?.button_title}></Button>
             </Link>
           </div>
         </div>
       ))}
 
       {/* Right Section: Accordion */}
-      <div className="lg:w-1/2 border-t border-gray-200">
+      <div className="w-full lg:w-1/2 border-t lg:border-t-0 border-gray-200">
         {(language === "fr" ? SkillsBarsFr : skillBars)?.map((item, index) => (
           <div key={index} className="border-b border-gray-200">
             <div
-              className="flex justify-between items-center cursor-pointer"
+              className="flex justify-between items-center cursor-pointer p-4"
               onClick={() => toggleAccordion(index)}
             >
               <h4 className="text-lg font-semibold text-gray-800">
@@ -70,7 +72,7 @@ const CloudPlatform: React.FC<ImagesData> = ({
                 expanded === index ? "max-h-screen" : "max-h-0"
               }`}
             >
-              <div className="bg-opacity-35">{item?.button_value}</div>
+              <div className="p-4 bg-gray-50">{item?.button_value}</div>
             </div>
           </div>
         ))}

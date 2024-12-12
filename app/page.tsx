@@ -68,10 +68,8 @@ const Home = async () => {
   const homeBoxFr = await PagesData("home-box-fr");
   const BlogData = await PagesData("blog");
   const BlogDataFr = await PagesData("blog-fr");
-
   const servicesBox = await PagesData("services-section");
   const servicesBoxFr = await PagesData("services-section-fr");
-
   const TestimonialData = await PagesData("testimonial");
   const TestimonialDataFr = await PagesData("testimonial-fr");
   const Skills = await PagesData("skills");
@@ -87,7 +85,6 @@ const Home = async () => {
   };
   const achievementdata = await PagesData("project-section");
   const datalength = achievementdata?.length;
-
   const achievementdataFr = await PagesData("project-section-fr");
   const workWithUs = await getPageBySlug("work-with-us");
   const workImage1 = await imageLink(workWithUs?.acf?.image);

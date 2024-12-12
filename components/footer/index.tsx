@@ -65,7 +65,7 @@ const Footer: React.FC<PropsType> = ({
 
   return (
     <>
-      <footer className="bg-gray-900 text-white py-16 ">
+      <footer className="bg-gray-900 text-white py-4">
         <div className="container mx-auto px-4 h-full">
           <div className="flex flex-wrap justify-between items-start">
             <div className="w-full md:w-1/4 mb-6 md:mb-0 flex flex-col items-start">
@@ -76,9 +76,9 @@ const Footer: React.FC<PropsType> = ({
                     : footermain[0].post_image
                 }
                 alt="Logo"
-                className="w-auto h-auto mr-4 mb-4"
+                className="w-auto h-24"
               />
-              <div className="text-lg mb-4">
+              <div className="text-lg">
                 {language === "fr"
                   ? footerMianFr[0].post_description
                   : footermain[0].post_description}
@@ -92,7 +92,7 @@ const Footer: React.FC<PropsType> = ({
                     key={value?.post_title + index}
                     className="w-full md:w-1/4"
                   >
-                    <h4 className="font-bold text-lg mb-3">{value?.title}</h4>
+                    <h4 className="font-bold text-lg pt-2 underline">{value?.title}</h4>
                     <ul className="space-y-2">
                       <li>
                         <a href="#" className="hover:underline">
@@ -111,10 +111,10 @@ const Footer: React.FC<PropsType> = ({
                     key={value?.post_title + index}
                     className="w-full md:w-1/4 "
                   >
-                    <h4 className="font-bold text-lg mb-3">{value?.title}</h4>
+                    <h4 className="font-bold text-lg underline">{value?.title}</h4>
                     <ul className="space-y-2">
                       <li>
-                        <a href="#" className="hover:underline">
+                        <a href="#" className="hover:underline pt-2">
                           {value?.button_title}
                         </a>
                       </li>
@@ -124,14 +124,13 @@ const Footer: React.FC<PropsType> = ({
               )}
 
               {/* Contact Us Section */}
-
               <div className="w-full md:w-1/3 ">
                 {contactUs?.title && (
-                  <div className="font-bold text-lg">
+                  <div className="font-bold text-lg underline">
                     {language === "fr" ? contactUsFr?.title : contactUs?.title}
                   </div>
                 )}
-                <ul className="space-y-2 pt-4">
+                <ul className="space-y-2 pt-2">
                   {contactUs?.locution && (
                     <li>
                       <a className="hover:underline">

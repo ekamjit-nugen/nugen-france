@@ -54,7 +54,7 @@ const TestimonialPage: React.FC<TestimonialSectionType> = ({
   }, [langData]);
 
   return (
-    <div className="bg-white py-16 px-8">
+    <div className="bg-white py-2 pb-5 px-8">
       {/* Header Section */}
       <div className="max-w-6xl mx-auto text-center mb-8">
         <h2 className="text-black text-lg uppercase font-semibold flex items-center justify-center">

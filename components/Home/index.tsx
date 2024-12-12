@@ -151,7 +151,7 @@ const HomePage: React.FC<PageProps> = ({
       </div>
 
       {/* Section 2: Three Columns */}
-      <div className="bg-white py-16 px-8 ">
+      <div className="bg-white px-8 ">
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {(language === "fr" ? homeBoxDataFr : homeBoxData)?.map(
             (value, index) => {

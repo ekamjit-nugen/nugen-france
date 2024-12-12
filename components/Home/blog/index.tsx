@@ -26,7 +26,7 @@ const BlogSectionHome = ({ BlogData, BlogDataFr }: BlogPageType) => {
 
   const router = useRouter();
   return (
-    <motion.section {...staggerParent} className="py-12 px-6 bg-white">
+    <motion.section {...staggerParent} className="py-4 pb-5 px-6 bg-white">
       {/* Title Section */}
       <div className="text-center mb-12">
         <motion.h2

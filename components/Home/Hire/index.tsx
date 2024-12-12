@@ -45,10 +45,10 @@ const InterestedSection: React.FC<ServiceClientsProps> = ({
   return (
     <motion.section
       {...staggerParent}
-      className=" bg-white *:w-full h-full overflow-x-hidden lg:shadow-2xl top-diagonal lg:py-16"
+      className="p-4 bg-white *:w-full h-full md:text-left text-center overflow-x-hidden lg:shadow-2xl top-diagonal lg:py-8"
     >
       <div className={` relative items-start w-full h-full ${className}`}>
-        <div className="w-full p-8 flex flex-col md:flex-row">
+        <div className="w-full flex flex-col md:flex-row">
           <div className="w-full lg:pl-32 flex flex-col justify-center">
             <motion.div
               variants={leftToRightAnimation}
@@ -60,7 +60,7 @@ const InterestedSection: React.FC<ServiceClientsProps> = ({
             </motion.div>
             <motion.div
               variants={leftToRightAnimation}
-              className="pt-8 w-[80%] text-black"
+              className="pt-8 w-full text-black"
             >
               {language === "fr"
                 ? pageContentfr?.header_description

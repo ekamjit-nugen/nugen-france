@@ -6,9 +6,8 @@ import { homeBoxData } from "..";
 import { motion } from "framer-motion";
 import {
   leftToRightAnimation,
-  rightToLeftAnimation,
-  staggerParent,
   topToBottomAnimation,
+  staggerParent,
 } from "@/lib/animation/animationUtils";
 
 export interface PageProps {
@@ -26,10 +25,10 @@ function ServicesPage({ ServicesData, ServicesDataFr }: PageProps) {
   };
   useEffect(() => {
     langData();
-  }, [langData]);
+  }, []);
 
   return (
-    <motion.div {...staggerParent} className="bg-white py-16 px-8 md:px-2">
+    <motion.div {...staggerParent} className="bg-white px-8 pb-16">
       <div className="max-w-6xl mx-auto text-center mb-8">
         <motion.h2
           variants={topToBottomAnimation}
@@ -49,48 +48,42 @@ function ServicesPage({ ServicesData, ServicesDataFr }: PageProps) {
         </motion.h1>
       </div>
 
-      <div className="container max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {(language === "fr" ? ServicesDataFr : ServicesData)?.map(
           (service, index) => (
             <Link
               key={service.button_value + index}
               href={{
                 pathname: "/service-section",
-                query: {
-                  service: service?.button_value,
-                },
+                query: { service: service?.button_value },
               }}
               style={{ textDecoration: "none" }}
             >
-              <div className="p-6 bg-white group hover:bg-[#87f9e4] hover:text-black rounded-lg shadow-2xl text-center h-[450px] flex flex-col">
-                <div className="flex-grow">
-                  <motion.div
-                    variants={topToBottomAnimation}
-                    className="text-blue-500 text-5xl "
-                  >
-                    {service?.post_icon}
-                  </motion.div>
-                  <motion.div
-                    variants={leftToRightAnimation}
-                    className="text-xl font-bold p-3"
-                  >
-                    {service?.post_title}
-                  </motion.div>
-                  <motion.div
-                    variants={leftToRightAnimation}
-                    className="text-left max-h-64"
-                  >
-                    <p className="text-base mb-2 text-wrap">
-                      {service?.post_description
-                        ?.split(" ")
-                        .slice(0, 125)
-                        .join(" ") +
-                        (service?.post_description?.split(" ").length > 60
-                          ? "..."
-                          : "")}
-                    </p>
-                  </motion.div>
-                </div>
+              <div className="p-4 bg-white hover:bg-[#87f9e4] rounded-lg shadow-xl text-center transition-all duration-300 h-[500px] flex flex-col">
+                <motion.div
+                  variants={topToBottomAnimation}
+                  className="text-blue-500 text-6xl"
+                >
+                  {service?.post_icon}
+                </motion.div>
+                <motion.h3
+                  variants={topToBottomAnimation}
+                  className="text-2xl font-bold mt-4"
+                >
+                  {service?.post_title}
+                </motion.h3>
+                <motion.p
+                  variants={leftToRightAnimation}
+                  className="text-clip overflow-hidden mt-2 text-left"
+                >
+                  {service?.post_description
+                    ?.split(" ")
+                    .slice(0, 125)
+                    .join(" ") +
+                    (service?.post_description?.split(" ").length > 50
+                      ? "..."
+                      : "")}
+                </motion.p>
               </div>
             </Link>
           )
@@ -98,7 +91,10 @@ function ServicesPage({ ServicesData, ServicesDataFr }: PageProps) {
       </div>
 
       <motion.div variants={topToBottomAnimation} className="text-center mt-12">
-        <Button title={language === "fr" ? "TOUTES LES SERVICES" : "ALL SERVICES"} className="mb-4 sm:mb-0 sm:mx-2" />
+        <Button
+          title={language === "fr" ? "TOUTES LES SERVICES" : "ALL SERVICES"}
+          className="mb-4 sm:mb-0 sm:mx-2"
+        />
       </motion.div>
     </motion.div>
   );

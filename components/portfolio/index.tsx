@@ -1,19 +1,31 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { AchievementType } from "../Home/Achievements";
 import Link from "next/link";
 
-const PortfolioPage: React.FC<AchievementType> = ({ data }) => {
+const PortfolioPage: React.FC<AchievementType> = ({ data ,datafr }) => {
+  const [language, setLanguage] = useState("en");
+
+  const langData = async () => {
+    const savedLanguage = localStorage.getItem("language");
+    if (savedLanguage) {
+      setLanguage(savedLanguage);
+    }
+  };
+  useEffect(() => {
+    langData();
+  }, [langData]);
+
   return (
-    <div className="bg-white  md:px-0 items-center pt-16 pb-36">
+    <div className="bg-white md:px-0 items-center pt-16 pb-36">
       <div className="w-full mb-6 mt-10">
-        <div className="text-4xl font-bold text-center text-black pt-2 underline decoration-[#87f9e4] ">
-          {"Portfolio"}
+        <div className="text-4xl font-bold text-center text-black pt-2 underline decoration-[#87f9e4]">
+          {language === "en" ? "Portfolio" : "Portefeuille"}
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-[80%] mx-auto">
-        {data.map((achievement, index) => (
+        {(language === "fr" ? datafr : data)?.map((achievement, index) => (
           <Link
             key={achievement.button_value + index}
             href={`/Projects?id=${achievement?.button_value}`}
@@ -22,7 +34,7 @@ const PortfolioPage: React.FC<AchievementType> = ({ data }) => {
           >
             <img
               src={achievement?.post_image}
-              className="w-full h-64 object-cover rounded-lg shadow-lg"
+              className="w-full h-64 object-fill rounded-lg shadow-lg"
               alt={achievement?.post_title}
             />
             <div className="absolute bottom-0 left-0 right-0 bg-white/80 py-3 px-4 rounded-lg shadow-md group-hover:bg-white transition-all duration-300">

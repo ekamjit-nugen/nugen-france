@@ -32,14 +32,14 @@ export default function QuestionSection() {
               <input
                 type="text"
                 placeholder="First Name"
-                className="py-3 w-full outline-none"
+                className="py-3 w-full outline-none bg-white"
               />
             </div>
             <div className="border-2 px-2 w-full">
               <input
                 type="text"
                 placeholder="Last Name"
-                className="py-3 w-full outline-none"
+                className="py-3 w-full outline-none bg-white"
               />
             </div>
           </div>
@@ -48,24 +48,24 @@ export default function QuestionSection() {
               <input
                 type="text"
                 placeholder="E-Mail Address"
-                className="py-3 w-full outline-none"
+                className="py-3 w-full outline-none bg-white"
               />
             </div>
             <div className="border-2 px-2 w-full">
               <input
                 type="text"
                 placeholder="Phone"
-                className="py-3 w-full outline-none"
+                className="py-3 w-full outline-none bg-white"
               />
             </div>
           </div>
           <div className="border-2 px-2 w-full h-40">
             <textarea
               placeholder="Message"
-              className="py-3 w-full outline-none h-full"
+              className="py-3 w-full outline-none h-full bg-white"
             />
           </div>
-          <Button title={"Send"} className="mb-4 sm:mb-0 sm:mx-2" />
+          <Button title={"Send"} className="mb-4 sm:mb-0 sm:mx-2 " />
         </div>
       </div>
     </div>

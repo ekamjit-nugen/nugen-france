@@ -1,5 +1,5 @@
 "use client";
-import React, { useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import { motion } from "framer-motion";
 import {
@@ -16,43 +16,68 @@ interface ServiceContentType {
   button_value?: string;
   hr_email?: string;
   image: string | StaticImageData;
+  button_title?: string;
 }
 interface ServiceClientsProps {
   className?: string;
   image?: string | StaticImageData;
   pageContent?: ServiceContentType;
+  pageContentfr?: ServiceContentType;
 }
 const InterestedSection: React.FC<ServiceClientsProps> = ({
   className,
   pageContent,
   image,
+  pageContentfr,
 }) => {
+  const [language, setLanguage] = useState("en");
+
+  const langData = async () => {
+    const savedLanguage = localStorage.getItem("language");
+    if (savedLanguage) {
+      setLanguage(savedLanguage);
+    }
+  };
+  useEffect(() => {
+    langData();
+  }, [langData]);
+
   return (
     <motion.section
       {...staggerParent}
-      className=" w-full h-full overflow-x-hidden lg:shadow-2xl top-diagonal lg:py-16"
+      className="p-4 bg-white *:w-full h-full md:text-left text-center overflow-x-hidden lg:shadow-2xl top-diagonal lg:py-8"
     >
       <div className={` relative items-start w-full h-full ${className}`}>
-        <div className="w-full p-8 flex flex-col md:flex-row">
+        <div className="w-full flex flex-col md:flex-row">
           <div className="w-full lg:pl-32 flex flex-col justify-center">
             <motion.div
               variants={leftToRightAnimation}
               className="font-serif text-black text-3xl lg:text-4xl"
             >
-              {pageContent?.header_title}
+              {language === "fr"
+                ? pageContentfr?.header_title
+                : pageContent?.header_title}
             </motion.div>
             <motion.div
               variants={leftToRightAnimation}
-              className="pt-8 w-[80%] text-black"
+              className="pt-8 w-full text-black"
             >
-              {pageContent?.header_description}
+              {language === "fr"
+                ? pageContentfr?.header_description
+                : pageContent?.header_description}
             </motion.div>
             <motion.div
               variants={leftToRightAnimation}
               className="flex justify-start pt-4"
               id=""
             >
-              <QueryForm buttonTitle={"Send Query"} />
+              <QueryForm
+                buttonTitle={
+                  language === "fr"
+                    ? pageContentfr?.button_title || ""
+                    : pageContent?.button_title || ""
+                }
+              />
             </motion.div>
           </div>
           <motion.div
@@ -60,11 +85,14 @@ const InterestedSection: React.FC<ServiceClientsProps> = ({
             className="h-full w-full lg:-mt-12 flex justify-start "
           >
             <Image
-              src={pageContent?.image || ""}
+              src={
+                language === "fr"
+                  ? pageContentfr?.image || ""
+                  : pageContent?.image || ""
+              }
               alt="image"
               height={650}
               width={650}
-              className=""
             />
           </motion.div>
         </div>

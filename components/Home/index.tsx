@@ -1,8 +1,7 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import LocaleSwitcher from "../lunguageButton";
 import HeroImageSVGRight from "../svgContainer/HeroImageSVGRight";
 import useSize from "../windowSize";
 import HeroImageSVG from "../svgContainer/HeroImageSVG";
@@ -10,7 +9,6 @@ import { Tween } from "react-gsap";
 import { motion } from "framer-motion";
 import {
   leftToRightAnimation,
-  rightToLeftAnimation,
   staggerParent,
   topToBottomAnimation,
 } from "@/lib/animation/animationUtils";
@@ -56,22 +54,38 @@ export interface buttonDataType {
 export interface PageProps {
   homePagedata: PageContent;
   buttonData: buttonDataType[];
+  buttonDatafr: buttonDataType[];
   homeBoxData: homeBoxData[];
+  homePagedatafr: PageContent;
+  homeBoxDataFr: homeBoxData[];
 }
 const HomePage: React.FC<PageProps> = ({
   homePagedata,
   buttonData,
+  buttonDatafr,
   homeBoxData,
+  homePagedatafr,
+  homeBoxDataFr,
 }) => {
   const t = useTranslations("home");
   const size = useSize();
+  const [language, setLanguage] = useState("en");
+
+  const langData = async () => {
+    const savedLanguage = localStorage.getItem("language");
+    if (savedLanguage) {
+      setLanguage(savedLanguage);
+    }
+  };
+  useEffect(() => {
+    langData();
+  }, [langData]);
 
   return (
     <motion.div
       {...staggerParent}
       className="bg-white w-full min-h-screen text-black"
     >
-      {/* <LocaleSwitcher /> */}
       {/* Section 1 */}
       <div className="flex flex-col md:flex-row items-center py-20 px-8 md:px-16">
         {/* Left Side: Text Content */}
@@ -80,19 +94,25 @@ const HomePage: React.FC<PageProps> = ({
             variants={leftToRightAnimation}
             className="underline decoration-[#6aebd3] underline-offset-2"
           >
-            {t("underline_text")}
-            {/* {homePagedata?.header_title} */}
+            {language === "fr"
+              ? homePagedatafr?.underline_text
+              : homePagedata?.underline_text}
           </motion.div>
+
           <motion.div variants={leftToRightAnimation}>
-            {t("header_title")}
+            {language === "fr"
+              ? homePagedatafr?.header_title
+              : homePagedata?.header_title}
           </motion.div>
 
           <motion.div
             variants={leftToRightAnimation}
-            className="mt-6 text-base md:text-lg	font-medium"
+            className="mt-6 text-base md:text-lg font-medium"
           >
-            <p key={homePagedata?.header_description} className="mt-2">
-              {t("header_description")}
+            <p key={language}>
+              {language === "fr"
+                ? homePagedatafr?.header_description
+                : homePagedata?.header_description}
             </p>
           </motion.div>
 
@@ -100,19 +120,19 @@ const HomePage: React.FC<PageProps> = ({
             variants={leftToRightAnimation}
             className="mt-6 relative flex flex-wrap "
           >
-            {buttonData?.map((value) => {
-              return (
-                <>
-                  <button
-                    key={value?.button_title}
-                    className="relative inline-block bg-[#87f9e4] text-black py-3 px-6 rounded-lg overflow-hidden text-lg font-semibold transition-all duration-300 group w-full sm:w-auto mb-4 sm:mb-0 sm:mx-2"
-                  >
+            {(language === "fr" ? buttonDatafr : buttonData)?.map(
+              (value, index) => (
+                <Link
+                  key={value?.button_value + index}
+                  href={value?.button_value}
+                >
+                  <button className="relative inline-block bg-[#87f9e4] text-black py-3 px-6 rounded-lg overflow-hidden text-lg font-semibold transition-all duration-300 group w-full sm:w-auto mb-4 sm:mb-0 sm:mx-2">
                     <span className="absolute inset-0 bg-[#6aebd3] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
                     <span className="relative z-10">{value?.button_title}</span>
                   </button>
-                </>
-              );
-            })}
+                </Link>
+              )
+            )}
           </motion.div>
         </div>
         <div className="absolute top-48 opacity-60">
@@ -131,46 +151,48 @@ const HomePage: React.FC<PageProps> = ({
       </div>
 
       {/* Section 2: Three Columns */}
-      <div className="bg-white py-16 px-8 ">
+      <div className="bg-white px-8 ">
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {homeBoxData?.map((value) => {
-            return (
-              <>
-                <Link
-                  href={value?.button_value}
-                  key={value?.post_title}
-                  style={{ textDecoration: "none" }}
-                >
-                  <div className="p-4 bg-white hover:bg-[#87f9e4] rounded-lg shadow-2xl text-center transition-all duration-300 h-[500px] flex flex-col">
-                    <motion.div
-                      variants={topToBottomAnimation}
-                      className="text-blue-500 text-6xl"
-                    >
-                      {value?.post_icon}
-                    </motion.div>
-                    <motion.h3
-                      variants={topToBottomAnimation}
-                      className="text-2xl font-bold"
-                    >
-                      {value?.post_title}
-                    </motion.h3>
-                    <motion.p
-                      variants={rightToLeftAnimation}
-                      className="text-clip overflow-hidden"
-                    >
-                      {value?.post_description
-                        ?.split(" ")
-                        .slice(0, 125)
-                        .join(" ") +
-                        (value?.post_description?.split(" ").length > 50
-                          ? "..."
-                          : "")}
-                    </motion.p>
-                  </div>
-                </Link>
-              </>
-            );
-          })}
+          {(language === "fr" ? homeBoxDataFr : homeBoxData)?.map(
+            (value, index) => {
+              return (
+                <>
+                  <Link
+                    href={value?.button_value || "/"}
+                    key={value?.post_title}
+                    style={{ textDecoration: "none" }}
+                  >
+                    <div className="p-4 bg-white hover:bg-[#87f9e4] rounded-lg  shadow-inner text-center transition-all duration-300 h-[500px] flex flex-col">
+                      <motion.div
+                        variants={topToBottomAnimation}
+                        className="text-blue-500 text-6xl"
+                      >
+                        {value?.post_icon}
+                      </motion.div>
+                      <motion.h3
+                        variants={topToBottomAnimation}
+                        className="text-2xl font-bold"
+                      >
+                        {value?.post_title}
+                      </motion.h3>
+                      <motion.p
+                        variants={leftToRightAnimation}
+                        className="text-clip overflow-hidden"
+                      >
+                        {value?.post_description
+                          ?.split(" ")
+                          .slice(0, 125)
+                          .join(" ") +
+                          (value?.post_description?.split(" ").length > 50
+                            ? "..."
+                            : "")}
+                      </motion.p>
+                    </div>
+                  </Link>
+                </>
+              );
+            }
+          )}
         </div>
       </div>
     </motion.div>

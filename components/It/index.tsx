@@ -1,59 +1,63 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AchievementType } from "../Home/Achievements";
 import { ImagesData } from "../Home/skillsSection";
 import Button from "../ui/ButtonNugen/butoon";
+import Link from "next/link";
 
 const CloudPlatform: React.FC<ImagesData> = ({
   skillData,
   skillIcons,
   mainImage,
   skillBars,
+  SkillsBarsFr,
+  skillDatafr,
 }) => {
-  const [expanded, setExpanded] = useState(null);
+  const [expanded, setExpanded] = useState<number | null>(null);
 
-  const toggleAccordion = (index: any) => {
+  const toggleAccordion = (index: number) => {
     setExpanded(expanded === index ? null : index);
   };
 
-  return (
-    <div className="max-w-6xl mx-auto p-6 flex flex-col lg:flex-row gap-8">
-      {/* Title Section */}
-      {/* <div className="max-w-6xl mx-auto text-center mb-8">
-        <div className="text-black text-lg uppercase font-semibold flex items-center justify-center">
-          <span className="w-12 h-[2px] bg-[#6aebd3] inline-block mr-4"></span>
-          TURNKEY SOLUTIONS
-          <span className="w-12 h-[2px] bg-[#6aebd3] inline-block ml-4"></span>
-        </div>
-        <div className="text-4xl font-bold">
-          <span className="underline decoration-[#6aebd3] underline-offset-2 decoration-8">
-            Services
-          </span>{" "}
-          proposed
-        </div>
-      </div> */}
+  const [language, setLanguage] = useState("en");
 
-      {skillData?.map((item, index) => (
-        <div key={index} className="lg:w-1/2 pt-6">
-          <h1 className="text-3xl font-bold text-gray-800">
+  const langData = async () => {
+    const savedLanguage = localStorage.getItem("language");
+    if (savedLanguage) {
+      setLanguage(savedLanguage);
+    }
+  };
+
+  useEffect(() => {
+    langData();
+  }, []);
+
+  return (
+    <div className="bg-white px-4 md:px-12 lg:px-20 py-6 flex flex-col lg:flex-row gap-8">
+      {/* Title Section */}
+      {(language === "fr" ? skillDatafr : skillData)?.map((item, index) => (
+        <div key={index} className="w-full lg:w-1/2 pt-6">
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-800 text-center lg:text-left">
             {item?.header_title}
           </h1>
-          <p className="mt-4 text-gray-600">{item?.post_description}</p>
+          <p className="mt-4 text-gray-600 text-sm md:text-base text-center lg:text-left">
+            {item?.post_description}
+          </p>
 
-          <div className="mt-6 space-x-4">
-            <Button title={"View More"} >
-              Get started for free
-            </Button>
+          <div className="mt-6 flex justify-center lg:justify-start space-x-4">
+            <Link href={item?.button_value}>
+              <Button title={item?.button_title}></Button>
+            </Link>
           </div>
         </div>
       ))}
 
       {/* Right Section: Accordion */}
-      <div className="lg:w-1/2 border-t border-gray-200">
-        {skillBars.map((item, index) => (
+      <div className="w-full lg:w-1/2 border-t lg:border-t-0 border-gray-200">
+        {(language === "fr" ? SkillsBarsFr : skillBars)?.map((item, index) => (
           <div key={index} className="border-b border-gray-200">
             <div
-              className="flex justify-between items-center cursor-pointer"
+              className="flex justify-between items-center cursor-pointer p-4"
               onClick={() => toggleAccordion(index)}
             >
               <h4 className="text-lg font-semibold text-gray-800">
@@ -68,7 +72,7 @@ const CloudPlatform: React.FC<ImagesData> = ({
                 expanded === index ? "max-h-screen" : "max-h-0"
               }`}
             >
-              <div className="bg-opacity-35">{item?.button_value}</div>
+              <div className="p-4 bg-gray-50">{item?.button_value}</div>
             </div>
           </div>
         ))}

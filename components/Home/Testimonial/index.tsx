@@ -56,14 +56,14 @@ const TestimonialPage: React.FC<TestimonialSectionType> = ({
   }, [langData]);
 
   return (
-    <div className="bg-white py-2 pb-5 px-8">
+    <div className="bg-white py-2 pb-20 px-8">
       {/* Header Section */}
-      <div className="max-w-6xl mx-auto text-center mb-8">
-        <h2 className="text-black text-lg uppercase font-semibold flex items-center justify-center">
+      <div className="max-w-6xl mx-auto text-center">
+        <div className="text-black text-3xl uppercase font-semibold flex items-center justify-center ">
           <span className="w-12 h-[2px] bg-[#87f9e4] inline-block mr-4"></span>
           {language === "fr" ? TESTIMONIALS_FR : TESTIMONIALS_ENG}
           <span className="w-12 h-[2px] bg-[#87f9e4] inline-block ml-4"></span>
-        </h2>
+        </div>
       </div>
 
       {/* Testimonials Carousel Section */}
@@ -85,7 +85,7 @@ const TestimonialPage: React.FC<TestimonialSectionType> = ({
               />
 
               {/* Testimonial Content */}
-              <p className="text-gray-700 mb-4 text-lg italic text-center">
+              <p className="text-gray-700 mb-4 md:text-lg text-base italic text-center">
                 {testimonial?.post_description}
               </p>
               <p className="font-semibold text-gray-900">

@@ -118,7 +118,10 @@ const MainHeader: React.FC<NavBarPropsType> = ({
                   (items: NavBarProps) => (
                     <li key={items?.url + 1}>
                       <a
-                        onClick={() => router.push(`${items?.url}`)}
+                        onClick={() => {
+                          router.push(`${items?.url}`);
+                          setMobileMenuOpen(false);
+                        }}
                         className="block py-2 pr-4 pl-3 text-black border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0"
                       >
                         {items?.icons && (

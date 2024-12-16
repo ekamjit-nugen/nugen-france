@@ -79,7 +79,7 @@ const BlogPage: React.FC<BlogPageType> = ({ BlogData, BlogDataFr }) => {
                     (blog?.post_description.split(" ").length > 10
                       ? "..."
                       : "")}
-                </p>{" "}
+                </p>
                 <div className="text-blue-500 font-medium relative group">
                   {blog?.button_title}
                 </div>

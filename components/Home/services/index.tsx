@@ -45,7 +45,7 @@ function ServicesPage({
   }, []);
 
   return (
-    <motion.div {...staggerParent} className="bg-white px-8 pb-16 pt-10">
+    <motion.div {...staggerParent} className="bg-white px-8 pb-20 pt-20">
       <div className="max-w-6xl mx-auto text-center mb-8">
         <motion.div
           variants={topToBottomAnimation}

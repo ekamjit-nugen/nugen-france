@@ -31,7 +31,7 @@ const About: React.FC<PageProps> = ({ aboutPagedata, aboutPagedatafr }) => {
   return (
     <motion.div
       {...staggerParent}
-      className="bg-white flex flex-col md:flex-row items-center justify-center px-6  md:px-16 min-h-screen"
+      className="bg-white flex flex-col md:flex-row items-center pt-20  md:px-16 pb-10"
     >
       {/* Left Section: Images */}
       <div className="relative flex justify-center md:justify-end mb-10 md:mb-0 w-full">

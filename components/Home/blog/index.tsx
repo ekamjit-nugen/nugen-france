@@ -28,7 +28,7 @@ const BlogSectionHome = ({ BlogData, BlogDataFr }: BlogPageType) => {
 
   const router = useRouter();
   return (
-    <motion.section {...staggerParent} className="py-4 pb-5 px-6 bg-white">
+    <motion.section {...staggerParent} className="py-4 pb-20 px-6 bg-white">
       {/* Title Section */}
       <div className="text-center mb-12">
         <motion.h2
@@ -77,13 +77,19 @@ const BlogSectionHome = ({ BlogData, BlogDataFr }: BlogPageType) => {
                 variants={leftToRightAnimation}
                 className="text-xl font-semibold text-gray-800 mb-4"
               >
-                {blog?.post_title}
+                 {blog?.post_title.split(" ").slice(0, 4).join(" ") +
+                  (blog?.post_title.split(" ").length > 10
+                    ? "..."
+                    : "")}
               </motion.h3>
               <motion.p
                 variants={leftToRightAnimation}
                 className="text-gray-600 mb-6"
               >
-                {blog?.post_description}
+                {blog?.post_description.split(" ").slice(0, 15).join(" ") +
+                  (blog?.post_description.split(" ").length > 10
+                    ? "..."
+                    : "")}
               </motion.p>
               <motion.div className="text-blue-500 font-medium relative group">
                 {blog?.button_title}

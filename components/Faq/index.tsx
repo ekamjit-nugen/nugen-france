@@ -41,9 +41,9 @@ const FaqPage: React.FC<FAQItemData> = ({ faqdata, faqdataFr, title ,titlefr}) =
   }, [langData]);
 
   return (
-    <div className="min-h-screen bg-blue-50 flex items-center justify-center">
+    <div className="max-h-screen mx-auto bg-blue-50 flex items-center justify-center pb-20 pt-10">
       <main className="p-5 w-full sm:w-10/12 md:w-8/12 lg:w-6/12 ">
-      <div className="text-2xl font-semibold text-blue-800 mb-6 text-center">
+      <div className="text-3xl font-semibold text-black mb-6 text-center">
       {language === "fr"
               ? titlefr?.header_title
               : title?.header_title}

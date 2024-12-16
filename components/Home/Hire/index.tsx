@@ -52,7 +52,7 @@ const InterestedSection: React.FC<ServiceClientsProps> = ({
           <div className="w-full lg:pl-32 flex flex-col justify-center">
             <motion.div
               variants={leftToRightAnimation}
-              className="font-serif text-black text-3xl lg:text-4xl"
+              className="font-bold text-black text-3xl lg:text-4xl"
             >
               {language === "fr"
                 ? pageContentfr?.header_title

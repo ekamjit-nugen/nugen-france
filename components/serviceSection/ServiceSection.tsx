@@ -24,12 +24,12 @@ interface DataType {
 
 export default function ServiceSection({ data, dataup }: DataType) {
   return (
-    <div className="bg-white">
-      <div className="flex flex-col justify-center items-center py-16 gap-4">
-        <p className="text-[#0CB8F7] text-lg font-medium">
+    <div className="bg-white pb-20">
+      <div className="flex flex-col justify-center items-center pt-20 gap-4">
+        <p className="lg:text-5xl font-bold text-4xl">
           {dataup?.post_title}
         </p>
-        <p className="font-bold text-4xl lg:text-5xl">
+        <p className="text-lg font-medium text-[#0CB8F7]">
           {dataup?.project_category}
         </p>
       </div>

@@ -1,6 +1,6 @@
 "use client";
 import Button from "@/components/ui/ButtonNugen/butoon";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { PageContent } from "..";
 import { motion } from "framer-motion";
 import {
@@ -9,6 +9,8 @@ import {
   topToBottomAnimation,
 } from "@/lib/animation/animationUtils";
 import Link from "next/link";
+import { useLanguage } from "@/lib/common/useLanguage";
+import Image from "next/image";
 
 export type PageProps = {
   aboutPagedata: PageContent;
@@ -16,17 +18,10 @@ export type PageProps = {
 };
 
 const About: React.FC<PageProps> = ({ aboutPagedata, aboutPagedatafr }) => {
-  const [language, setLanguage] = useState("en");
-
-  const langData = async () => {
-    const savedLanguage = localStorage.getItem("language");
-    if (savedLanguage) {
-      setLanguage(savedLanguage);
-    }
-  };
+  const { language } = useLanguage();
   useEffect(() => {
-    langData();
-  }, [langData]);
+    window.scrollTo(0, 0); // Scrolls to the top on initial render
+  }, []);
 
   return (
     <motion.div
@@ -36,20 +31,20 @@ const About: React.FC<PageProps> = ({ aboutPagedata, aboutPagedatafr }) => {
       {/* Left Section: Images */}
       <div className="relative flex justify-center md:justify-end mb-10 md:mb-0 w-full">
         <motion.div variants={leftToRightAnimation} className="relative">
-          <img
+          <Image
             src={
               language === "fr"
-                ? aboutPagedatafr["img-1"]
-                : aboutPagedata["img-1"]
+                ? aboutPagedatafr["img-1"] ?? ""
+                : aboutPagedata["img-1"] ?? ""
             }
             className="absolute top-16 -left-16 md:top-12 lg:top-20 xl:top-28 xl:-left-32 z-40 w-[50%] h-[50%] rounded-lg"
             alt="code"
           />
-          <img
+          <Image
             src={
               language === "fr"
-                ? aboutPagedatafr?.["img-2"]
-                : aboutPagedata?.["img-2"]
+                ? aboutPagedatafr?.["img-2"] ?? ""
+                : aboutPagedata?.["img-2"] ?? ""
             }
             className="w-56 sm:w-72 md:w-[28rem] lg:w-[32rem] rounded-lg shadow-lg z-0"
             alt="orgination"

@@ -1,4 +1,5 @@
 "use client";
+import { useLanguage } from "@/lib/common/useLanguage";
 import { BLOG_ENG, LATEST_ENG } from "@/lib/language/en";
 import { BLOG_FR, LATEST_FR } from "@/lib/language/fr";
 import Link from "next/link";
@@ -20,17 +21,7 @@ export interface BlogPageType {
   BlogDataFr: BlogDataType[];
 }
 const BlogPage: React.FC<BlogPageType> = ({ BlogData, BlogDataFr }) => {
-  const [language, setLanguage] = useState("en");
-
-  const langData = async () => {
-    const savedLanguage = localStorage.getItem("language");
-    if (savedLanguage) {
-      setLanguage(savedLanguage);
-    }
-  };
-  useEffect(() => {
-    langData();
-  }, [langData]);
+  const { language } = useLanguage();
 
   return (
     <div className="py-12 px-6 bg-white">

@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { buttonDataType } from "..";
+import { homeBoxData } from "..";
 import { motion } from "framer-motion";
 import {
   leftToRightAnimation,
@@ -8,6 +8,7 @@ import {
   staggerParent,
   topToBottomAnimation,
 } from "@/lib/animation/animationUtils";
+import Image from "next/image";
 
 interface IconsData {
   post_image: string;
@@ -23,8 +24,8 @@ export interface ImagesData {
   skillIcons: IconsData[];
   skillBars: SkillBarProps[];
   SkillsBarsFr: SkillBarProps[];
-  skillData: buttonDataType[];
-  skillDatafr: buttonDataType[];
+  skillData: homeBoxData[];
+  skillDatafr: homeBoxData[];
 }
 
 // const SkillBar: React.FC<ImagesData> = ({ skillBars }) => (
@@ -59,16 +60,16 @@ const SkillsSection: React.FC<ImagesData> = ({
       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
         {/* Left Side: Image and Skill Icons */}
         <motion.div variants={topToBottomAnimation} className="space-y-6">
-          <img
-            src={mainImage?.image}
+          <Image
+            src={mainImage?.image ?? ""}
             alt="Coding Laptop"
             className="w-full rounded-lg shadow-lg"
           />
           <div className="grid grid-cols-4 gap-4 justify-center md:justify-start">
-            {skillIcons.map((icon, index) => (
-              <img
+            {skillIcons?.map((icon, index) => (
+              <Image
                 key={index}
-                src={icon.post_image}
+                src={icon?.post_image}
                 alt={`Skill ${index}`}
                 className="w-10 h-10 mx-auto"
               />

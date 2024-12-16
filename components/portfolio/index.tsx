@@ -4,20 +4,14 @@ import { AchievementType } from "../Home/Achievements";
 import Link from "next/link";
 import { PORTFOLIO_ENG } from "@/lib/language/en";
 import { PORTFOLIO_FR } from "@/lib/language/fr";
+import { useLanguage } from "@/lib/common/useLanguage";
+import Image from "next/image";
 
 const PortfolioPage: React.FC<AchievementType> = ({ data, datafr }) => {
-  const [language, setLanguage] = useState("en");
-
-  const langData = async () => {
-    const savedLanguage = localStorage.getItem("language");
-    if (savedLanguage) {
-      setLanguage(savedLanguage);
-    }
-  };
+  const { language } = useLanguage();
   useEffect(() => {
-    langData();
-  }, [langData]);
-
+    window.scrollTo(0, 0); // Scrolls to the top on initial render
+  }, []);
   return (
     <div className="bg-white md:px-0 items-center pt-16 pb-36">
       <div className="w-full mb-6 mt-10">
@@ -34,7 +28,7 @@ const PortfolioPage: React.FC<AchievementType> = ({ data, datafr }) => {
             className="text-blue-500 font-medium relative group"
             style={{ textDecoration: "none" }}
           >
-            <img
+            <Image
               src={achievement?.post_image}
               className="w-full h-64 object-fill rounded-lg shadow-lg"
               alt={achievement?.post_title}

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import Button from "@/components/ui/ButtonNugen/butoon";
 import { homeBoxData } from "..";
@@ -19,6 +19,7 @@ import {
   SERVICES_FR,
   TURNKEY_SOLUTIONS_FR,
 } from "@/lib/language/fr";
+import { useLanguage } from "@/lib/common/useLanguage";
 
 export interface PageProps {
   ServicesData: homeBoxData[];
@@ -32,16 +33,9 @@ function ServicesPage({
   buttonData,
   buttonDataFr,
 }: PageProps) {
-  const [language, setLanguage] = useState("en");
-
-  const langData = async () => {
-    const savedLanguage = localStorage.getItem("language");
-    if (savedLanguage) {
-      setLanguage(savedLanguage);
-    }
-  };
+  const { language } = useLanguage();
   useEffect(() => {
-    langData();
+    window.scrollTo(0, 0); // Scrolls to the top on initial render
   }, []);
 
   return (

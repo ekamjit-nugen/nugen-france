@@ -30,6 +30,7 @@ import {
   TITLE_QUERY_ENG,
   YOUR_MESSAGE_ENG,
 } from "@/lib/language/en";
+import { useLanguage } from "@/lib/common/useLanguage";
 
 export const QueryForm = ({
   buttonTitle,
@@ -38,7 +39,7 @@ export const QueryForm = ({
 }) => {
   const [toggleModal, setToggleModal] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [language, setLanguage] = useState("en");
+  const { language } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -89,17 +90,6 @@ export const QueryForm = ({
       console.error("Error sending email:", error);
     }
   };
-
-  const langData = async () => {
-    const savedLanguage = localStorage.getItem("language");
-    if (savedLanguage) {
-      setLanguage(savedLanguage);
-    }
-  };
-
-  useEffect(() => {
-    langData();
-  }, []);
 
   return (
     <>

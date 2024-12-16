@@ -6,6 +6,7 @@ import { PageContent } from "../Home";
 import { QueryForm } from "../QueryForms";
 import { SWITCH_FR_FR } from "@/lib/language/fr";
 import { SWITCH_FR_ENG } from "@/lib/language/en";
+import Image from "next/image";
 
 interface NavBarProps {
   header_title: string;
@@ -75,7 +76,7 @@ const MainHeader: React.FC<NavBarPropsType> = ({
         <nav>
           <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
             <a href="/" className="flex items-center">
-              <img
+              <Image
                 src={language === "fr" ? headerFr?.logo : header?.logo}
                 className="mr-3 h-12 "
                 alt="Logo"

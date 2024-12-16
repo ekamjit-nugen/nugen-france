@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Button from "../ui/ButtonNugen/butoon";
 import {
   EMAIL_FR,
@@ -18,6 +18,7 @@ import {
   SUBMIT_ENG,
   YOUR_MESSAGE_ENG,
 } from "@/lib/language/en";
+import { useLanguage } from "@/lib/common/useLanguage";
 
 interface Dataa {
   header_title: string;
@@ -32,17 +33,9 @@ interface HeroSectionPageType {
 }
 
 export default function QuestionSection({ data, dataFr }: HeroSectionPageType) {
-  const [language, setLanguage] = useState("en");
-
-  const langData = async () => {
-    const savedLanguage = localStorage.getItem("language");
-    if (savedLanguage) {
-      setLanguage(savedLanguage);
-    }
-  };
-
+  const { language } = useLanguage();
   useEffect(() => {
-    langData();
+    window.scrollTo(0, 0); // Scrolls to the top on initial render
   }, []);
 
   return (

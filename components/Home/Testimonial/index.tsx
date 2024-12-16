@@ -1,7 +1,9 @@
 "use client";
+import React, { useState, useEffect } from "react";
+import { useLanguage } from "@/lib/common/useLanguage";
 import { TESTIMONIALS_ENG } from "@/lib/language/en";
 import { TESTIMONIALS_FR } from "@/lib/language/fr";
-import React, { useState, useEffect } from "react";
+import Image from "next/image";
 
 export interface TestimonialData {
   header_title: string;
@@ -26,15 +28,7 @@ const TestimonialPage: React.FC<TestimonialSectionType> = ({
   dataFr,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 10000); // Automatically change slide every 10 seconds
-    return () => clearInterval(interval);
-  }, [currentIndex]);
-
-  const nextSlide = () => {
+ const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % data.length);
   };
 
@@ -43,17 +37,18 @@ const TestimonialPage: React.FC<TestimonialSectionType> = ({
       prevIndex === 0 ? data.length - 1 : prevIndex - 1
     );
   };
-  const [language, setLanguage] = useState("en");
-
-  const langData = async () => {
-    const savedLanguage = localStorage.getItem("language");
-    if (savedLanguage) {
-      setLanguage(savedLanguage);
-    }
-  };
   useEffect(() => {
-    langData();
-  }, [langData]);
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 10000);
+    return () => clearInterval(interval);
+  }, [currentIndex]);
+
+ 
+  const { language } = useLanguage();
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top on initial render
+  }, []);
 
   return (
     <div className="bg-white py-2 pb-20 px-8">
@@ -78,7 +73,7 @@ const TestimonialPage: React.FC<TestimonialSectionType> = ({
               style={{ transition: "opacity 0.8s ease-in-out" }}
             >
               {/* Rounded Image */}
-              <img
+              <Image
                 src={testimonial?.post_image}
                 alt={`${testimonial?.post_title} profile`}
                 className="w-24 h-24 rounded-full mb-4 object-cover border-4 border-[#87f9e4]"

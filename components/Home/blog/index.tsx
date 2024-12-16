@@ -2,7 +2,7 @@
 import { BlogPageType } from "@/components/Blog-page";
 import Button from "@/components/ui/ButtonNugen/butoon";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import {
   leftToRightAnimation,
@@ -12,19 +12,10 @@ import {
 import { useRouter } from "next/navigation";
 import { BLOG_ENG, LATEST_ENG } from "@/lib/language/en";
 import { BLOG_FR, LATEST_FR } from "@/lib/language/fr";
+import { useLanguage } from "@/lib/common/useLanguage";
 
 const BlogSectionHome = ({ BlogData, BlogDataFr }: BlogPageType) => {
-  const [language, setLanguage] = useState("en");
-
-  const langData = async () => {
-    const savedLanguage = localStorage.getItem("language");
-    if (savedLanguage) {
-      setLanguage(savedLanguage);
-    }
-  };
-  useEffect(() => {
-    langData();
-  }, [langData]);
+  const { language } = useLanguage();
 
   const router = useRouter();
   return (

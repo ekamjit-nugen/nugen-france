@@ -1,5 +1,7 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { useLanguage } from "@/lib/common/useLanguage";
+import Image from "next/image";
+import React from "react";
 
 interface FooterProps {
   header_title: string;
@@ -51,17 +53,7 @@ const Footer: React.FC<PropsType> = ({
   footerPrivicy,
   footerPrivicyFr,
 }) => {
-  const [language, setLanguage] = useState("en");
-
-  const langData = async () => {
-    const savedLanguage = localStorage.getItem("language");
-    if (savedLanguage) {
-      setLanguage(savedLanguage);
-    }
-  };
-  useEffect(() => {
-    langData();
-  }, [langData]);
+  const { language } = useLanguage();
 
   return (
     <>
@@ -69,11 +61,11 @@ const Footer: React.FC<PropsType> = ({
         <div className="container mx-auto px-4 h-full">
           <div className="flex flex-wrap justify-between items-start">
             <div className="w-full md:w-1/4 mb-6 md:mb-0 flex flex-col items-start">
-              <img
+              <Image
                 src={
                   language === "fr"
-                    ? footerMianFr[0].post_image
-                    : footermain[0].post_image
+                    ? footerMianFr[0].post_image ?? ""
+                    : footermain[0].post_image ?? ""
                 }
                 alt="Logo"
                 className="w-auto h-24"

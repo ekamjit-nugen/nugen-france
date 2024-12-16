@@ -1,8 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { buttonDataType } from "../Home";
+import { homeBoxData } from "../Home";
 import Button from "../ui/ButtonNugen/butoon";
 import Link from "next/link";
+import { useLanguage } from "@/lib/common/useLanguage";
 interface ContactUsType {
   header_title: string;
   header_description: string;
@@ -29,9 +30,9 @@ interface ContactUsType {
 }
 interface ContactUsPropsType {
   props: ContactUsType;
-  buttons: buttonDataType[];
+  buttons: homeBoxData[];
   propsfr: ContactUsType;
-  buttonsfr: buttonDataType[];
+  buttonsfr: homeBoxData[];
 }
 const ContactPage = ({
   props,
@@ -39,17 +40,8 @@ const ContactPage = ({
   propsfr,
   buttonsfr,
 }: ContactUsPropsType) => {
-  const [language, setLanguage] = useState("en");
 
-  const langData = async () => {
-    const savedLanguage = localStorage.getItem("language");
-    if (savedLanguage) {
-      setLanguage(savedLanguage);
-    }
-  };
-  useEffect(() => {
-    langData();
-  }, [langData]);
+  const { language } = useLanguage();
 
   return (
     <div className="bg-white px-4 md:px-0 items-center pt-10">

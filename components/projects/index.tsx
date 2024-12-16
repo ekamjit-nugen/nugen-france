@@ -1,6 +1,7 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HeroSectionType } from "../Blog-page/BlogDetail";
+import Image from "next/image";
 
 interface post_image {
   post_image: string;
@@ -25,7 +26,9 @@ export default function Projects({
   const closeImageModal = () => {
     setSelectedImage(null);
   };
-
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top on initial render
+  }, []);
   return (
     <div>
       <div className="bg-white flex flex-col px-8 md:px-32 justify-center gap-4 items-center pt-14">
@@ -48,7 +51,7 @@ export default function Projects({
                 className="w-full sm:w-1/2 lg:w-[45%] "
               >
                 {img?.post_image && (
-                  <img
+                  <Image
                     src={img?.post_image}
                     alt="projectMainImage"
                     className="w-full h-auto object-cover cursor-pointer"
@@ -84,7 +87,7 @@ export default function Projects({
           onClick={closeImageModal}
         >
           <div className="relative">
-            <img
+            <Image
               src={selectedImage}
               alt="Selected project"
               className="max-w-[90%] max-h-[90%] md:pl-52 object-contain"

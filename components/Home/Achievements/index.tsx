@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   leftToRightAnimation,
@@ -10,6 +10,7 @@ import Link from "next/link";
 import Button from "@/components/ui/ButtonNugen/butoon";
 import { LATEST_ACHIEVMENTS_ENG } from "@/lib/language/en";
 import { LATEST_ACHIEVMENTS_FR } from "@/lib/language/fr";
+import { useLanguage } from "@/lib/common/useLanguage";
 
 export interface dataType {
   header_title: string;
@@ -37,11 +38,9 @@ const Achievements: React.FC<AchievementType> = ({
   buttonData,
   buttonDataFr,
 }) => {
-  const [language, setLanguage] = useState("en");
-
+  const { language } = useLanguage();
   useEffect(() => {
-    const savedLanguage = localStorage.getItem("language");
-    if (savedLanguage) setLanguage(savedLanguage);
+    window.scrollTo(0, 0); // Scrolls to the top on initial render
   }, []);
 
   return (

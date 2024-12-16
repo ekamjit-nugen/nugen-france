@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { useLanguage } from "@/lib/common/useLanguage";
 
 interface FaqPageProps {
   header_title: string;
@@ -29,17 +30,10 @@ const FaqPage: React.FC<FAQItemData> = ({ faqdata, faqdataFr, title ,titlefr}) =
   const toggleAccordion = (index: number) => {
     setActiveTab(activeTab === index ? null : index);
   };
-  const [language, setLanguage] = useState("en");
-  const langData = async () => {
-    const savedLanguage = localStorage.getItem("language");
-    if (savedLanguage) {
-      setLanguage(savedLanguage);
-    }
-  };
+  const { language } = useLanguage();
   useEffect(() => {
-    langData();
-  }, [langData]);
-
+    window.scrollTo(0, 0); // Scrolls to the top on initial render
+  }, []);
   return (
     <div className="max-h-screen mx-auto bg-blue-50 flex items-center justify-center pb-20 pt-10">
       <main className="p-5 w-full sm:w-10/12 md:w-8/12 lg:w-6/12 ">

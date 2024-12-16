@@ -1,7 +1,8 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "../ui/ButtonNugen/butoon";
 import Link from "next/link";
+import Image from "next/image";
 
 interface Props {
   header_title: string;
@@ -23,6 +24,9 @@ interface DataType {
 }
 
 export default function ServiceSection({ data, dataup }: DataType) {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top on initial render
+  }, []);
   return (
     <div className="bg-white pb-20">
       <div className="flex flex-col justify-center items-center pt-20 gap-4">
@@ -49,7 +53,7 @@ export default function ServiceSection({ data, dataup }: DataType) {
                 } py-8`}
               >
                 <div className="w-full flex justify-center items-center">
-                  <img
+                  <Image
                     src={value.post_image}
                     alt="image"
                     height={400}

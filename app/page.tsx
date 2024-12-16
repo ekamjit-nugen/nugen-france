@@ -23,7 +23,7 @@ const ContactUs = dynamic(() => import("../components/Home/contactme"), {
   ssr: false,
 });
 
-const fs = ("fs");
+const fs = require("fs");
 
 const Home = async () => {
   const homePostButton = await PagesData("home-buttons");

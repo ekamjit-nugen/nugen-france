@@ -6,7 +6,7 @@ const ServicePages = async () => {
   const servicesBox = await PagesData("services-section");
   const servicesBoxFr = await PagesData("services-section-fr");
 
-  return (
+  return ( 
     <>
       <ServicesPage ServicesData={servicesBox} ServicesDataFr={servicesBoxFr} />
     </>

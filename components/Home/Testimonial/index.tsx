@@ -1,4 +1,6 @@
 "use client";
+import { TESTIMONIALS_ENG } from "@/lib/language/en";
+import { TESTIMONIALS_FR } from "@/lib/language/fr";
 import React, { useState, useEffect } from "react";
 
 export interface TestimonialData {
@@ -59,7 +61,7 @@ const TestimonialPage: React.FC<TestimonialSectionType> = ({
       <div className="max-w-6xl mx-auto text-center mb-8">
         <h2 className="text-black text-lg uppercase font-semibold flex items-center justify-center">
           <span className="w-12 h-[2px] bg-[#87f9e4] inline-block mr-4"></span>
-          testimonials
+          {language === "fr" ? TESTIMONIALS_FR : TESTIMONIALS_ENG}
           <span className="w-12 h-[2px] bg-[#87f9e4] inline-block ml-4"></span>
         </h2>
       </div>

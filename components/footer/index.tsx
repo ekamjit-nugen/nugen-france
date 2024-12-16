@@ -92,7 +92,9 @@ const Footer: React.FC<PropsType> = ({
                     key={value?.post_title + index}
                     className="w-full md:w-1/4"
                   >
-                    <h4 className="font-bold text-lg pt-2 underline">{value?.title}</h4>
+                    <h4 className="font-bold text-lg pt-2 underline">
+                      {value?.title}
+                    </h4>
                     <ul className="space-y-2">
                       <li>
                         <a href="#" className="hover:underline">
@@ -111,7 +113,9 @@ const Footer: React.FC<PropsType> = ({
                     key={value?.post_title + index}
                     className="w-full md:w-1/4 "
                   >
-                    <h4 className="font-bold text-lg underline">{value?.title}</h4>
+                    <h4 className="font-bold text-lg underline">
+                      {value?.title}
+                    </h4>
                     <ul className="space-y-2">
                       <li>
                         <a href="#" className="hover:underline pt-2">
@@ -133,7 +137,14 @@ const Footer: React.FC<PropsType> = ({
                 <ul className="space-y-2 pt-2">
                   {contactUs?.locution && (
                     <li>
-                      <a className="hover:underline">
+                      <a
+                        href={`map:${
+                          language === " fr"
+                            ? contactUsFr?.locution
+                            : contactUs?.locution
+                        }`}
+                        className="hover:underline"
+                      >
                         {language === "fr"
                           ? contactUsFr?.locution
                           : contactUs?.locution}
@@ -143,11 +154,11 @@ const Footer: React.FC<PropsType> = ({
                   {contactUs?.email && (
                     <li>
                       <a
-                        href={
-                          "mailto:" + language === "fr"
+                        href={`mailto:${
+                          language === " fr"
                             ? contactUsFr?.email
                             : contactUs?.email
-                        }
+                        }`}
                         className="hover:underline"
                       >
                         {language === "fr"
@@ -159,11 +170,11 @@ const Footer: React.FC<PropsType> = ({
                   {contactUs?.mobile && (
                     <li>
                       <a
-                        href={
-                          "tel:" + language === "fr"
+                        href={`tel:${
+                          language === " fr"
                             ? contactUsFr?.mobile
                             : contactUs?.mobile
-                        }
+                        }`}
                         className="hover:underline"
                       >
                         {language === "fr"

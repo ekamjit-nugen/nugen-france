@@ -3,6 +3,9 @@ import { AlignJustify, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import { PageContent } from "../Home";
+import { QueryForm } from "../QueryForms";
+import { SWITCH_FR_FR } from "@/lib/language/fr";
+import { SWITCH_FR_ENG } from "@/lib/language/en";
 
 interface NavBarProps {
   header_title: string;
@@ -83,16 +86,18 @@ const MainHeader: React.FC<NavBarPropsType> = ({
                 onClick={toggleLanguage}
                 className="text-black bg-gray-200 hover:bg-gray-300 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 lg:py-2.5 mr-2 focus:outline-none "
               >
-                {language === "en" ? "Switch to FR" : "Switch to EN"}
+                {language === "fr" ? SWITCH_FR_FR : SWITCH_FR_ENG}
               </button>
-              <a
-                onClick={() => router.push(header?.button_value)}
-                className="hidden lg:block cursor-pointer text-black bg-[#6aebd3] hover:bg-[#6aebd3] focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
-              >
-                {language === "fr"
-                  ? headerFr?.button_title
-                  : header?.button_title}
+              <a className="hidden lg:block ">
+                <QueryForm
+                  buttonTitle={
+                    language === "fr"
+                      ? headerFr?.button_title
+                      : header?.button_title
+                  }
+                />
               </a>
+
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 type="button"

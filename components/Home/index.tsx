@@ -38,6 +38,7 @@ export interface homeBoxData {
   post_image: undefined;
   post_description: string;
   post_icon: string;
+  url?: string;
 }
 export interface buttonDataType {
   header_title: string;
@@ -89,7 +90,7 @@ const HomePage: React.FC<PageProps> = ({
       {/* Section 1 */}
       <div className="flex flex-col md:flex-row items-center py-20 px-8 md:px-16">
         {/* Left Side: Text Content */}
-        <div className="text-2xl md:text-2xl	 font-bold flex-1">
+        <div className="text-2xl md:text-2xl z-10 font-bold flex-1">
           <motion.div
             variants={leftToRightAnimation}
             className="underline decoration-[#6aebd3] underline-offset-2"

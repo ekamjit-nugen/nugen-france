@@ -13,7 +13,7 @@ interface HeroSectionPageType {
 
 export default function Projects({
   data,
-  blogData,
+  blogData, 
   images,
 }: HeroSectionPageType) {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);

@@ -69,11 +69,13 @@ const Home = async () => {
   const BlogData = await PagesData("blog");
   const BlogDataFr = await PagesData("blog-fr");
   const servicesBox = await PagesData("services-section");
+  const buttonService = servicesBox.length;
   const servicesBoxFr = await PagesData("services-section-fr");
+  const buttonServiceFr = servicesBoxFr.length;
   const TestimonialData = await PagesData("testimonial");
   const TestimonialDataFr = await PagesData("testimonial-fr");
   const Skills = await PagesData("skills");
-  const SkillsFr = await PagesData("skills-fr");  
+  const SkillsFr = await PagesData("skills-fr");
   const skilllogo = await PagesData("skilllogo");
   const skillsdata = await PagesData("skillsdata");
   const skillsdatafr = await PagesData("skillsdata-fr");
@@ -113,9 +115,19 @@ const Home = async () => {
         aboutPagedata={aboutpageContent}
         aboutPagedatafr={aboutpageContentFr}
       />
-      <Achievements data={achievementdata} buttonData={achievementdata[datalength-1]} buttonDataFr={achievementdataFr[datalength-1]} datafr={achievementdataFr} />
+      <Achievements
+        data={achievementdata}
+        buttonData={achievementdata[datalength - 1]}
+        buttonDataFr={achievementdataFr[datalength - 1]}
+        datafr={achievementdataFr}
+      />
       <ContactUs datafr={CallToActionDataFr} data={CallToActionData} />
-      <ServicesPage ServicesDataFr={servicesBoxFr} ServicesData={servicesBox} />
+      <ServicesPage
+        ServicesDataFr={servicesBoxFr}
+        ServicesData={servicesBox}
+        buttonData={servicesBox[buttonService - 1]}
+        buttonDataFr={servicesBoxFr[buttonServiceFr - 1]}
+      />
       <CloudPlatform
         skillDatafr={skillsdatafr}
         skillData={skillsdata}

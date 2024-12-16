@@ -10,6 +10,8 @@ import {
   topToBottomAnimation,
 } from "@/lib/animation/animationUtils";
 import { useRouter } from "next/navigation";
+import { BLOG_ENG, LATEST_ENG } from "@/lib/language/en";
+import { BLOG_FR, LATEST_FR } from "@/lib/language/fr";
 
 const BlogSectionHome = ({ BlogData, BlogDataFr }: BlogPageType) => {
   const [language, setLanguage] = useState("en");
@@ -34,7 +36,7 @@ const BlogSectionHome = ({ BlogData, BlogDataFr }: BlogPageType) => {
           className="text-black text-lg uppercase flex items-center justify-center"
         >
           <span className="w-12 h-[2px] bg-[#87f9e4] inline-block mr-4"></span>
-          Blog
+          {language === "fr" ? BLOG_FR : BLOG_ENG}
           <span className="w-12 h-[2px] bg-[#87f9e4] inline-block ml-4"></span>
         </motion.h2>
         <motion.h1
@@ -42,7 +44,7 @@ const BlogSectionHome = ({ BlogData, BlogDataFr }: BlogPageType) => {
           className="text-4xl font-extrabold text-gray-800"
         >
           <span className="underline decoration-[#87f9e4] underline-offset-2 decoration-8">
-            Latest
+            {language === "fr" ? LATEST_FR : LATEST_ENG}
           </span>
         </motion.h1>
       </div>

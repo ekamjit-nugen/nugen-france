@@ -15,7 +15,6 @@ interface Props {
   post_icon: string;
   project_category?: string;
   date?: string;
-
 }
 
 interface DataType {
@@ -24,7 +23,6 @@ interface DataType {
 }
 
 export default function ServiceSection({ data, dataup }: DataType) {
-  
   return (
     <div className="bg-white">
       <div className="flex flex-col justify-center items-center py-16 gap-4">

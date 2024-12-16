@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { PageContent } from "../Home";
 import Link from "next/link";
+import { RECENT_ARTICLES_ENG } from "@/lib/language/en";
+import { RECENT_ARTICLES_FR } from "@/lib/language/fr";
 export interface HeroSectionType {
   header_title: string;
   header_description: string;
@@ -80,7 +82,7 @@ export default function BlogDetail({
           </div> */}
           <div className="flex flex-col gap-1">
             <div className=" text-base lg:text-2xl font-bold">
-              Recent articles
+              {language === "fr" ? RECENT_ARTICLES_FR : RECENT_ARTICLES_ENG}{" "}
             </div>
             {(language === "fr" ? RelatedPostfr : RelatedPost)?.map((item) => (
               <Link

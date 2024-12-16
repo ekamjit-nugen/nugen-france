@@ -2,8 +2,10 @@
 import React, { useEffect, useState } from "react";
 import { AchievementType } from "../Home/Achievements";
 import Link from "next/link";
+import { PORTFOLIO_ENG } from "@/lib/language/en";
+import { PORTFOLIO_FR } from "@/lib/language/fr";
 
-const PortfolioPage: React.FC<AchievementType> = ({ data ,datafr }) => {
+const PortfolioPage: React.FC<AchievementType> = ({ data, datafr }) => {
   const [language, setLanguage] = useState("en");
 
   const langData = async () => {
@@ -20,7 +22,7 @@ const PortfolioPage: React.FC<AchievementType> = ({ data ,datafr }) => {
     <div className="bg-white md:px-0 items-center pt-16 pb-36">
       <div className="w-full mb-6 mt-10">
         <div className="text-4xl font-bold text-center text-black pt-2 underline decoration-[#87f9e4]">
-          {language === "en" ? "Portfolio" : "Portefeuille"}
+          {language === "fr" ? PORTFOLIO_FR : PORTFOLIO_ENG}
         </div>
       </div>
 

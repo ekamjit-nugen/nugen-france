@@ -1,7 +1,11 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { PageContent } from "../Home";
 import Link from "next/link";
+import { RECENT_ARTICLES_ENG } from "@/lib/language/en";
+import { RECENT_ARTICLES_FR } from "@/lib/language/fr";
+import { useLanguage } from "@/lib/common/useLanguage";
+import Image from "next/image";
 export interface HeroSectionType {
   header_title: string;
   header_description: string;
@@ -29,18 +33,10 @@ export default function BlogDetail({
   RelatedPost,
   RelatedPostfr,
 }: HeroSectionPageType) {
-  const [language, setLanguage] = useState("en");
-
-  const langData = async () => {
-    const savedLanguage = localStorage.getItem("language");
-    if (savedLanguage) {
-      setLanguage(savedLanguage);
-    }
-  };
+  const { language } = useLanguage();
   useEffect(() => {
-    langData();
-  }, [langData]);
-
+    window.scrollTo(0, 0); // Scrolls to the top on initial render
+  }, []);
   return (
     <div className="py-16 bg-white">
       <div className="text-center text-4xl font-bold xl:text-5xl font-sans py-8 px-8 md:px-32">
@@ -52,8 +48,11 @@ export default function BlogDetail({
             <div className="">📅</div>
             <div className="">{data?.date}</div>
           </div>
-          <img src={data?.post_image} alt="image" />
-          {/* <div className="">{data?.post_description}</div> */}
+          <Image
+            src={data?.post_image ?? ""}
+            alt="image"
+            className="w-full sm:w-3/4 md:w-2/3 lg:w-4/5 h-auto mx-auto object-cover max-h-[500px]"
+          />
           {blogData
             ?.slice()
             .reverse()
@@ -69,18 +68,9 @@ export default function BlogDetail({
         </div>
 
         <div className=" w-full lg:w-1/3 py-8 lg:px-4 flex flex-col gap-4">
-          {/* <div className="flex flex-col gap-1">
-            <div className=" text-base lg:text-2xl font-bold">
-              Need a freelance web developer?
-            </div>
-            <div className="text-base">
-              You want to create a website and you are looking for a freelance
-              developer? Call me and contact me now
-            </div>
-          </div> */}
           <div className="flex flex-col gap-1">
             <div className=" text-base lg:text-2xl font-bold">
-              Recent articles
+              {language === "fr" ? RECENT_ARTICLES_FR : RECENT_ARTICLES_ENG}{" "}
             </div>
             {(language === "fr" ? RelatedPostfr : RelatedPost)?.map((item) => (
               <Link

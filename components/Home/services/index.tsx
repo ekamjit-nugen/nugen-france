@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import Button from "@/components/ui/ButtonNugen/butoon";
 import { homeBoxData } from "..";
@@ -9,42 +9,53 @@ import {
   topToBottomAnimation,
   staggerParent,
 } from "@/lib/animation/animationUtils";
+import {
+  ALL_SERVICES_ENG,
+  SERVICES_ENG,
+  TURNKEY_SOLUTIONS_ENG,
+} from "@/lib/language/en";
+import {
+  ALL_SERVICES_FR,
+  SERVICES_FR,
+  TURNKEY_SOLUTIONS_FR,
+} from "@/lib/language/fr";
+import { useLanguage } from "@/lib/common/useLanguage";
 
 export interface PageProps {
   ServicesData: homeBoxData[];
   ServicesDataFr: homeBoxData[];
+  buttonData?: homeBoxData;
+  buttonDataFr?: homeBoxData;
 }
-function ServicesPage({ ServicesData, ServicesDataFr }: PageProps) {
-  const [language, setLanguage] = useState("en");
-
-  const langData = async () => {
-    const savedLanguage = localStorage.getItem("language");
-    if (savedLanguage) {
-      setLanguage(savedLanguage);
-    }
-  };
+function ServicesPage({
+  ServicesData,
+  ServicesDataFr,
+  buttonData,
+  buttonDataFr,
+}: PageProps) {
+  const { language } = useLanguage();
   useEffect(() => {
-    langData();
+    window.scrollTo(0, 0); // Scrolls to the top on initial render
   }, []);
 
   return (
-    <motion.div {...staggerParent} className="bg-white px-8 pb-16">
+    <motion.div {...staggerParent} className="bg-white px-8 pb-20 pt-20">
       <div className="max-w-6xl mx-auto text-center mb-8">
-        <motion.h2
+        <motion.div
           variants={topToBottomAnimation}
-          className="text-black text-lg uppercase font-semibold flex items-center justify-center"
+          className="text-black text-3xl uppercase font-semibold flex items-center justify-center pb-3"
         >
           <span className="w-12 h-[2px] bg-[#6aebd3] inline-block mr-4"></span>
-          TURNKEY SOLUTIONS
+          {language === "fr" ? TURNKEY_SOLUTIONS_FR : TURNKEY_SOLUTIONS_ENG}
           <span className="w-12 h-[2px] bg-[#6aebd3] inline-block ml-4"></span>
-        </motion.h2>
+        </motion.div>
 
         <motion.h1
           variants={topToBottomAnimation}
           className="text-4xl font-bold"
         >
           <span className="underline decoration-[#6aebd3] underline-offset-2 decoration-8"></span>
-          Services
+          {language === "fr" ? SERVICES_FR : SERVICES_ENG}
         </motion.h1>
       </div>
 
@@ -91,10 +102,20 @@ function ServicesPage({ ServicesData, ServicesDataFr }: PageProps) {
       </div>
 
       <motion.div variants={topToBottomAnimation} className="text-center mt-12">
-        <Button
-          title={language === "fr" ? "TOUTES LES SERVICES" : "ALL SERVICES"}
-          className="mb-4 sm:mb-0 sm:mx-2"
-        />
+        {buttonData?.url && (
+          <Link
+            href={
+              language === "fr"
+                ? buttonDataFr?.url ?? ""
+                : buttonData?.url ?? ""
+            }
+          >
+            <Button
+              title={language === "fr" ? ALL_SERVICES_FR : ALL_SERVICES_ENG}
+              className="mb-4 sm:mb-0 sm:mx-2"
+            />
+          </Link>
+        )}
       </motion.div>
     </motion.div>
   );

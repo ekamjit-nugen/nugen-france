@@ -2,7 +2,7 @@
 import { BlogPageType } from "@/components/Blog-page";
 import Button from "@/components/ui/ButtonNugen/butoon";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import {
   leftToRightAnimation,
@@ -10,23 +10,16 @@ import {
   topToBottomAnimation,
 } from "@/lib/animation/animationUtils";
 import { useRouter } from "next/navigation";
+import { BLOG_ENG, LATEST_ENG } from "@/lib/language/en";
+import { BLOG_FR, LATEST_FR } from "@/lib/language/fr";
+import { useLanguage } from "@/lib/common/useLanguage";
 
 const BlogSectionHome = ({ BlogData, BlogDataFr }: BlogPageType) => {
-  const [language, setLanguage] = useState("en");
-
-  const langData = async () => {
-    const savedLanguage = localStorage.getItem("language");
-    if (savedLanguage) {
-      setLanguage(savedLanguage);
-    }
-  };
-  useEffect(() => {
-    langData();
-  }, [langData]);
+  const { language } = useLanguage();
 
   const router = useRouter();
   return (
-    <motion.section {...staggerParent} className="py-4 pb-5 px-6 bg-white">
+    <motion.section {...staggerParent} className="py-4 pb-20 px-6 bg-white">
       {/* Title Section */}
       <div className="text-center mb-12">
         <motion.h2
@@ -34,7 +27,7 @@ const BlogSectionHome = ({ BlogData, BlogDataFr }: BlogPageType) => {
           className="text-black text-lg uppercase flex items-center justify-center"
         >
           <span className="w-12 h-[2px] bg-[#87f9e4] inline-block mr-4"></span>
-          Blog
+          {language === "fr" ? BLOG_FR : BLOG_ENG}
           <span className="w-12 h-[2px] bg-[#87f9e4] inline-block ml-4"></span>
         </motion.h2>
         <motion.h1
@@ -42,7 +35,7 @@ const BlogSectionHome = ({ BlogData, BlogDataFr }: BlogPageType) => {
           className="text-4xl font-extrabold text-gray-800"
         >
           <span className="underline decoration-[#87f9e4] underline-offset-2 decoration-8">
-            Latest
+            {language === "fr" ? LATEST_FR : LATEST_ENG}
           </span>
         </motion.h1>
       </div>
@@ -75,13 +68,19 @@ const BlogSectionHome = ({ BlogData, BlogDataFr }: BlogPageType) => {
                 variants={leftToRightAnimation}
                 className="text-xl font-semibold text-gray-800 mb-4"
               >
-                {blog?.post_title}
+                 {blog?.post_title.split(" ").slice(0, 4).join(" ") +
+                  (blog?.post_title.split(" ").length > 10
+                    ? "..."
+                    : "")}
               </motion.h3>
               <motion.p
                 variants={leftToRightAnimation}
                 className="text-gray-600 mb-6"
               >
-                {blog?.post_description}
+                {blog?.post_description.split(" ").slice(0, 15).join(" ") +
+                  (blog?.post_description.split(" ").length > 10
+                    ? "..."
+                    : "")}
               </motion.p>
               <motion.div className="text-blue-500 font-medium relative group">
                 {blog?.button_title}

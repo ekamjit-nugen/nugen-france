@@ -58,7 +58,7 @@ export async function getPostBySlug(slug: string): Promise<Post> {
 }
 
 export async function getAllCategories(): Promise<Category[]> {
-  const url = getUrl("/wp-json/wp/v2/categories?per_page=60");
+  const url = getUrl("/wp-json/wp/v2/categories?per_page=100");
   const response = await fetch(url);
   const categories: Category[] = await response.json();
   return categories;

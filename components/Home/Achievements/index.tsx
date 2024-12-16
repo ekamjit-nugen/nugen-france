@@ -1,14 +1,16 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   leftToRightAnimation,
-  rightToLeftAnimation,
   staggerParent,
   topToBottomAnimation,
 } from "@/lib/animation/animationUtils";
 import Link from "next/link";
 import Button from "@/components/ui/ButtonNugen/butoon";
+import { LATEST_ACHIEVMENTS_ENG } from "@/lib/language/en";
+import { LATEST_ACHIEVMENTS_FR } from "@/lib/language/fr";
+import { useLanguage } from "@/lib/common/useLanguage";
 
 export interface dataType {
   header_title: string;
@@ -20,6 +22,7 @@ export interface dataType {
   post_description: string;
   button: string;
   url?: string;
+  url_value?:string;
 }
 
 export interface AchievementType {
@@ -35,21 +38,20 @@ const Achievements: React.FC<AchievementType> = ({
   buttonData,
   buttonDataFr,
 }) => {
-  const [language, setLanguage] = useState("en");
-
+  const { language } = useLanguage();
   useEffect(() => {
-    const savedLanguage = localStorage.getItem("language");
-    if (savedLanguage) setLanguage(savedLanguage);
+    window.scrollTo(0, 0); // Scrolls to the top on initial render
   }, []);
 
   return (
-    <motion.div {...staggerParent} className="bg-white pt-16 pb-36">
-      <motion.div variants={topToBottomAnimation}           className="text-black lg:text-4xl text-xl uppercase font-semibold flex items-center justify-center mb-6"
+    <motion.div {...staggerParent} className="bg-white pt-16 pb-20">
+      <motion.div
+        variants={topToBottomAnimation}
+        className="text-black lg:text-4xl text-xl uppercase font-semibold flex items-center justify-center text-center mb-6"
       >
-          <span className="w-12 h-[2px] bg-[#6aebd3] inline-block mr-4"></span>
-          {language === "fr" ? "Dernières Réussites" : "Latest Achievements"}
-          <span className="w-12 h-[2px] bg-[#6aebd3] inline-block ml-4"></span>
-
+        <span className="w-12 h-[2px] bg-[#6aebd3] inline-block mr-4 "></span>
+        {language === "fr" ? LATEST_ACHIEVMENTS_FR : LATEST_ACHIEVMENTS_ENG}
+        <span className="w-12 h-[2px] bg-[#6aebd3] inline-block ml-4"></span>
       </motion.div>
       {/* Achievements Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-[80%] mx-auto">
@@ -100,8 +102,8 @@ const Achievements: React.FC<AchievementType> = ({
         <Link
           href={
             language === "fr"
-              ? buttonDataFr?.button_value || ""
-              : buttonData?.button_value || ""
+              ? buttonDataFr?.url_value || ""
+              : buttonData?.url_value || ""
           }
         >
           <Button

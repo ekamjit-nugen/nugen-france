@@ -1,4 +1,7 @@
 "use client";
+import { useLanguage } from "@/lib/common/useLanguage";
+import { BLOG_ENG, LATEST_ENG } from "@/lib/language/en";
+import { BLOG_FR, LATEST_FR } from "@/lib/language/fr";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 export interface BlogDataType {
@@ -18,17 +21,7 @@ export interface BlogPageType {
   BlogDataFr: BlogDataType[];
 }
 const BlogPage: React.FC<BlogPageType> = ({ BlogData, BlogDataFr }) => {
-  const [language, setLanguage] = useState("en");
-
-  const langData = async () => {
-    const savedLanguage = localStorage.getItem("language");
-    if (savedLanguage) {
-      setLanguage(savedLanguage);
-    }
-  };
-  useEffect(() => {
-    langData();
-  }, [langData]);
+  const { language } = useLanguage();
 
   return (
     <div className="py-12 px-6 bg-white">
@@ -36,12 +29,12 @@ const BlogPage: React.FC<BlogPageType> = ({ BlogData, BlogDataFr }) => {
       <div className="text-center">
         <div className="text-black text-lg uppercase flex items-center justify-center">
           <span className="w-12 h-[2px] bg-[#87f9e4] inline-block mr-4"></span>
-          Blog
+          {language === "fr" ? BLOG_FR : BLOG_ENG}
           <span className="w-12 h-[2px] bg-[#87f9e4] inline-block ml-4"></span>
         </div>
         <div className="text-4xl font-extrabold text-gray-800">
           <span className="underline decoration-[#87f9e4] underline-offset-2 decoration-8">
-            Latest
+            {language === "fr" ? LATEST_FR : LATEST_ENG}
           </span>
         </div>
       </div>
@@ -67,18 +60,20 @@ const BlogPage: React.FC<BlogPageType> = ({ BlogData, BlogDataFr }) => {
               >
                 <p className="text-gray-500 text-sm mb-3 flex items-center">
                   <span className="mr-2">📅</span>
-                  {blog.date}
+                  {blog?.date}
                 </p>
                 <h3 className="text-xl font-semibold text-gray-800 mb-4">
-                  {blog.post_title}
+                  {blog?.post_title}
                 </h3>
-                <p className="text-gray-600 mb-6">{blog.post_description}</p>
+                <p className="text-gray-600 mb-6">
+                  {blog?.post_description.split(" ").slice(0, 15).join(" ") +
+                    (blog?.post_description.split(" ").length > 10
+                      ? "..."
+                      : "")}
+                </p>
                 <div className="text-blue-500 font-medium relative group">
-                  {blog.button_title}
-                  {/* <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 group-hover:w-full transition-all"></span> */}
+                  {blog?.button_title}
                 </div>
-
-                {/* Hover Line */}
                 <span className="absolute bottom-0 left-0 w-0 h-[3px] bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 group-hover:w-full transition-all duration-300"></span>
               </div>
             </Link>

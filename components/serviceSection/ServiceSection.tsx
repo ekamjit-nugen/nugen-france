@@ -1,7 +1,8 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "../ui/ButtonNugen/butoon";
 import Link from "next/link";
+import Image from "next/image";
 
 interface Props {
   header_title: string;
@@ -15,7 +16,6 @@ interface Props {
   post_icon: string;
   project_category?: string;
   date?: string;
-
 }
 
 interface DataType {
@@ -24,14 +24,16 @@ interface DataType {
 }
 
 export default function ServiceSection({ data, dataup }: DataType) {
-  
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top on initial render
+  }, []);
   return (
-    <div className="bg-white">
-      <div className="flex flex-col justify-center items-center py-16 gap-4">
-        <p className="text-[#0CB8F7] text-lg font-medium">
+    <div className="bg-white pb-20">
+      <div className="flex flex-col justify-center items-center pt-20 gap-4">
+        <p className="lg:text-5xl font-bold text-4xl">
           {dataup?.post_title}
         </p>
-        <p className="font-bold text-4xl lg:text-5xl">
+        <p className="text-lg font-medium text-[#0CB8F7]">
           {dataup?.project_category}
         </p>
       </div>
@@ -51,7 +53,7 @@ export default function ServiceSection({ data, dataup }: DataType) {
                 } py-8`}
               >
                 <div className="w-full flex justify-center items-center">
-                  <img
+                  <Image
                     src={value.post_image}
                     alt="image"
                     height={400}

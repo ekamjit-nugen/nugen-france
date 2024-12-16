@@ -1,9 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
-import { AchievementType } from "../Home/Achievements";
 import { ImagesData } from "../Home/skillsSection";
 import Button from "../ui/ButtonNugen/butoon";
 import Link from "next/link";
+import { useLanguage } from "@/lib/common/useLanguage";
 
 const CloudPlatform: React.FC<ImagesData> = ({
   skillData,
@@ -18,18 +18,9 @@ const CloudPlatform: React.FC<ImagesData> = ({
   const toggleAccordion = (index: number) => {
     setExpanded(expanded === index ? null : index);
   };
-
-  const [language, setLanguage] = useState("en");
-
-  const langData = async () => {
-    const savedLanguage = localStorage.getItem("language");
-    if (savedLanguage) {
-      setLanguage(savedLanguage);
-    }
-  };
-
+  const { language } = useLanguage();
   useEffect(() => {
-    langData();
+    window.scrollTo(0, 0); // Scrolls to the top on initial render
   }, []);
 
   return (

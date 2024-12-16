@@ -1,14 +1,14 @@
 "use client";
 import Button from "@/components/ui/ButtonNugen/butoon";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   leftToRightAnimation,
-  rightToLeftAnimation,
   staggerParent,
   topToBottomAnimation,
 } from "@/lib/animation/animationUtils";
 import Link from "next/link";
+import { useLanguage } from "@/lib/common/useLanguage";
 
 interface homeBoxData {
   header_title: string;
@@ -27,17 +27,10 @@ interface dataType {
 }
 
 const CallToAction = ({ data, datafr }: dataType) => {
-  const [language, setLanguage] = useState("en");
-
-  const langData = async () => {
-    const savedLanguage = localStorage.getItem("language");
-    if (savedLanguage) {
-      setLanguage(savedLanguage);
-    }
-  };
+  const { language } = useLanguage();
   useEffect(() => {
-    langData();
-  }, [langData]);
+    window.scrollTo(0, 0); // Scrolls to the top on initial render
+  }, []);
 
   return (
     <motion.div

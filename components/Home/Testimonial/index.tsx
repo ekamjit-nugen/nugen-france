@@ -1,5 +1,9 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { useLanguage } from "@/lib/common/useLanguage";
+import { TESTIMONIALS_ENG } from "@/lib/language/en";
+import { TESTIMONIALS_FR } from "@/lib/language/fr";
+import Image from "next/image";
 
 export interface TestimonialData {
   header_title: string;
@@ -24,15 +28,7 @@ const TestimonialPage: React.FC<TestimonialSectionType> = ({
   dataFr,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 10000); // Automatically change slide every 10 seconds
-    return () => clearInterval(interval);
-  }, [currentIndex]);
-
-  const nextSlide = () => {
+ const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % data.length);
   };
 
@@ -41,27 +37,28 @@ const TestimonialPage: React.FC<TestimonialSectionType> = ({
       prevIndex === 0 ? data.length - 1 : prevIndex - 1
     );
   };
-  const [language, setLanguage] = useState("en");
-
-  const langData = async () => {
-    const savedLanguage = localStorage.getItem("language");
-    if (savedLanguage) {
-      setLanguage(savedLanguage);
-    }
-  };
   useEffect(() => {
-    langData();
-  }, [langData]);
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 10000);
+    return () => clearInterval(interval);
+  }, [currentIndex]);
+
+ 
+  const { language } = useLanguage();
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top on initial render
+  }, []);
 
   return (
-    <div className="bg-white py-2 pb-5 px-8">
+    <div className="bg-white py-2 pb-20 px-8">
       {/* Header Section */}
-      <div className="max-w-6xl mx-auto text-center mb-8">
-        <h2 className="text-black text-lg uppercase font-semibold flex items-center justify-center">
+      <div className="max-w-6xl mx-auto text-center">
+        <div className="text-black text-3xl uppercase font-semibold flex items-center justify-center ">
           <span className="w-12 h-[2px] bg-[#87f9e4] inline-block mr-4"></span>
-          testimonials
+          {language === "fr" ? TESTIMONIALS_FR : TESTIMONIALS_ENG}
           <span className="w-12 h-[2px] bg-[#87f9e4] inline-block ml-4"></span>
-        </h2>
+        </div>
       </div>
 
       {/* Testimonials Carousel Section */}
@@ -76,14 +73,14 @@ const TestimonialPage: React.FC<TestimonialSectionType> = ({
               style={{ transition: "opacity 0.8s ease-in-out" }}
             >
               {/* Rounded Image */}
-              <img
+              <Image
                 src={testimonial?.post_image}
                 alt={`${testimonial?.post_title} profile`}
                 className="w-24 h-24 rounded-full mb-4 object-cover border-4 border-[#87f9e4]"
               />
 
               {/* Testimonial Content */}
-              <p className="text-gray-700 mb-4 text-lg italic text-center">
+              <p className="text-gray-700 mb-4 md:text-lg text-base italic text-center">
                 {testimonial?.post_description}
               </p>
               <p className="font-semibold text-gray-900">

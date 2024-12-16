@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import HeroImageSVGRight from "../svgContainer/HeroImageSVGRight";
@@ -12,11 +12,12 @@ import {
   staggerParent,
   topToBottomAnimation,
 } from "@/lib/animation/animationUtils";
+import { useLanguage } from "@/lib/common/useLanguage";
+
 export interface PageContent {
   header_title: string;
   header_description: string;
   animated_title: string;
-  // button_value?: () => void;
   button_value: string;
   underline_text?: string;
   button_title: string;
@@ -38,27 +39,18 @@ export interface homeBoxData {
   post_image: undefined;
   post_description: string;
   post_icon: string;
-}
-export interface buttonDataType {
-  header_title: string;
-  header_description: string;
-  animated_title: string;
-  button_value: string;
-  button_title: string;
-  post_title: string;
-  post_image: undefined;
-  post_description: string;
-  post_icon: string;
   url?: string;
 }
+
 export interface PageProps {
   homePagedata: PageContent;
-  buttonData: buttonDataType[];
-  buttonDatafr: buttonDataType[];
+  buttonData: homeBoxData[];
+  buttonDatafr: homeBoxData[];
   homeBoxData: homeBoxData[];
   homePagedatafr: PageContent;
   homeBoxDataFr: homeBoxData[];
 }
+
 const HomePage: React.FC<PageProps> = ({
   homePagedata,
   buttonData,
@@ -67,20 +59,11 @@ const HomePage: React.FC<PageProps> = ({
   homePagedatafr,
   homeBoxDataFr,
 }) => {
-  const t = useTranslations("home");
+  const { language } = useLanguage();
   const size = useSize();
-  const [language, setLanguage] = useState("en");
-
-  const langData = async () => {
-    const savedLanguage = localStorage.getItem("language");
-    if (savedLanguage) {
-      setLanguage(savedLanguage);
-    }
-  };
   useEffect(() => {
-    langData();
-  }, [langData]);
-
+    window.scrollTo(0, 0); // Scrolls to the top on initial render
+  }, []);
   return (
     <motion.div
       {...staggerParent}
@@ -89,7 +72,7 @@ const HomePage: React.FC<PageProps> = ({
       {/* Section 1 */}
       <div className="flex flex-col md:flex-row items-center py-20 px-8 md:px-16">
         {/* Left Side: Text Content */}
-        <div className="text-2xl md:text-2xl	 font-bold flex-1">
+        <div className="text-2xl md:text-2xl z-10 font-bold flex-1">
           <motion.div
             variants={leftToRightAnimation}
             className="underline decoration-[#6aebd3] underline-offset-2"
@@ -109,7 +92,7 @@ const HomePage: React.FC<PageProps> = ({
             variants={leftToRightAnimation}
             className="mt-6 text-base md:text-lg font-medium"
           >
-            <p key={language}>
+            <p>
               {language === "fr"
                 ? homePagedatafr?.header_description
                 : homePagedata?.header_description}
@@ -156,40 +139,38 @@ const HomePage: React.FC<PageProps> = ({
           {(language === "fr" ? homeBoxDataFr : homeBoxData)?.map(
             (value, index) => {
               return (
-                <>
-                  <Link
-                    href={value?.button_value || "/"}
-                    key={value?.post_title}
-                    style={{ textDecoration: "none" }}
-                  >
-                    <div className="p-4 bg-white hover:bg-[#87f9e4] rounded-lg  shadow-inner text-center transition-all duration-300 h-[500px] flex flex-col">
-                      <motion.div
-                        variants={topToBottomAnimation}
-                        className="text-blue-500 text-6xl"
-                      >
-                        {value?.post_icon}
-                      </motion.div>
-                      <motion.h3
-                        variants={topToBottomAnimation}
-                        className="text-2xl font-bold"
-                      >
-                        {value?.post_title}
-                      </motion.h3>
-                      <motion.p
-                        variants={leftToRightAnimation}
-                        className="text-clip overflow-hidden"
-                      >
-                        {value?.post_description
-                          ?.split(" ")
-                          .slice(0, 125)
-                          .join(" ") +
-                          (value?.post_description?.split(" ").length > 50
-                            ? "..."
-                            : "")}
-                      </motion.p>
-                    </div>
-                  </Link>
-                </>
+                <Link
+                  href={value?.button_value || "/"}
+                  key={value?.post_title}
+                  style={{ textDecoration: "none" }}
+                >
+                  <div className="p-4 bg-white hover:bg-[#87f9e4] rounded-lg  shadow-inner text-center transition-all duration-300 h-[500px] flex flex-col">
+                    <motion.div
+                      variants={topToBottomAnimation}
+                      className="text-blue-500 text-6xl"
+                    >
+                      {value?.post_icon}
+                    </motion.div>
+                    <motion.h3
+                      variants={topToBottomAnimation}
+                      className="text-2xl font-bold"
+                    >
+                      {value?.post_title}
+                    </motion.h3>
+                    <motion.p
+                      variants={leftToRightAnimation}
+                      className="text-clip overflow-hidden"
+                    >
+                      {value?.post_description
+                        ?.split(" ")
+                        .slice(0, 125)
+                        .join(" ") +
+                        (value?.post_description?.split(" ").length > 50
+                          ? "..."
+                          : "")}
+                    </motion.p>
+                  </div>
+                </Link>
               );
             }
           )}

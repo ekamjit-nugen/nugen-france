@@ -1,14 +1,14 @@
 "use client";
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Image, { StaticImageData } from "next/image";
 import { motion } from "framer-motion";
 import {
   leftToRightAnimation,
   rightToLeftAnimation,
   staggerParent,
-  topToBottomAnimation,
 } from "@/lib/animation/animationUtils";
 import { QueryForm } from "@/components/QueryForms";
+import { useLanguage } from "@/lib/common/useLanguage";
 interface ServiceContentType {
   header_title: string;
   header_description: string;
@@ -30,17 +30,10 @@ const InterestedSection: React.FC<ServiceClientsProps> = ({
   image,
   pageContentfr,
 }) => {
-  const [language, setLanguage] = useState("en");
-
-  const langData = async () => {
-    const savedLanguage = localStorage.getItem("language");
-    if (savedLanguage) {
-      setLanguage(savedLanguage);
-    }
-  };
+  const { language } = useLanguage();
   useEffect(() => {
-    langData();
-  }, [langData]);
+    window.scrollTo(0, 0); // Scrolls to the top on initial render
+  }, []);
 
   return (
     <motion.section
@@ -52,7 +45,7 @@ const InterestedSection: React.FC<ServiceClientsProps> = ({
           <div className="w-full lg:pl-32 flex flex-col justify-center">
             <motion.div
               variants={leftToRightAnimation}
-              className="font-serif text-black text-3xl lg:text-4xl"
+              className="font-bold text-black text-3xl lg:text-4xl"
             >
               {language === "fr"
                 ? pageContentfr?.header_title

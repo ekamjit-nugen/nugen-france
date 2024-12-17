@@ -67,6 +67,8 @@ const Footer: React.FC<PropsType> = ({
                     ? footerMianFr[0].post_image ?? ""
                     : footermain[0].post_image ?? ""
                 }
+                width={500}
+                height={500}
                 alt="Logo"
                 className="w-auto h-24"
               />

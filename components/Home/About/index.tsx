@@ -37,6 +37,8 @@ const About: React.FC<PageProps> = ({ aboutPagedata, aboutPagedatafr }) => {
                 ? aboutPagedatafr["img-1"] ?? ""
                 : aboutPagedata["img-1"] ?? ""
             }
+            width={500}
+            height={500}
             className="absolute top-16 -left-16 md:top-12 lg:top-20 xl:top-28 xl:-left-32 z-40 w-[50%] h-[50%] rounded-lg"
             alt="code"
           />
@@ -46,6 +48,8 @@ const About: React.FC<PageProps> = ({ aboutPagedata, aboutPagedatafr }) => {
                 ? aboutPagedatafr?.["img-2"] ?? ""
                 : aboutPagedata?.["img-2"] ?? ""
             }
+            width={500}
+            height={500}
             className="w-56 sm:w-72 md:w-[28rem] lg:w-[32rem] rounded-lg shadow-lg z-0"
             alt="orgination"
           />

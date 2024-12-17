@@ -63,7 +63,9 @@ const CloudPlatform: React.FC<ImagesData> = ({
                 expanded === index ? "max-h-screen" : "max-h-0"
               }`}
             >
-              <div className="p-4 bg-gray-50">{item?.button_value}</div>
+              <div className="p-4 bg-gray-50 rounded-xl">
+                {item?.button_value}
+              </div>
             </div>
           </div>
         ))}

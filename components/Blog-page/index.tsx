@@ -15,6 +15,7 @@ export interface BlogDataType {
   post_description: string;
   date: string;
   button_title: string;
+  url_value?:any;
 }
 export interface BlogPageType {
   BlogData: BlogDataType[];

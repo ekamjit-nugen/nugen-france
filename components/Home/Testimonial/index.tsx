@@ -28,6 +28,7 @@ const TestimonialPage: React.FC<TestimonialSectionType> = ({
   dataFr,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % data.length);
   };
@@ -37,6 +38,7 @@ const TestimonialPage: React.FC<TestimonialSectionType> = ({
       prevIndex === 0 ? data.length - 1 : prevIndex - 1
     );
   };
+
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
@@ -45,15 +47,16 @@ const TestimonialPage: React.FC<TestimonialSectionType> = ({
   }, [currentIndex]);
 
   const { language } = useLanguage();
+
   useEffect(() => {
     window.scrollTo(0, 0); // Scrolls to the top on initial render
   }, []);
 
   return (
-    <div className="bg-white py-2 pb-20 px-8">
+    <div className="bg-white py-2 pb-20 px-8 relative">
       {/* Header Section */}
       <div className="max-w-6xl mx-auto text-center">
-        <div className="text-black text-3xl uppercase font-semibold flex items-center justify-center ">
+        <div className="text-black text-3xl uppercase font-semibold flex items-center justify-center">
           <span className="w-12 h-[2px] bg-[#87f9e4] inline-block mr-4"></span>
           {language === "fr" ? TESTIMONIALS_FR : TESTIMONIALS_ENG}
           <span className="w-12 h-[2px] bg-[#87f9e4] inline-block ml-4"></span>
@@ -67,9 +70,8 @@ const TestimonialPage: React.FC<TestimonialSectionType> = ({
             <div
               key={index}
               className={`transition-opacity duration-1000 ${
-                index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
-              } absolute inset-0 flex flex-col items-center bg-white  rounded-lg p-8 shadow-lg`}
-              style={{ transition: "opacity 0.8s ease-in-out" }}
+                index === currentIndex ? "opacity-100 " : "opacity-0 z-0"
+              } absolute inset-0 flex flex-col items-center bg-white rounded-lg p-8 shadow-lg`}
             >
               {/* Rounded Image */}
               <Image
@@ -87,24 +89,27 @@ const TestimonialPage: React.FC<TestimonialSectionType> = ({
               <p className="font-semibold text-gray-900">
                 {testimonial?.post_title}
               </p>
-              {/* <p className="text-sm text-gray-500">{testimonial.role}</p> */}
             </div>
           ))}
         </div>
 
-        {/* Navigation Buttons */}
-        <button
-          onClick={prevSlide}
-          className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-300 p-3 rounded-full shadow hover:bg-gray-400"
-        >
-          &#8592;
-        </button>
-        <button
-          onClick={nextSlide}
-          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-300 p-3 rounded-full shadow hover:bg-gray-400"
-        >
-          &#8594;
-        </button>
+        {/* Side Navigation Buttons */}
+        <div className="z-30">
+          <button
+            onClick={prevSlide}
+            className="absolute left-[-20px] top-1/2 transform -translate-y-1/2 bg-gray-300 p-2 rounded-full shadow-lg hover:bg-gray-400 text-black"
+            aria-label="Previous Slide"
+          >
+            &#8592;
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute right-[-20px] top-1/2 transform -translate-y-1/2 bg-gray-300 p-2 rounded-full shadow-lg hover:bg-gray-400 text-black"
+            aria-label="Next Slide"
+          >
+            &#8594;
+          </button>
+        </div>
       </div>
 
       {/* Dots for Navigation */}

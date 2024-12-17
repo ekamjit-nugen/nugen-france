@@ -97,10 +97,10 @@ const BlogSectionHome = ({ BlogData, BlogDataFr }: BlogPageType) => {
         {(language === "fr" ? BlogDataFr : BlogData)?.map((blog, index) => {
           return (
             <>
-              {blog?.button && (
+              {blog?.url_value && (
                 <Link
-                  key={blog?.button_value + index}
-                  href={blog?.button_value}
+                  key={blog?.url_value + index}
+                  href={blog?.url_value}
                 >
                   <Button
                     title={blog?.button || ""}

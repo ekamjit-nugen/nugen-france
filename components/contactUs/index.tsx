@@ -40,7 +40,6 @@ const ContactPage = ({
   propsfr,
   buttonsfr,
 }: ContactUsPropsType) => {
-
   const { language } = useLanguage();
 
   return (

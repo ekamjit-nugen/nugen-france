@@ -28,7 +28,7 @@ const TestimonialPage: React.FC<TestimonialSectionType> = ({
   dataFr,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
- const nextSlide = () => {
+  const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % data.length);
   };
 
@@ -44,7 +44,6 @@ const TestimonialPage: React.FC<TestimonialSectionType> = ({
     return () => clearInterval(interval);
   }, [currentIndex]);
 
- 
   const { language } = useLanguage();
   useEffect(() => {
     window.scrollTo(0, 0); // Scrolls to the top on initial render
@@ -74,8 +73,10 @@ const TestimonialPage: React.FC<TestimonialSectionType> = ({
             >
               {/* Rounded Image */}
               <Image
-                src={testimonial?.post_image}
+                src={testimonial?.post_image || ""}
                 alt={`${testimonial?.post_title} profile`}
+                width={100}
+                height={100}
                 className="w-24 h-24 rounded-full mb-4 object-cover border-4 border-[#87f9e4]"
               />
 

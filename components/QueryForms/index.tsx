@@ -99,7 +99,7 @@ export const QueryForm = ({
           disabled={loading}
           variant="outline"
           size="sm"
-          className="gap-2 bg-[#6aebd3]"
+          className="gap-2 w-48 h-12 bg-[#6aebd3]"
           onClick={() => setToggleModal(true)}
         >
           {buttonTitle}

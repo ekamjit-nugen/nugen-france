@@ -61,7 +61,7 @@ const InterestedSection: React.FC<ServiceClientsProps> = ({
             </motion.div>
             <motion.div
               variants={leftToRightAnimation}
-              className="flex justify-start pt-4 w-96 "
+              className="flex justify-start pt-4"
               id=""
             >
               <QueryForm

@@ -69,7 +69,7 @@ const SkillsSection: React.FC<ImagesData> = ({
             {skillIcons?.map((icon, index) => (
               <Image
                 key={index}
-                src={icon?.post_image}
+                src={icon?.post_image || ""}
                 alt={`Skill ${index}`}
                 className="w-10 h-10 mx-auto"
               />

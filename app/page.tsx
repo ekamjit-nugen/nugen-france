@@ -61,9 +61,11 @@ const Home = async () => {
     "img-2": aboutimage2fr,
   };
   const CallToActionData = await PagesData("call-to-action");
-  const CallToActionDataFr = await PagesData("call-to-action-fr");
   const callToActFirst = CallToActionData?.[0];
   const callToActSecond = CallToActionData?.[1];
+  const CallToActionDataFr = await PagesData("call-to-action-fr");
+  const callToActFirstFr = CallToActionDataFr?.[0];
+  const callToActSecondFr = CallToActionDataFr?.[1];
   const homeBox = await PagesData("home-box");
   const homeBoxFr = await PagesData("home-box-fr");
   const BlogData = await PagesData("blog");
@@ -121,7 +123,7 @@ const Home = async () => {
         buttonDataFr={achievementdataFr[datalength - 1]}
         datafr={achievementdataFr}
       />
-      <ContactUs datafr={CallToActionDataFr} data={CallToActionData} />
+      <ContactUs datafr={CallToActionDataFr} data={CallToActionData} first={callToActFirst} firstFr={callToActFirstFr}/>
       <ServicesPage
         ServicesDataFr={servicesBoxFr}
         ServicesData={servicesBox}
@@ -148,7 +150,7 @@ const Home = async () => {
         mainImage={skillContent}
       /> */}
       <TestimonialPage dataFr={TestimonialDataFr} data={TestimonialData} />
-      <ContactUs datafr={CallToActionDataFr} data={CallToActionData} />
+      <ContactUs datafr={CallToActionDataFr} data={CallToActionData} second={callToActSecond} secondFr={callToActSecondFr} />
       <BlogSectionHome BlogDataFr={BlogDataFr} BlogData={BlogData} />
     </>
   );

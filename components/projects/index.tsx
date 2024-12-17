@@ -54,6 +54,8 @@ export default function Projects({
                   <Image
                     src={img?.post_image}
                     alt="projectMainImage"
+                    width={500}
+                    height={500}
                     className="w-full h-auto object-cover cursor-pointer"
                     onClick={() => openImageModal(img.post_image)}
                   />
@@ -90,6 +92,8 @@ export default function Projects({
             <Image
               src={selectedImage}
               alt="Selected project"
+              width={2000}
+              height={2000}
               className="max-w-[90%] max-h-[90%] md:pl-52 object-contain"
             />
             <button

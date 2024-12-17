@@ -51,6 +51,8 @@ export default function BlogDetail({
           <Image
             src={data?.post_image ?? ""}
             alt="image"
+            width={500}
+            height={500}
             className="w-full sm:w-3/4 md:w-2/3 lg:w-4/5 h-auto mx-auto object-cover max-h-[500px]"
           />
           {blogData

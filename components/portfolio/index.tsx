@@ -31,6 +31,8 @@ const PortfolioPage: React.FC<AchievementType> = ({ data, datafr }) => {
             <Image
               src={achievement?.post_image || ""}
               className="w-full h-64 object-fill rounded-lg shadow-lg"
+              width={500}
+              height={500}
               alt={achievement?.post_title}
             />
             <div className="absolute bottom-0 left-0 right-0 bg-white/80 py-3 px-4 rounded-lg shadow-md group-hover:bg-white transition-all duration-300">

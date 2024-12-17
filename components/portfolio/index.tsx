@@ -29,7 +29,7 @@ const PortfolioPage: React.FC<AchievementType> = ({ data, datafr }) => {
             style={{ textDecoration: "none" }}
           >
             <Image
-              src={achievement?.post_image}
+              src={achievement?.post_image || ""}
               className="w-full h-64 object-fill rounded-lg shadow-lg"
               alt={achievement?.post_title}
             />

@@ -125,7 +125,7 @@ export const QueryForm = ({
                 </button>
               </SheetClose>
             </div>
-            <h2 className="mb-2 text-4xl tracking-tight font-extrabold">
+            <h2 className="mb-2 text-4xl text-black tracking-tight font-extrabold">
               {language === "fr" ? CONTACT_US_FR : CONTACT_US_ENG}
             </h2>
             <h3 className="text-gray-500 text-start w-10/12">
